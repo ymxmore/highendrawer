@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/typedef.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/ym-aozora/highendrawer" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAWER_STYLE">DRAWER_STYLE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OVERLAY_STYLE">OVERLAY_STYLE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PREFIX">PREFIX</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TOUCH_EVENTS">TOUCH_EVENTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TRANSITION_STYLE">TRANSITION_STYLE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-support">support</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Drawer">Drawer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Overlay">Overlay</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/typedef.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Drawer object.
+ *
+ * @typedef {Object} Drawer
+ * @property {!Object} element HTML DOM Element.
+ * @property {string} [direction=&quot;right&quot;] Drawer placement direction.
+ * @property {string|number} [size=&quot;80%&quot;] Drawer size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
+ * @property {string|number} [maxsize=256] Drawer max size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
+ * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.
+ * @property {string|number} [swipearea=&quot;8%&quot;] Swipeable area. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
+ * @property {number} [duration=256] Drawer moving time.
+ * @property {number} [zindex=9999] Drawer stacking order.
+ * @property {Object} [style={}] Drawer&apos;s css style.
+ * @property {boolean} [initcreate=true] Create a drawer at initialization.
+ * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.
+ * @property {boolean} [historyback=true] Activate if historyback is supported.
+ * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.
+ * @property {function} [oncreate=null] Called when a drawer is created.
+ * @property {function} [ondestroy=null] Called when a drawer is destroyed.
+ * @property {function} [onopen=null] Called when a drawer is opened.
+ * @property {function} [onclose=null] Called when a drawer is closed.
+ * @property {function} [onchangestate=null] Called when the opening / closing state is changed.
+ * @property {function} [onresize=null] Called when the size of the drawer has changed.
+ * @property {function} [ontouchstart=null] Called when the drawer starts moving with a swipe gesture.
+ * @property {function} [ontouchmove=null] Called when the drawer is moving with a swipe gesture.
+ * @property {function} [ontouchfinish=null] Called when the drawer has finished moving with a swipe gesture.
+ * @property {function} [onerror=null] Called when there is an error in processing within the object.
+ */
+
+/**
+ * Overlay object.
+ *
+ * @typedef {Object} Overlay
+ * @property {Object} element HTML DOM Element.
+ * @property {number} [opacity=0.2] Overlay object transparency.
+ * @property {number} [zindex=-1] Overlay stacking order. If -1, zindex - 1 of the drawer is specified automatically.
+ */
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.1)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

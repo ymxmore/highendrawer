@@ -1,0 +1,61 @@
+{
+  "name": "highendrawer",
+  "description": "Highendrawer provides javascript and css drawers to your website and applications.",
+  "version": "0.0.1",
+  "author": "ym-aozora",
+  "bugs": {
+    "url": "https://github.com/ym-aozora/highendrawer/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "browser-sync": "^2.18.5",
+    "browser-sync-webpack-plugin": "^1.1.3",
+    "esdoc": "^0.5.1",
+    "eslint": "^3.11.0",
+    "eslint-config-google": "^0.7.0",
+    "eslint-loader": "^1.6.1",
+    "isparta-instrumenter-loader": "^1.0.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.8.0",
+    "phantomjs-polyfill": "0.0.2",
+    "webpack": "^1.13.3"
+  },
+  "homepage": "https://github.com/ym-aozora/highendrawer#readme",
+  "keywords": [
+    "brower",
+    "css",
+    "drawer",
+    "javascript",
+    "library",
+    "menu"
+  ],
+  "license": "MIT",
+  "main": "src/highendrawer.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ym-aozora/highendrawer.git"
+  },
+  "scripts": {
+    "build": "npm test && npm run-script doc && npm run-script clean && $(npm bin)/webpack",
+    "clean": "rm -rf ./dist",
+    "clean-doc": "rm -rf ./doc",
+    "clean-report": "rm -rf ./report",
+    "dev": "npm run-script clean-report && $(npm bin)/karma start",
+    "doc": "npm run-script clean-doc && $(npm bin)/esdoc",
+    "lint": "$(npm bin)/eslint ./src",
+    "start": "npm run-script clean && $(npm bin)/webpack -w",
+    "test": "npm run-script clean-report && $(npm bin)/karma start --single-run --browsers PhantomJS"
+  }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Highendrawer Demo</title>
+<meta name="description" content="Highendrawer Demo">
+<meta name="author" content="ym-aozora">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 16px;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 1.5;
+  color: #333;
+  background-color: #cfcfcf;
+}
+
+body {
+  position: relative;
+}
+
+h1 {
+  padding: 0 .25em;
+  margin: 1.5em 0 .5em;
+  color: #fff;
+  font-size: 2.5em;
+}
+
+h2 {
+  text-align: left;
+  padding: 0 .25em;
+  margin: 1.5em 0 .5em;
+  font-size: 1.8em;
+  color: #444;
+}
+
+a, a:visited, a:active {
+  color: #333;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #888;
+}
+
+.container {
+  display: block;
+}
+
+.list {
+  padding-left: 2em;
+  margin: .25em auto;
+}
+
+.list li {
+  font-size: .8em;
+  margin-bottom: .5em;
+  padding: .2em;
+}
+
+#drawer {
+  display: none;
+  background-color: #fff;
+}
+
+#drawer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#drawer li {
+  padding: .4em .6em;
+  font-size: 1em;
+  border-bottom: 1px solid #efefef;
+}
+
+#btn-toggle {
+  position: fixed;
+  top: .5em;
+  left: .5em;
+  color: #666;
+  background-color: #fff;
+  text-decoration: none;
+  padding: .8em 1em;
+  text-align: center;
+  z-index: 10000;
+  font-size: .9em;
+  line-height: 1;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Highendrawer Demo</h1>
+  <ul class="list">
+    <li>Swipe from the right end to the left to open it.</li>
+    <li>Click on the upper left button to open and close.</li>
+  </ul>
+</div>
+
+<div class="container">
+  <h2>Links</h2>
+  <ul class="list">
+    <li>
+      <a href="doc">API Documentation</a>
+    </li>
+    <li>
+      <a href="https://github.com/ym-aozora/highendrawer">Repository</a>
+    </li>
+  </ul>
+</div>
+
+<a id="btn-toggle" href="#"></a>
+<div id="drawer">
+  <ul>
+    <li>MENU 1</li>
+    <li>MENU 2</li>
+    <li>MENU 3</li>
+    <li>MENU 4</li>
+  </ul>
+</div>
+<script src="/dist/highendrawer.js"></script>
+<script>
+  var togglebtn = document.getElementById('btn-toggle');
+
+  var drawer = new Highendrawer({
+    element: document.getElementById('drawer'),
+    onchangestate: function(drawer, state) {
+      togglebtn.innerHTML = state === 'open' ? 'CL' : 'OP';
+    }
+  });
+
+  togglebtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    drawer.toggle();
+  });
+
+  togglebtn.innerHTML = 'OP';
+</script>
+</body>
+</html>

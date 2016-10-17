@@ -1,0 +1,34 @@
+extends: google
+
+parser: babel-eslint
+
+env:
+	es6: true
+
+ecmaFeatures:
+	modules: true
+
+globals:
+  window: false
+  console: false
+  $: false
+  setTimeout: false
+  clearTimeout: false
+  Promise: false
+
+  # For spec
+  process: false
+  module: false
+  exports: false
+  require: false
+  jasmine: false
+  global: false
+  describe: false
+  it: false
+  beforeEach: false
+  afterEach: false
+  expect: false
+  spyOn: false
+
+rules:
+  max-len: [1, 80, 4, {ignoreComments: true, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true}]

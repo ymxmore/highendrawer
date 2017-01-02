@@ -50,4 +50,4 @@ var drawer = new Highendrawer({
 
 ## License
 
-[MIT](/LICENSE)
+[MIT](https://raw.githubusercontent.com/ym-aozora/highendrawer/master/LICENSE)

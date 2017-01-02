@@ -3,6 +3,16 @@
 Highendrawer provides javascript and css drawers to your website and applications.
 
 
+## Demo
+
+https://ym-aozora.github.io/highendrawer/
+
+
+## Documentation
+
+https://ym-aozora.github.io/highendrawer/doc/
+
+
 ## Usage
 
 ### With ES6/import

@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
@@ -62,14 +63,14 @@
  * @property {string} [direction=&quot;right&quot;] Drawer placement direction.
  * @property {string|number} [size=&quot;80%&quot;] Drawer size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
  * @property {string|number} [maxsize=256] Drawer max size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
- * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.
+ * @property {boolean} [isswipeable=true] Enable opening and closing of the drawer with a swipe gesture.
  * @property {string|number} [swipearea=&quot;8%&quot;] Swipeable area. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
  * @property {number} [duration=256] Drawer moving time.
  * @property {number} [zindex=9999] Drawer stacking order.
  * @property {Object} [style={}] Drawer&apos;s css style.
- * @property {boolean} [initcreate=true] Create a drawer at initialization.
+ * @property {boolean} [isinitcreate=true] Create a drawer at initialization.
  * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.
- * @property {boolean} [historyback=true] Activate if historyback is supported.
+ * @property {boolean} [ishistory=true] Activate if history is supported.
  * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.
  * @property {function} [oncreate=null] Called when a drawer is created.
  * @property {function} [ondestroy=null] Called when a drawer is destroyed.

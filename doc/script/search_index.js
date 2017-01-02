@@ -54,6 +54,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "highendrawer/src/helper.js~generateid",
+    "function/index.html#static-function-generateid",
+    "<span>generateid</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function"
+  ],
+  [
     "highendrawer/src/helper.js~hasstyle",
     "function/index.html#static-function-hasstyle",
     "<span>hasstyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",

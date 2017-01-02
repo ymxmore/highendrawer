@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
@@ -116,14 +117,14 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
   direction: &apos;right&apos;,
   size: &apos;80%&apos;,
   maxsize: 256,
-  swipeable: true,
+  isswipeable: true,
   swipearea: &apos;8%&apos;,
   duration: 300,
   zindex: 9999,
   style: {},
-  initcreate: true,
+  isinitcreate: true,
   enabledmaxwidth: -1,
-  historyback: true,
+  ishistory: true,
   overlay: null,
   oncreate: null,
   ondestroy: null,
@@ -146,6 +147,7 @@ export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
   opacity: 0.2,
   zindex: -1,
+  autocreate: false,
 });
 
 /**

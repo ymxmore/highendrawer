@@ -52,10 +52,11 @@
     "clean": "rm -rf ./dist",
     "clean-doc": "rm -rf ./doc",
     "clean-report": "rm -rf ./report",
+    "demo": "npm run-script clean && $(npm bin)/webpack -w",
     "dev": "npm run-script clean-report && $(npm bin)/karma start",
     "doc": "npm run-script clean-doc && $(npm bin)/esdoc",
     "lint": "$(npm bin)/eslint ./src",
-    "start": "npm run-script clean && $(npm bin)/webpack -w",
+    "start": "npm run-script demo",
     "test": "npm run-script clean-report && $(npm bin)/karma start --single-run --browsers PhantomJS"
   }
 }

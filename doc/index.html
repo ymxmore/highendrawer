@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
@@ -54,8 +55,33 @@
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="highendrawer">Highendrawer</h1>
-<h2 id="overview">Overview</h2>
 <p>Highendrawer provides javascript and css drawers to your website and applications.</p>
+<h2 id="demo">Demo</h2>
+<p><a href="https://ym-aozora.github.io/highendrawer/">https://ym-aozora.github.io/highendrawer/</a></p>
+<h2 id="documentation">Documentation</h2>
+<p><a href="https://ym-aozora.github.io/highendrawer/doc/">https://ym-aozora.github.io/highendrawer/doc/</a></p>
+<h2 id="usage">Usage</h2>
+<h3 id="with-es6-import">With ES6/import</h3>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import Highendrawer from &apos;highendrawer&apos;;
+
+let drawer = new Highendrawer({
+  element: document.getElementById(&apos;drawer&apos;)
+});</code>
+</code></pre>
+<h3 id="with-require">With require</h3>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const Highendrawer = require(&apos;highendrawer&apos;);
+
+let drawer = new Highendrawer({
+  element: document.getElementById(&apos;drawer&apos;)
+});</code>
+</code></pre>
+<h3 id="with-browser">With Browser</h3>
+<pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;dist/highendrawer.js&quot;&gt;&lt;/script&gt;</code>
+</code></pre>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">var drawer = new Highendrawer({
+  element: document.getElementById(&apos;drawer&apos;)
+});</code>
+</code></pre>
 <h2 id="license">License</h2>
 <p><a href="/LICENSE">MIT</a></p>
 </div>

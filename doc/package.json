@@ -48,14 +48,14 @@
     "url": "git+https://github.com/ym-aozora/highendrawer.git"
   },
   "scripts": {
-    "build": "npm test && npm run-script doc && npm run-script clean && NODE_ENV=production $(npm bin)/webpack",
+    "build": "npm test && npm run-script doc && npm run-script clean && $(npm bin)/webpack",
     "clean": "rm -rf ./dist",
     "clean-doc": "rm -rf ./doc",
     "clean-report": "rm -rf ./report",
-    "demo": "npm run-script clean && $(npm bin)/webpack -w",
+    "dev": "npm run-script clean-report && $(npm bin)/karma start",
     "doc": "npm run-script clean-doc && $(npm bin)/esdoc",
     "lint": "$(npm bin)/eslint ./src",
-    "start": "npm run-script clean-report && $(npm bin)/karma start",
+    "start": "npm run-script clean && $(npm bin)/webpack -w",
     "test": "npm run-script clean-report && $(npm bin)/karma start --single-run --browsers PhantomJS"
   }
 }

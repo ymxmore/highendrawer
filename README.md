@@ -1,5 +1,8 @@
 # Highendrawer
 
+[![Build Status](https://travis-ci.org/ym-aozora/highendrawer.svg?branch=master)](https://travis-ci.org/ym-aozora/highendrawer)
+[![Dependency Status](https://gemnasium.com/badges/github.com/ym-aozora/highendrawer.svg)](https://gemnasium.com/github.com/ym-aozora/highendrawer)
+
 Highendrawer provides javascript and css drawers to your website and applications.
 
 

@@ -109,6 +109,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    _classCallCheck(this, Highendrawer);
 	
+	    /**
+	     * Drawer status ('open' or 'close')
+	     *
+	     * @public
+	     * @type {string}
+	     */
+	    this.state = 'close';
+	
 	    this._id = helper.generateid();
 	    this._drawer = _extends({}, _const.DEFAULT_DRAWER_PROPERTY, drawer);
 	    this._overlay = this._drawer.overlay === false ? false : _extends({}, _const.DEFAULT_OVERLAY_PROPERTY, this._drawer.overlay);
@@ -192,7 +200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @public
 	     * @param {number} [duration] Drawer moving time.
 	     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-	     * @param {boolean} [iseventprocess=false] Event processing in progress.
+	     * @param {boolean} [ischangehistory=false] Make a change in history.
 	     * @return {Promise} Promise object for open.
 	     */
 	
@@ -201,13 +209,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function open() {
 	      var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-	      var iseventprocess = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 	
 	      return this._changestate(0, duration, {
 	        onchangestate: isfireevent ? this._drawer.onchangestate : null,
 	        done: isfireevent ? this._drawer.onopen : null,
 	        fail: isfireevent ? this._drawer.onerror : null
-	      }, iseventprocess);
+	      }, ischangehistory);
 	    }
 	
 	    /**
@@ -216,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @public
 	     * @param {number} [duration] Drawer moving time.
 	     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-	     * @param {boolean} [iseventprocess=false] Event processing in progress.
+	     * @param {boolean} [ischangehistory=false] Make a change in history.
 	     * @return {Promise} Promise object for close.
 	     */
 	
@@ -225,13 +233,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function close() {
 	      var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-	      var iseventprocess = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 	
 	      return this._changestate(this._getminposition(), duration, {
 	        onchangestate: isfireevent ? this._drawer.onchangestate : null,
 	        done: isfireevent ? this._drawer.onclose : null,
 	        fail: isfireevent ? this._drawer.onerror : null
-	      }, iseventprocess);
+	      }, ischangehistory);
 	    }
 	
 	    /**
@@ -240,7 +248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @public
 	     * @param {number} [duration] Drawer moving time.
 	     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-	     * @param {boolean} [iseventprocess=false] Event processing in progress.
+	     * @param {boolean} [ischangehistory=false] Make a change in history.
 	     * @return {Promise} Promise object for toggle.
 	     */
 	
@@ -252,11 +260,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this2 = this;
 	
 	      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-	      var iseventprocess = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 	
 	      return new Promise(function (resolve, reject) {
 	        try {
-	          _this2[_this2._getstate() === 'open' ? 'close' : 'open'](duration, isfireevent, iseventprocess).then(resolve, reject);
+	          _this2[_this2.state === 'open' ? 'close' : 'open'](duration, isfireevent, ischangehistory).then(resolve, reject);
 	        } catch (e) {
 	          reject(e);
 	        }
@@ -417,7 +425,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_showoverlay',
 	    value: function _showoverlay() {
 	      helper.setstyle(this._overlay.element, {
-	        zIndex: this._overlay.zindex
+	        zIndex: this._overlay.zindex,
+	        display: 'block'
 	      });
 	    }
 	
@@ -429,7 +438,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_hideoverlay',
 	    value: function _hideoverlay() {
 	      helper.setstyle(this._overlay.element, {
-	        zIndex: -1
+	        zIndex: -1,
+	        display: 'none'
 	      });
 	    }
 	
@@ -664,7 +674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	
-	      return this._getstate();
+	      return this._getstatefromposition();
 	    }
 	
 	    /**
@@ -682,7 +692,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      handler.resize = function () {
 	        _this7._resetdrawer();
-	        _this7[_this7._getstate()](0, false, true);
+	        _this7[_this7.state](0, false, false);
 	
 	        if (_this7._drawer.onresize) {
 	          _this7._drawer.onresize.apply(_this7, [_this7._drawer]);
@@ -718,8 +728,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      if (window.history && window.history.pushState && this._drawer.ishistory) {
 	        handler.popstate = function (e) {
-	          if (e.state && e.state.id === _this7._id && _this7._getstate() === 'open') {
-	            _this7.close(null, true, true);
+	          if (e.state && e.state.id === _this7._id && _this7.state === 'open') {
+	            _this7.close(null, true, false);
 	          }
 	        };
 	      }
@@ -846,7 +856,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var state = this._gettouchmovestate(this._process.touches, this._process.time);
 	
-	        this[state]();
+	        var changestate = this.state !== state;
+	
+	        this[state](null, changestate, changestate);
 	
 	        if (this._drawer.ontouchfinish) {
 	          this._drawer.ontouchfinish.apply(this, [this._drawer, this._getdrawerpositionfromtouches(this._process.touches[len - 2], this._process.touches[len - 1])]);
@@ -865,7 +877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param {number} position Moving position.
 	     * @param {number} [duration=null] Drawer moving time.
 	     * @param {Object} [callbacks=null] Callback objects.
-	     * @param {boolean} [iseventprocess=false] Event processing in progress.
+	     * @param {boolean} [ischangehistory=false] Make a change in history.
 	     * @return {Promise} Promise object.
 	     */
 	
@@ -877,7 +889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this8 = this;
 	
 	      var callbacks = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-	      var iseventprocess = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+	      var ischangehistory = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 	
 	      return this._handlecallback(new Promise(function (resolve, reject) {
 	        try {
@@ -891,14 +903,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this8._timeoutid = null;
 	            }
 	
-	            var state = _this8._getstate();
+	            var state = _this8._getstatefromposition();
 	
 	            if (state === 'open') {
 	              _this8._showoverlay();
 	              _this8._showdrawer();
 	            }
 	
-	            if (window.history && window.history.pushState && _this8._drawer.ishistory && !iseventprocess) {
+	            if (ischangehistory && _this8._drawer.ishistory && window.history && window.history.pushState) {
 	              if (state === 'open') {
 	                window.history.pushState({
 	                  id: _this8._id
@@ -918,6 +930,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	              _this8._timeoutid = null;
 	            }, du);
+	
+	            _this8.state = state;
 	
 	            if ((typeof callbacks === 'undefined' ? 'undefined' : _typeof(callbacks)) === 'object' && callbacks.onchangestate) {
 	              callbacks.onchangestate.apply(_this8, [_this8._drawer, state]);
@@ -944,7 +958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: '_istouchactive',
 	    value: function _istouchactive(touch) {
-	      var rg = this._getrange(this._getstate() === 'open' ? '100%' : this._drawer.swipearea);
+	      var rg = this._getrange(this.state === 'open' ? '100%' : this._drawer.swipearea);
 	
 	      return rg.from.x <= touch.clientX && touch.clientX <= rg.to.x && rg.from.y <= touch.clientY && touch.clientY <= rg.to.y;
 	    }
@@ -956,8 +970,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	
 	  }, {
-	    key: '_getstate',
-	    value: function _getstate() {
+	    key: '_getstatefromposition',
+	    value: function _getstatefromposition() {
 	      var pos = this._position === null ? this._getdrawerpositionfromstyle() : this._position;
 	
 	      return Math.abs(pos) < this._sizepixel / 2 ? 'open' : 'close';
@@ -1325,7 +1339,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @type {Object}
 	 */
 	var OVERLAY_STYLE = exports.OVERLAY_STYLE = Object.freeze({
-	  display: 'block',
+	  display: 'none',
 	  backgroundColor: '#000',
 	  position: 'fixed',
 	  top: 0,

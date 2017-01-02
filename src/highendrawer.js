@@ -33,6 +33,14 @@ export default class Highendrawer {
    * @param {Drawer} drawer Initial parameters of drawer.
    */
   constructor(drawer) {
+    /**
+     * Drawer status ('open' or 'close')
+     *
+     * @public
+     * @type {string}
+     */
+    this.state = 'close';
+
     this._id = helper.generateid();
     this._drawer = Object.assign({}, DEFAULT_DRAWER_PROPERTY, drawer);
     this._overlay = this._drawer.overlay === false ?
@@ -113,10 +121,10 @@ export default class Highendrawer {
    * @public
    * @param {number} [duration] Drawer moving time.
    * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-   * @param {boolean} [iseventprocess=false] Event processing in progress.
+   * @param {boolean} [ischangehistory=false] Make a change in history.
    * @return {Promise} Promise object for open.
    */
-  open(duration = null, isfireevent = true, iseventprocess = false) {
+  open(duration = null, isfireevent = true, ischangehistory = true) {
     return this._changestate(
       0,
       duration,
@@ -125,7 +133,7 @@ export default class Highendrawer {
         done: isfireevent ? this._drawer.onopen : null,
         fail: isfireevent ? this._drawer.onerror : null,
       },
-      iseventprocess
+      ischangehistory
     );
   }
 
@@ -135,10 +143,10 @@ export default class Highendrawer {
    * @public
    * @param {number} [duration] Drawer moving time.
    * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-   * @param {boolean} [iseventprocess=false] Event processing in progress.
+   * @param {boolean} [ischangehistory=false] Make a change in history.
    * @return {Promise} Promise object for close.
    */
-  close(duration = null, isfireevent = true, iseventprocess = false) {
+  close(duration = null, isfireevent = true, ischangehistory = true) {
     return this._changestate(
       this._getminposition(),
       duration,
@@ -147,7 +155,7 @@ export default class Highendrawer {
         done: isfireevent ? this._drawer.onclose : null,
         fail: isfireevent ? this._drawer.onerror : null,
       },
-      iseventprocess
+      ischangehistory
     );
   }
 
@@ -157,13 +165,13 @@ export default class Highendrawer {
    * @public
    * @param {number} [duration] Drawer moving time.
    * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-   * @param {boolean} [iseventprocess=false] Event processing in progress.
+   * @param {boolean} [ischangehistory=false] Make a change in history.
    * @return {Promise} Promise object for toggle.
    */
-  toggle(duration = null, isfireevent = true, iseventprocess = false) {
+  toggle(duration = null, isfireevent = true, ischangehistory = true) {
     return new Promise((resolve, reject) => {
       try {
-        this[this._getstate() === 'open' ? 'close' : 'open'](duration, isfireevent, iseventprocess)
+        this[this.state === 'open' ? 'close' : 'open'](duration, isfireevent, ischangehistory)
           .then(resolve, reject);
       } catch (e) {
         reject(e);
@@ -317,6 +325,7 @@ export default class Highendrawer {
   _showoverlay() {
     helper.setstyle(this._overlay.element, {
       zIndex: this._overlay.zindex,
+      display: 'block',
     });
   }
 
@@ -326,6 +335,7 @@ export default class Highendrawer {
   _hideoverlay() {
     helper.setstyle(this._overlay.element, {
       zIndex: -1,
+      display: 'none',
     });
   }
 
@@ -559,7 +569,7 @@ export default class Highendrawer {
       }
     }
 
-    return this._getstate();
+    return this._getstatefromposition();
   }
 
   /**
@@ -572,7 +582,7 @@ export default class Highendrawer {
 
     handler.resize = () => {
       this._resetdrawer();
-      this[this._getstate()](0, false, true);
+      this[this.state](0, false, false);
 
       if (this._drawer.onresize) {
         this._drawer.onresize.apply(
@@ -593,8 +603,8 @@ export default class Highendrawer {
       && this._drawer.ishistory
     ) {
       handler.popstate = (e) => {
-        if (e.state && e.state.id === this._id && this._getstate() === 'open') {
-          this.close(null, true, true);
+        if (e.state && e.state.id === this._id && this.state === 'open') {
+          this.close(null, true, false);
         }
       };
     }
@@ -732,7 +742,9 @@ export default class Highendrawer {
         this._process.time
       );
 
-      this[state]();
+      let changestate = this.state !== state;
+
+      this[state](null, changestate, changestate);
 
       if (this._drawer.ontouchfinish) {
         this._drawer.ontouchfinish.apply(
@@ -760,14 +772,14 @@ export default class Highendrawer {
    * @param {number} position Moving position.
    * @param {number} [duration=null] Drawer moving time.
    * @param {Object} [callbacks=null] Callback objects.
-   * @param {boolean} [iseventprocess=false] Event processing in progress.
+   * @param {boolean} [ischangehistory=false] Make a change in history.
    * @return {Promise} Promise object.
    */
   _changestate(
     position,
     duration = null,
     callbacks = null,
-    iseventprocess = false
+    ischangehistory = true
   ) {
     return this._handlecallback(new Promise((resolve, reject) => {
       try {
@@ -780,17 +792,17 @@ export default class Highendrawer {
           this._timeoutid = null;
         }
 
-        let state = this._getstate();
+        let state = this._getstatefromposition();
 
         if (state === 'open') {
           this._showoverlay();
           this._showdrawer();
         }
 
-        if (window.history
-          && window.history.pushState
+        if (ischangehistory
           && this._drawer.ishistory
-          && !iseventprocess
+          && window.history
+          && window.history.pushState
         ) {
           if (state === 'open') {
             window.history.pushState({
@@ -817,6 +829,8 @@ export default class Highendrawer {
           du
         );
 
+        this.state = state;
+
         if (typeof callbacks === 'object' && callbacks.onchangestate) {
           callbacks.onchangestate.apply(
             this,
@@ -842,7 +856,7 @@ export default class Highendrawer {
    */
   _istouchactive(touch) {
     let rg = this._getrange(
-      this._getstate() === 'open' ?
+      this.state === 'open' ?
         '100%' :
         this._drawer.swipearea
     );
@@ -858,7 +872,7 @@ export default class Highendrawer {
    *
    * @return {string} State of the drawer.
    */
-  _getstate() {
+  _getstatefromposition() {
     let pos = this._position === null ?
       this._getdrawerpositionfromstyle() :
       this._position;

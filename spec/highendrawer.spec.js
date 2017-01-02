@@ -35,6 +35,10 @@ describe('Testing the constructor', () => {
       overlay.parentNode.removeChild(overlay);
     });
 
+    it('Property state should be created successfully', () => {
+      expect(ins.state).toBe('close');
+    });
+
     it('Property timeoutid should be created successfully', () => {
       expect(ins._timeoutid).toBeNull();
       expect(ins._intervalid).toBeNull();
@@ -117,7 +121,7 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.zindex).not.toBeUndefined();
       expect(ins._overlay.element.tagName).toBe('DIV');
       expect(ins._overlay.element.innerHTML).toBe('');
-      expect(ins._overlay.element.style.display).toBe('block');
+      expect(ins._overlay.element.style.display).toBe('none');
       expect(ins._overlay.element.style.backgroundColor).toBe('rgb(0, 0, 0)');
       expect(ins._overlay.element.style.position).toBe('fixed');
       expect(ins._overlay.element.style.top).toBe('0px');
@@ -225,6 +229,10 @@ describe('Testing the constructor', () => {
 
       let overlay = document.getElementById('overlay');
       overlay.parentNode.removeChild(overlay);
+    });
+
+    it('Property state should be created successfully', () => {
+      expect(ins.state).toBe('close');
     });
 
     it('Property timeoutid should be created successfully', () => {
@@ -485,6 +493,7 @@ describe('Testing the open, close and toggle', () => {
   });
 
   it('Drawer should be opened when calling method', () => {
+    expect(ins.state).toBe('close');
     expect(cbs.onchangestate).toHaveBeenCalledTimes(0);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
@@ -494,6 +503,8 @@ describe('Testing the open, close and toggle', () => {
     expect(ins._overlay.element.style.webkitTransitionDuration).toBe('0ms');
 
     ins.open();
+
+    expect(ins.state).toBe('open');
 
     jasmine.clock().tick(301);
 
@@ -507,6 +518,7 @@ describe('Testing the open, close and toggle', () => {
 
     ins.close();
 
+    expect(ins.state).toBe('close');
     expect(ins._drawer.element.style.zIndex).toBe('9999');
 
     jasmine.clock().tick(301);
@@ -521,6 +533,8 @@ describe('Testing the open, close and toggle', () => {
 
     ins.toggle();
 
+    expect(ins.state).toBe('open');
+
     jasmine.clock().tick(301);
 
     expect(cbs.onchangestate).toHaveBeenCalledTimes(3);
@@ -533,6 +547,7 @@ describe('Testing the open, close and toggle', () => {
 
     ins.toggle();
 
+    expect(ins.state).toBe('close');
     expect(ins._drawer.element.style.zIndex).toBe('9999');
 
     jasmine.clock().tick(301);

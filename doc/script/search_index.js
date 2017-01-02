@@ -474,6 +474,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/highendrawer.js~highendrawer#state",
+    "class/src/highendrawer.js~Highendrawer.html#instance-member-state",
+    "src/highendrawer.js~Highendrawer#state",
+    "member"
+  ],
+  [
     "src/highendrawer.js~highendrawer#toggle",
     "class/src/highendrawer.js~Highendrawer.html#instance-method-toggle",
     "src/highendrawer.js~Highendrawer#toggle",

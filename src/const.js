@@ -27,7 +27,7 @@ export const DRAWER_STYLE = Object.freeze({
  * @type {Object}
  */
 export const OVERLAY_STYLE = Object.freeze({
-  display: 'block',
+  display: 'none',
   backgroundColor: '#000',
   position: 'fixed',
   top: 0,

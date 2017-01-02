@@ -64,6 +64,15 @@ export default class Highendrawer {
       });
     }
 
+    if (window.history
+      && window.history.pushState
+      && this._drawer.ishistory
+    ) {
+      window.history.replaceState({
+        id: this._id,
+      }, null, null);
+    }
+
     if (this._drawer.isinitcreate) {
       this.create();
     }

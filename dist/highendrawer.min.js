@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.6
+ * @version v0.0.7
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */

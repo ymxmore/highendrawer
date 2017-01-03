@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.1
+ * @version v0.0.4
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -343,7 +343,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	      }
 	
-	      this._overlay.element.addEventListener('click', this._overlay.touchhandler);
 	      window.document.body.appendChild(this._overlay.element);
 	    }
 	
@@ -359,9 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      if (this._overlay.element) {
-	        if (this._overlay.touchhandler) {
-	          this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
-	        }
+	        this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
 	
 	        if (this._overlay.isautocreated) {
 	          this._overlay.element.parentNode.removeChild(this._overlay.element);
@@ -914,6 +911,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (state === 'open') {
 	              _this8._showoverlay();
 	              _this8._showdrawer();
+	            } else {
+	              _this8._overlay.element.removeEventListener('click', _this8._overlay.touchhandler);
 	            }
 	
 	            if (ischangehistory && _this8._drawer.ishistory && window.history && window.history.pushState) {
@@ -929,7 +928,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this8[_support.support.cssanim ? '_cssanimate' : '_jsanimate'](du);
 	
 	            _this8._timeoutid = setTimeout(function () {
-	              if (state === 'close') {
+	              if (state === 'open') {
+	                _this8._overlay.element.addEventListener('click', _this8._overlay.touchhandler);
+	              } else {
 	                _this8._hidedrawer();
 	                _this8._hideoverlay();
 	              }

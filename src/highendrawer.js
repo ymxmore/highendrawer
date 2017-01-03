@@ -262,7 +262,6 @@ export default class Highendrawer {
       };
     }
 
-    this._overlay.element.addEventListener('click', this._overlay.touchhandler);
     window.document.body.appendChild(this._overlay.element);
   }
 
@@ -275,9 +274,7 @@ export default class Highendrawer {
     }
 
     if (this._overlay.element) {
-      if (this._overlay.touchhandler) {
-        this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
-      }
+      this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
 
       if (this._overlay.isautocreated) {
         this._overlay.element.parentNode.removeChild(this._overlay.element);
@@ -806,6 +803,8 @@ export default class Highendrawer {
         if (state === 'open') {
           this._showoverlay();
           this._showdrawer();
+        } else {
+          this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
         }
 
         if (ischangehistory
@@ -828,7 +827,9 @@ export default class Highendrawer {
 
         this._timeoutid = setTimeout(
           () => {
-            if (state === 'close') {
+            if (state === 'open') {
+              this._overlay.element.addEventListener('click', this._overlay.touchhandler);
+            } else {
               this._hidedrawer();
               this._hideoverlay();
             }

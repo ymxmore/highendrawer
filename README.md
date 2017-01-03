@@ -12,11 +12,6 @@ Highendrawer provides javascript and css drawers to your website and application
 https://ym-aozora.github.io/highendrawer/
 
 
-## Documentation
-
-https://ym-aozora.github.io/highendrawer/doc/
-
-
 ## Usage
 
 ### With ES6/import
@@ -50,6 +45,21 @@ var drawer = new Highendrawer({
   element: document.getElementById('drawer')
 });
 ```
+
+
+## Options (constructor)
+
+https://ym-aozora.github.io/highendrawer/doc/typedef/index.html#static-typedef-Drawer
+
+
+## API Documentation
+
+https://ym-aozora.github.io/highendrawer/doc/class/src/highendrawer.js~Highendrawer.html
+
+
+## Changelog
+
+https://github.com/ym-aozora/highendrawer/blob/master/CHANGELOG.md
 
 
 ## License

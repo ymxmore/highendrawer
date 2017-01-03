@@ -1,7 +1,7 @@
 {
   "name": "highendrawer",
   "description": "Highendrawer provides javascript and css drawers to your website and applications.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "ym-aozora",
   "bugs": {
     "url": "https://github.com/ym-aozora/highendrawer/issues"
@@ -32,6 +32,12 @@
     "phantomjs-polyfill": "0.0.2",
     "webpack": "^1.13.3"
   },
+  "files": [
+    "README.md",
+    "dist",
+    "package.json",
+    "src"
+  ],
   "homepage": "https://github.com/ym-aozora/highendrawer#readme",
   "keywords": [
     "brower",

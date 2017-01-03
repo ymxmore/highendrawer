@@ -8,6 +8,6 @@ deploy:
   api_key:
     secure: AiHSMxeFDcMMP2370288dpSJcseS8RpEGiatHAqUhg4ku2HYiaf4VvSPms0SdCXkEG5BRbEWduz/MQkKKgTo5mbe8vjG5rKyjyLhuiz9Z8p3P7/AuWXddT0hGHXrK/W01KcS0+B4XVEs5chrtmgf3nhhqTFAqz3zjreY48mat4aUnaPPEU4xVtIUxWuGwZNKMX9fun2DfU/Qg1rmtk//QDRly8qFJ6JAhsBGwXAlVoyDDdiIusFL3ayycuTRUjMRE9+TaH4fTz81rlDBKs++YXGYd4St3ZW76+fo4dlA4VFkU/iqmzoUGmiOGNCW89JWsry42JUHB3QiIGGgFKExk2tmLXVM66yi3y1u7u7AskMZiQa/BsGDyIlTLGtOewqYKnHL92gyo7bAdpqK6ENvy9yZZ0wAd7U/UxCo0UyuF0Inb68DffYy7Ds28gZ0Le93XqWVuN7+222vQxKJki7kRVb1At8yYHvH8kVixRRU3w7Xlaob+aba3vtIKx82cXBPX0UxhYrODp4FmYmvMN0ZXLYXCzIPxAHjW1jDAlifE2TGPk9JwgpiXl707fjTYIz5DPIJb2dPOuNxh7ABg1WfMDTNdqoKmt6TeFycdZLHgKH+dSShPgfRQtq5mrdpo9cxVuaCWUW0/FQlCfAvqT07iKlbzd/l1nqQ80ivqo4OWYE=
   on:
-    all_branches: true
+    branch: master
     tags: true
     node: '7'

@@ -33,9 +33,7 @@
     "webpack": "^1.13.3"
   },
   "files": [
-    "README.md",
     "dist",
-    "package.json",
     "src"
   ],
   "homepage": "https://github.com/ym-aozora/highendrawer#readme",

@@ -313,7 +313,7 @@ export default class Highendrawer {
   _showdrawer() {
     helper.setstyle(this._drawer.element, {
       zIndex: this._drawer.zindex,
-      display: 'block',
+      opacity: 1,
     });
   }
 
@@ -323,7 +323,7 @@ export default class Highendrawer {
   _hidedrawer() {
     helper.setstyle(this._drawer.element, {
       zIndex: -1,
-      display: 'none',
+      opacity: 0,
     });
   }
 
@@ -677,56 +677,78 @@ export default class Highendrawer {
    */
   _ontouchmove(ev) {
     let len = this._process.touches.length;
+
+    if (len < 2) {
+      return;
+    }
+
+    if (!this._process.istouchpointactive) {
+      this._process.istouchpointactive = this._istouchpointactive();
+    }
+
+    if (!this._process.istouchpointactive) {
+      return;
+    }
+
+    if (this._process.istouchdirectionactive === null) {
+      this._process.istouchdirectionactive = this._istouchdirectionactive();
+    }
+
+    if (!this._process.istouchdirectionactive) {
+      return;
+    }
+
     let isfiretouchstart = false;
+    let istouchactive = this._process.istouchpointactive &&
+        this._process.istouchdirectionactive;
 
-    if (!this._process.istouchactive && len >= 2) {
-      this._process.istouchactive = this._istouchactive();
+    if (!istouchactive) {
+      return;
+    }
 
-      if (this._process.istouchactive) {
-        this._showoverlay();
-        this._showdrawer();
+    if (!this._process.istouchactive) {
+      this._process.istouchactive = istouchactive;
+      this._showoverlay();
+      this._showdrawer();
 
-        if (this._drawer.ontouchstart) {
-          isfiretouchstart = true;
-        }
+      if (this._drawer.ontouchstart) {
+        isfiretouchstart = true;
       }
     }
 
-    if (this._process.istouchactive) {
-      ev.stopPropagation();
-      ev.preventDefault();
+    ev.stopPropagation();
+    ev.preventDefault();
 
-      this._position = this._getdrawerpositionfromtouches(
-        this._process.touches[len - 2],
-        this._process.touches[len - 1]
+    this._position = this._getdrawerpositionfromtouches(
+      this._process.touches[len - 2],
+      this._process.touches[len - 1]
+    );
+
+    if (isfiretouchstart) {
+      this._drawer.ontouchstart.apply(
+        this,
+        [this._drawer, this._position]
       );
+    }
 
-      if (isfiretouchstart) {
-        this._drawer.ontouchstart.apply(
-          this,
-          [this._drawer, this._position]
-        );
-      }
+    helper.setstyle(
+      this._overlay.element,
+      this._getoverlaystyle(
+        this._getoverlayopacityfromposition(this._position),
+        0
+      )
+    );
 
-      helper.setstyle(
-        this._overlay.element,
-        this._getoverlaystyle(
-          this._getoverlayopacityfromposition(this._position),
-          0
-        )
+    helper.setstyle(
+      this._drawer.element,
+      this._getdrawerstyle(this._position, 0)
+    );
+
+    if (this._drawer.ontouchmove) {
+      this._drawer.ontouchmove.apply(
+        this,
+        [this._drawer, this._position]
       );
-
-      helper.setstyle(
-        this._drawer.element,
-        this._getdrawerstyle(this._position, 0)
-      );
-
-      if (this._drawer.ontouchmove) {
-        this._drawer.ontouchmove.apply(
-          this,
-          [this._drawer, this._position]
-        );
-      }
     }
   }
 
@@ -761,7 +783,9 @@ export default class Highendrawer {
     }
 
     this._process.touches = [];
-    this._process.istouchactive = false;
+    this._process.istouchactive = null;
+    this._process.istouchpointactive = null;
+    this._process.istouchdirectionactive = null;
     this._process.time.start = 0;
     this._process.time.end = 0;
   }
@@ -853,11 +877,11 @@ export default class Highendrawer {
   }
 
   /**
-   * Return whether or not a valid touch.
+   * Return whether or not a valid touch point.
    *
-   * @return {boolean} Result of valid touch.
+   * @return {boolean} Result of valid touch point.
    */
-  _istouchactive() {
+  _istouchpointactive() {
     let rg = this._getrange(
       this.state === 'open' ?
         this._sizepixel :
@@ -865,14 +889,19 @@ export default class Highendrawer {
     );
     let len = this._process.touches.length;
 
-    if (!(rg.from.x <= this._process.touches[len - 2].clientX &&
+    return (rg.from.x <= this._process.touches[len - 2].clientX &&
       this._process.touches[len - 2].clientX <= rg.to.x &&
       rg.from.y <= this._process.touches[len - 2].clientY &&
-      this._process.touches[len - 2].clientY <= rg.to.y)
-    ) {
-      return false;
-    }
+      this._process.touches[len - 2].clientY <= rg.to.y);
+  }
 
+  /**
+   * Return whether or not a valid touch direction.
+   *
+   * @return {boolean} Result of valid touch direction.
+   */
+  _istouchdirectionactive() {
+    let len = this._process.touches.length;
     let moveinfo = this._gettouchmoveinfo(
       this._process.touches[len - 2],
       this._process.touches[len - 1]

@@ -13,11 +13,12 @@ export const PREFIX = ['webkit', 'moz', 'o', 'ms'];
  * @type {Object}
  */
 export const DRAWER_STYLE = Object.freeze({
-  display: 'none',
+  display: 'block',
   position: 'fixed',
   overflowX: 'hidden',
   overflowY: 'auto',
   zIndex: -1,
+  opacity: 0,
   webkitOverflowScrolling: 'touch',
 });
 
@@ -61,7 +62,7 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
   size: '80%',
   maxsize: -1,
   swipeable: true,
-  swipearea: 5,
+  swipearea: 20,
   duration: 300,
   zindex: 9999,
   style: {},
@@ -100,7 +101,9 @@ export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
  */
 export const DEFAULT_PROCESS = Object.freeze({
   touches: [],
-  istouchactive: false,
+  istouchactive: null,
+  istouchpointactive: null,
+  istouchdirectionactive: null,
   time: {
     start: 0,
     end: 0,

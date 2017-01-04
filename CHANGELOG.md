@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.10
+
+* Fix to not interfere with the operation inside the drawer.
+
+
 ## 0.0.9
 
 * Improve swipe accuracy.
@@ -13,9 +18,11 @@
 * Change Property `ishistory` to `history`.
 * Change default value of `maxsize` property to unspecified(-1).
 
+
 ## 0.0.4
 
 * Fix history back when touching an overlay element during closed animation.
+
 
 ## 0.0.1
 

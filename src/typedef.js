@@ -7,7 +7,7 @@
  * @property {string|number} [size="80%"] Drawer size. In the case of character strings, the units are '%' and 'px' are supported.
  * @property {string|number} [maxsize=-1] Drawer max size. In the case of character strings, the units are '%' and 'px' are supported.
  * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.
- * @property {string|number} [swipearea=5] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.
+ * @property {string|number} [swipearea=20] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.
  * @property {number} [duration=256] Drawer moving time.
  * @property {number} [zindex=9999] Drawer stacking order.
  * @property {Object} [style={}] Drawer's css style.

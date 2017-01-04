@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.9
+ * @version v0.0.10
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -405,7 +405,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _showdrawer() {
 	      helper.setstyle(this._drawer.element, {
 	        zIndex: this._drawer.zindex,
-	        display: 'block'
+	        opacity: 1
 	      });
 	    }
 	
@@ -418,7 +418,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _hidedrawer() {
 	      helper.setstyle(this._drawer.element, {
 	        zIndex: -1,
-	        display: 'none'
+	        opacity: 0
 	      });
 	    }
 	
@@ -807,38 +807,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_ontouchmove',
 	    value: function _ontouchmove(ev) {
 	      var len = this._process.touches.length;
+	
+	      if (len < 2) {
+	        return;
+	      }
+	
+	      if (!this._process.istouchpointactive) {
+	        this._process.istouchpointactive = this._istouchpointactive();
+	      }
+	
+	      if (!this._process.istouchpointactive) {
+	        return;
+	      }
+	
+	      if (this._process.istouchdirectionactive === null) {
+	        this._process.istouchdirectionactive = this._istouchdirectionactive();
+	      }
+	
+	      if (!this._process.istouchdirectionactive) {
+	        return;
+	      }
+	
 	      var isfiretouchstart = false;
+	      var istouchactive = this._process.istouchpointactive && this._process.istouchdirectionactive;
 	
-	      if (!this._process.istouchactive && len >= 2) {
-	        this._process.istouchactive = this._istouchactive();
+	      if (!istouchactive) {
+	        return;
+	      }
 	
-	        if (this._process.istouchactive) {
-	          this._showoverlay();
-	          this._showdrawer();
+	      if (!this._process.istouchactive) {
+	        this._process.istouchactive = istouchactive;
+	        this._showoverlay();
+	        this._showdrawer();
 	
-	          if (this._drawer.ontouchstart) {
-	            isfiretouchstart = true;
-	          }
+	        if (this._drawer.ontouchstart) {
+	          isfiretouchstart = true;
 	        }
 	      }
 	
-	      if (this._process.istouchactive) {
-	        ev.stopPropagation();
-	        ev.preventDefault();
+	      ev.stopPropagation();
+	      ev.preventDefault();
 	
-	        this._position = this._getdrawerpositionfromtouches(this._process.touches[len - 2], this._process.touches[len - 1]);
+	      this._position = this._getdrawerpositionfromtouches(this._process.touches[len - 2], this._process.touches[len - 1]);
 	
-	        if (isfiretouchstart) {
-	          this._drawer.ontouchstart.apply(this, [this._drawer, this._position]);
-	        }
+	      if (isfiretouchstart) {
+	        this._drawer.ontouchstart.apply(this, [this._drawer, this._position]);
+	      }
 	
-	        helper.setstyle(this._overlay.element, this._getoverlaystyle(this._getoverlayopacityfromposition(this._position), 0));
+	      helper.setstyle(this._overlay.element, this._getoverlaystyle(this._getoverlayopacityfromposition(this._position), 0));
 	
-	        helper.setstyle(this._drawer.element, this._getdrawerstyle(this._position, 0));
+	      helper.setstyle(this._drawer.element, this._getdrawerstyle(this._position, 0));
 	
-	        if (this._drawer.ontouchmove) {
-	          this._drawer.ontouchmove.apply(this, [this._drawer, this._position]);
-	        }
+	      if (this._drawer.ontouchmove) {
+	        this._drawer.ontouchmove.apply(this, [this._drawer, this._position]);
 	      }
 	    }
 	
@@ -867,7 +888,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      this._process.touches = [];
-	      this._process.istouchactive = false;
+	      this._process.istouchactive = null;
+	      this._process.istouchpointactive = null;
+	      this._process.istouchdirectionactive = null;
 	      this._process.time.start = 0;
 	      this._process.time.end = 0;
 	    }
@@ -954,21 +977,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    /**
-	     * Return whether or not a valid touch.
+	     * Return whether or not a valid touch point.
 	     *
-	     * @return {boolean} Result of valid touch.
+	     * @return {boolean} Result of valid touch point.
 	     */
 	
 	  }, {
-	    key: '_istouchactive',
-	    value: function _istouchactive() {
+	    key: '_istouchpointactive',
+	    value: function _istouchpointactive() {
 	      var rg = this._getrange(this.state === 'open' ? this._sizepixel : this._drawer.swipearea);
 	      var len = this._process.touches.length;
 	
-	      if (!(rg.from.x <= this._process.touches[len - 2].clientX && this._process.touches[len - 2].clientX <= rg.to.x && rg.from.y <= this._process.touches[len - 2].clientY && this._process.touches[len - 2].clientY <= rg.to.y)) {
-	        return false;
-	      }
+	      return rg.from.x <= this._process.touches[len - 2].clientX && this._process.touches[len - 2].clientX <= rg.to.x && rg.from.y <= this._process.touches[len - 2].clientY && this._process.touches[len - 2].clientY <= rg.to.y;
+	    }
 	
+	    /**
+	     * Return whether or not a valid touch direction.
+	     *
+	     * @return {boolean} Result of valid touch direction.
+	     */
+	
+	  }, {
+	    key: '_istouchdirectionactive',
+	    value: function _istouchdirectionactive() {
+	      var len = this._process.touches.length;
 	      var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
 	      var vertical = moveinfo.axis === 'vertical';
 	      var horizontal = moveinfo.axis === 'horizontal';
@@ -1342,11 +1374,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @type {Object}
 	 */
 	var DRAWER_STYLE = exports.DRAWER_STYLE = Object.freeze({
-	  display: 'none',
+	  display: 'block',
 	  position: 'fixed',
 	  overflowX: 'hidden',
 	  overflowY: 'auto',
 	  zIndex: -1,
+	  opacity: 0,
 	  webkitOverflowScrolling: 'touch'
 	});
 	
@@ -1390,7 +1423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  size: '80%',
 	  maxsize: -1,
 	  swipeable: true,
-	  swipearea: 5,
+	  swipearea: 20,
 	  duration: 300,
 	  zindex: 9999,
 	  style: {},
@@ -1429,7 +1462,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var DEFAULT_PROCESS = exports.DEFAULT_PROCESS = Object.freeze({
 	  touches: [],
-	  istouchactive: false,
+	  istouchactive: null,
+	  istouchpointactive: null,
+	  istouchdirectionactive: null,
 	  time: {
 	    start: 0,
 	    end: 0

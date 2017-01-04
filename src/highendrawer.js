@@ -863,16 +863,16 @@ export default class Highendrawer {
         this._sizepixel :
         this._drawer.swipearea
     );
+    let len = this._process.touches.length;
 
-    if (!(rg.from.x <= this._process.touches[0].clientX &&
-      this._process.touches[0].clientX <= rg.to.x &&
-      rg.from.y <= this._process.touches[0].clientY &&
-      this._process.touches[0].clientY <= rg.to.y)
+    if (!(rg.from.x <= this._process.touches[len - 2].clientX &&
+      this._process.touches[len - 2].clientX <= rg.to.x &&
+      rg.from.y <= this._process.touches[len - 2].clientY &&
+      this._process.touches[len - 2].clientY <= rg.to.y)
     ) {
       return false;
     }
 
-    let len = this._process.touches.length;
     let moveinfo = this._gettouchmoveinfo(
       this._process.touches[len - 2],
       this._process.touches[len - 1]

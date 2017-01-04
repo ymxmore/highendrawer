@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.8
+ * @version v0.0.9
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -963,12 +963,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_istouchactive',
 	    value: function _istouchactive() {
 	      var rg = this._getrange(this.state === 'open' ? this._sizepixel : this._drawer.swipearea);
+	      var len = this._process.touches.length;
 	
-	      if (!(rg.from.x <= this._process.touches[0].clientX && this._process.touches[0].clientX <= rg.to.x && rg.from.y <= this._process.touches[0].clientY && this._process.touches[0].clientY <= rg.to.y)) {
+	      if (!(rg.from.x <= this._process.touches[len - 2].clientX && this._process.touches[len - 2].clientX <= rg.to.x && rg.from.y <= this._process.touches[len - 2].clientY && this._process.touches[len - 2].clientY <= rg.to.y)) {
 	        return false;
 	      }
 	
-	      var len = this._process.touches.length;
 	      var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
 	      var vertical = moveinfo.axis === 'vertical';
 	      var horizontal = moveinfo.axis === 'horizontal';

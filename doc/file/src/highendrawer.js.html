@@ -920,16 +920,16 @@ export default class Highendrawer {
         this._sizepixel :
         this._drawer.swipearea
     );
+    let len = this._process.touches.length;
 
-    if (!(rg.from.x &lt;= this._process.touches[0].clientX &amp;&amp;
-      this._process.touches[0].clientX &lt;= rg.to.x &amp;&amp;
-      rg.from.y &lt;= this._process.touches[0].clientY &amp;&amp;
-      this._process.touches[0].clientY &lt;= rg.to.y)
+    if (!(rg.from.x &lt;= this._process.touches[len - 2].clientX &amp;&amp;
+      this._process.touches[len - 2].clientX &lt;= rg.to.x &amp;&amp;
+      rg.from.y &lt;= this._process.touches[len - 2].clientY &amp;&amp;
+      this._process.touches[len - 2].clientY &lt;= rg.to.y)
     ) {
       return false;
     }
 
-    let len = this._process.touches.length;
     let moveinfo = this._gettouchmoveinfo(
       this._process.touches[len - 2],
       this._process.touches[len - 1]

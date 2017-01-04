@@ -5,15 +5,15 @@
  * @property {!Object} element HTML DOM Element.
  * @property {string} [direction="right"] Drawer placement direction.
  * @property {string|number} [size="80%"] Drawer size. In the case of character strings, the units are '%' and 'px' are supported.
- * @property {string|number} [maxsize=256] Drawer max size. In the case of character strings, the units are '%' and 'px' are supported.
- * @property {boolean} [isswipeable=true] Enable opening and closing of the drawer with a swipe gesture.
- * @property {string|number} [swipearea="8%"] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.
+ * @property {string|number} [maxsize=-1] Drawer max size. In the case of character strings, the units are '%' and 'px' are supported.
+ * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.
+ * @property {string|number} [swipearea=5] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.
  * @property {number} [duration=256] Drawer moving time.
  * @property {number} [zindex=9999] Drawer stacking order.
  * @property {Object} [style={}] Drawer's css style.
- * @property {boolean} [isinitcreate=true] Create a drawer at initialization.
+ * @property {boolean} [initcreate=true] Create a drawer at initialization.
  * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.
- * @property {boolean} [ishistory=true] Activate if history is supported.
+ * @property {boolean} [history=true] Activate if history is supported.
  * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.
  * @property {function} [oncreate=null] Called when a drawer is created.
  * @property {function} [ondestroy=null] Called when a drawer is destroyed.

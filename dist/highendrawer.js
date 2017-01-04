@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.7
+ * @version v0.0.8
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -136,13 +136,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    }
 	
-	    if (window.history && window.history.pushState && this._drawer.ishistory) {
+	    if (window.history && window.history.pushState && this._drawer.history) {
 	      window.history.replaceState({
 	        id: this._id
 	      }, null, null);
 	    }
 	
-	    if (this._drawer.isinitcreate) {
+	    if (this._drawer.initcreate) {
 	      this.create();
 	    }
 	  }
@@ -404,7 +404,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_showdrawer',
 	    value: function _showdrawer() {
 	      helper.setstyle(this._drawer.element, {
-	        zIndex: this._drawer.zindex
+	        zIndex: this._drawer.zindex,
+	        display: 'block'
 	      });
 	    }
 	
@@ -416,7 +417,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: '_hidedrawer',
 	    value: function _hidedrawer() {
 	      helper.setstyle(this._drawer.element, {
-	        zIndex: -1
+	        zIndex: -1,
+	        display: 'none'
 	      });
 	    }
 	
@@ -456,10 +458,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // set sizepixel
 	      var sizepixel = this._normalizepixel(this._drawer.size);
 	
-	      var maxsizepixel = this._normalizepixel(this._drawer.maxsize);
+	      if (this._drawer.maxsize && this._drawer.maxsize !== -1) {
+	        var maxsizepixel = this._normalizepixel(this._drawer.maxsize);
 	
-	      if (sizepixel > maxsizepixel) {
-	        sizepixel = maxsizepixel;
+	        if (sizepixel > maxsizepixel) {
+	          sizepixel = maxsizepixel;
+	        }
 	      }
 	
 	      this._sizepixel = sizepixel;
@@ -653,28 +657,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Return state by touch movement.
 	     *
-	     * @param {Array} touches Touch object array.
-	     * @param {Object} time Time information on start and end of movement.
 	     * @return {string} State by touch movement.
 	     */
 	
 	  }, {
 	    key: '_gettouchmovestate',
-	    value: function _gettouchmovestate(touches, time) {
-	      if (time.end - time.start <= 300) {
-	        var len = touches.length;
+	    value: function _gettouchmovestate() {
+	      if (this._process.time.end - this._process.time.start <= 300) {
+	        var len = this._process.touches.length;
+	        var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
+	        var vertical = moveinfo.axis === 'vertical';
+	        var horizontal = moveinfo.axis === 'horizontal';
+	        var top = this._drawer.direction === 'top' && moveinfo.y >= 0;
+	        var right = this._drawer.direction === 'right' && moveinfo.x < 0;
+	        var bottom = this._drawer.direction === 'bottom' && moveinfo.y < 0;
+	        var left = this._drawer.direction === 'left' && moveinfo.x >= 0;
 	
-	        if (len >= 2) {
-	          var moveinfo = this._gettouchmoveinfo(touches[len - 2], touches[len - 1]);
-	          var ish = moveinfo.axis === 'horizontal';
-	          var isv = moveinfo.axis === 'vertical';
-	          var ist = this._drawer.direction === 'top' && moveinfo.y >= 0;
-	          var isr = this._drawer.direction === 'right' && moveinfo.x < 0;
-	          var isb = this._drawer.direction === 'bottom' && moveinfo.y < 0;
-	          var isl = this._drawer.direction === 'left' && moveinfo.x >= 0;
-	
-	          return ish && (isr || isl) || isv && (isb || ist) ? 'open' : 'close';
-	        }
+	        return vertical && (bottom || top) || horizontal && (right || left) ? 'open' : 'close';
 	      }
 	
 	      return this._getstatefromposition();
@@ -702,7 +701,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      };
 	
-	      if (this._drawer.isswipeable) {
+	      if (this._drawer.swipeable) {
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
 	        var _iteratorError = undefined;
@@ -729,7 +728,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	
-	      if (window.history && window.history.pushState && this._drawer.ishistory) {
+	      if (window.history && window.history.pushState && this._drawer.history) {
 	        handler.popstate = function (e) {
 	          if (e.state && e.state.id === _this7._id && _this7.state === 'open') {
 	            _this7.close(null, true, false);
@@ -811,7 +810,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var isfiretouchstart = false;
 	
 	      if (!this._process.istouchactive && len >= 2) {
-	        this._process.istouchactive = this._istouchactive(this._process.touches[0]);
+	        this._process.istouchactive = this._istouchactive();
 	
 	        if (this._process.istouchactive) {
 	          this._showoverlay();
@@ -857,8 +856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (this._process.istouchactive && len >= 2) {
 	        this._process.time.end = new Date().getTime();
 	
-	        var state = this._gettouchmovestate(this._process.touches, this._process.time);
-	
+	        var state = this._gettouchmovestate();
 	        var changestate = this.state !== state;
 	
 	        this[state](null, changestate, changestate);
@@ -915,7 +913,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this8._overlay.element.removeEventListener('click', _this8._overlay.touchhandler);
 	            }
 	
-	            if (ischangehistory && _this8._drawer.ishistory && window.history && window.history.pushState) {
+	            if (ischangehistory && _this8._drawer.history && window.history && window.history.pushState) {
 	              if (state === 'open') {
 	                window.history.pushState({
 	                  id: _this8._id
@@ -958,16 +956,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Return whether or not a valid touch.
 	     *
-	     * @param {Object} touch Start touch information.
 	     * @return {boolean} Result of valid touch.
 	     */
 	
 	  }, {
 	    key: '_istouchactive',
-	    value: function _istouchactive(touch) {
-	      var rg = this._getrange(this.state === 'open' ? '100%' : this._drawer.swipearea);
+	    value: function _istouchactive() {
+	      var rg = this._getrange(this.state === 'open' ? this._sizepixel : this._drawer.swipearea);
 	
-	      return rg.from.x <= touch.clientX && touch.clientX <= rg.to.x && rg.from.y <= touch.clientY && touch.clientY <= rg.to.y;
+	      if (!(rg.from.x <= this._process.touches[0].clientX && this._process.touches[0].clientX <= rg.to.x && rg.from.y <= this._process.touches[0].clientY && this._process.touches[0].clientY <= rg.to.y)) {
+	        return false;
+	      }
+	
+	      var len = this._process.touches.length;
+	      var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
+	      var vertical = moveinfo.axis === 'vertical';
+	      var horizontal = moveinfo.axis === 'horizontal';
+	
+	      if (!(vertical && (this._drawer.direction === 'top' || this._drawer.direction === 'bottom') || horizontal && (this._drawer.direction === 'right' || this._drawer.direction === 'left'))) {
+	        return false;
+	      }
+	
+	      return this.state === 'open' && (this._drawer.direction === 'top' && moveinfo.y < 0 || this._drawer.direction === 'right' && moveinfo.x >= 0 || this._drawer.direction === 'bottom' && moveinfo.y >= 0 || this._drawer.direction === 'left' && moveinfo.x < 0) || this.state === 'close' && (this._drawer.direction === 'top' && moveinfo.y >= 0 || this._drawer.direction === 'right' && moveinfo.x < 0 || this._drawer.direction === 'bottom' && moveinfo.y < 0 || this._drawer.direction === 'left' && moveinfo.x >= 0);
 	    }
 	
 	    /**
@@ -1332,7 +1342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @type {Object}
 	 */
 	var DRAWER_STYLE = exports.DRAWER_STYLE = Object.freeze({
-	  display: 'block',
+	  display: 'none',
 	  position: 'fixed',
 	  overflowX: 'hidden',
 	  overflowY: 'auto',
@@ -1378,15 +1388,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  element: null,
 	  direction: 'right',
 	  size: '80%',
-	  maxsize: 256,
-	  isswipeable: true,
-	  swipearea: '8%',
+	  maxsize: -1,
+	  swipeable: true,
+	  swipearea: 5,
 	  duration: 300,
 	  zindex: 9999,
 	  style: {},
-	  isinitcreate: true,
+	  initcreate: true,
 	  enabledmaxwidth: -1,
-	  ishistory: true,
+	  history: true,
 	  overlay: null,
 	  oncreate: null,
 	  ondestroy: null,

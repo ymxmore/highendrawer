@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/const.js",
-    "content": "'use strict';\n\n/**\n * Vendor prefix list.\n *\n * @type {string[]}\n */\nexport const PREFIX = ['webkit', 'moz', 'o', 'ms'];\n\n/**\n * Drawer's default css style.\n *\n * @type {Object}\n */\nexport const DRAWER_STYLE = Object.freeze({\n  display: 'block',\n  position: 'fixed',\n  overflowX: 'hidden',\n  overflowY: 'auto',\n  zIndex: -1,\n  webkitOverflowScrolling: 'touch',\n});\n\n/**\n * Overlay's default css style.\n *\n * @type {Object}\n */\nexport const OVERLAY_STYLE = Object.freeze({\n  display: 'none',\n  backgroundColor: '#000',\n  position: 'fixed',\n  top: 0,\n  right: 0,\n  bottom: 0,\n  left: 0,\n  zIndex: -1,\n  opacity: 0,\n});\n\n/**\n * Css transition style.\n *\n * @type {Object}\n */\nexport const TRANSITION_STYLE = Object.freeze({\n  transform: '',\n  transitionProperty: 'transform,opacity',\n  transitionTimingFunction: 'cubic-bezier(0,0,0.25,1)',\n  transitionDuration: '0ms',\n});\n\n/**\n * Default drawer property.\n *\n * @type {Drawer}\n */\nexport const DEFAULT_DRAWER_PROPERTY = Object.freeze({\n  element: null,\n  direction: 'right',\n  size: '80%',\n  maxsize: 256,\n  isswipeable: true,\n  swipearea: '8%',\n  duration: 300,\n  zindex: 9999,\n  style: {},\n  isinitcreate: true,\n  enabledmaxwidth: -1,\n  ishistory: true,\n  overlay: null,\n  oncreate: null,\n  ondestroy: null,\n  onopen: null,\n  onclose: null,\n  onchangestate: null,\n  onresize: null,\n  ontouchstart: null,\n  ontouchmove: null,\n  ontouchfinish: null,\n  onerror: null,\n});\n\n/**\n * Default overlay property.\n *\n * @type {Overlay}\n */\nexport const DEFAULT_OVERLAY_PROPERTY = Object.freeze({\n  element: null,\n  opacity: 0.2,\n  zindex: -1,\n  autocreate: false,\n});\n\n/**\n * Default processing state object.\n *\n * @type {Object}\n */\nexport const DEFAULT_PROCESS = Object.freeze({\n  touches: [],\n  istouchactive: false,\n  time: {\n    start: 0,\n    end: 0,\n  },\n});\n\n/**\n * Touch event list.\n *\n * @type {string[]}\n */\nexport const TOUCH_EVENTS = [\n  'touchstart',\n  'touchmove',\n  'touchend',\n  'touchcancel',\n];\n",
+    "content": "'use strict';\n\n/**\n * Vendor prefix list.\n *\n * @type {string[]}\n */\nexport const PREFIX = ['webkit', 'moz', 'o', 'ms'];\n\n/**\n * Drawer's default css style.\n *\n * @type {Object}\n */\nexport const DRAWER_STYLE = Object.freeze({\n  display: 'none',\n  position: 'fixed',\n  overflowX: 'hidden',\n  overflowY: 'auto',\n  zIndex: -1,\n  webkitOverflowScrolling: 'touch',\n});\n\n/**\n * Overlay's default css style.\n *\n * @type {Object}\n */\nexport const OVERLAY_STYLE = Object.freeze({\n  display: 'none',\n  backgroundColor: '#000',\n  position: 'fixed',\n  top: 0,\n  right: 0,\n  bottom: 0,\n  left: 0,\n  zIndex: -1,\n  opacity: 0,\n});\n\n/**\n * Css transition style.\n *\n * @type {Object}\n */\nexport const TRANSITION_STYLE = Object.freeze({\n  transform: '',\n  transitionProperty: 'transform,opacity',\n  transitionTimingFunction: 'cubic-bezier(0,0,0.25,1)',\n  transitionDuration: '0ms',\n});\n\n/**\n * Default drawer property.\n *\n * @type {Drawer}\n */\nexport const DEFAULT_DRAWER_PROPERTY = Object.freeze({\n  element: null,\n  direction: 'right',\n  size: '80%',\n  maxsize: -1,\n  swipeable: true,\n  swipearea: 5,\n  duration: 300,\n  zindex: 9999,\n  style: {},\n  initcreate: true,\n  enabledmaxwidth: -1,\n  history: true,\n  overlay: null,\n  oncreate: null,\n  ondestroy: null,\n  onopen: null,\n  onclose: null,\n  onchangestate: null,\n  onresize: null,\n  ontouchstart: null,\n  ontouchmove: null,\n  ontouchfinish: null,\n  onerror: null,\n});\n\n/**\n * Default overlay property.\n *\n * @type {Overlay}\n */\nexport const DEFAULT_OVERLAY_PROPERTY = Object.freeze({\n  element: null,\n  opacity: 0.2,\n  zindex: -1,\n  autocreate: false,\n});\n\n/**\n * Default processing state object.\n *\n * @type {Object}\n */\nexport const DEFAULT_PROCESS = Object.freeze({\n  touches: [],\n  istouchactive: false,\n  time: {\n    start: 0,\n    end: 0,\n  },\n});\n\n/**\n * Touch event list.\n *\n * @type {string[]}\n */\nexport const TOUCH_EVENTS = [\n  'touchstart',\n  'touchmove',\n  'touchend',\n  'touchcancel',\n];\n",
     "static": true,
     "longname": "src/const.js",
     "access": null,
@@ -418,7 +418,7 @@
     "__docId__": 17,
     "kind": "file",
     "name": "src/highendrawer.js",
-    "content": "'use strict';\n\nimport {\n  DEFAULT_DRAWER_PROPERTY,\n  DEFAULT_OVERLAY_PROPERTY,\n  DEFAULT_PROCESS,\n  DRAWER_STYLE,\n  OVERLAY_STYLE,\n  TOUCH_EVENTS,\n  TRANSITION_STYLE,\n} from './const';\n\nimport {isarray} from './util';\nimport * as helper from './helper';\nimport {support} from './support';\n\n/**\n * Class providing a drawer function.\n *\n * @public\n * @class\n * @example\n * var drawer = new DrawerMenu({\n *   element: document.getElementById('drawer')\n * });\n */\nexport default class Highendrawer {\n\n  /**\n   * Initialize object.\n   *\n   * @constructor\n   * @param {Drawer} drawer Initial parameters of drawer.\n   */\n  constructor(drawer) {\n    /**\n     * Drawer status ('open' or 'close')\n     *\n     * @public\n     * @type {string}\n     */\n    this.state = 'close';\n\n    this._id = helper.generateid();\n    this._drawer = Object.assign({}, DEFAULT_DRAWER_PROPERTY, drawer);\n    this._overlay = this._drawer.overlay === false ?\n      false :\n      Object.assign({}, DEFAULT_OVERLAY_PROPERTY, this._drawer.overlay);\n    this._timeoutid = null;\n    this._intervalid = null;\n    this._process = Object.assign({}, DEFAULT_PROCESS);\n    this._enabled = false;\n    this._handler = this._getdrawerhandler();\n\n    if (this._drawer.enabledmaxwidth > -1) {\n      window.addEventListener('resize', () => {\n        if (this._enabled\n          && window.innerWidth > this._drawer.enabledmaxwidth) {\n          this.destroy();\n        } else if (!this._enabled\n          && window.innerWidth <= this._drawer.enabledmaxwidth) {\n          this.create();\n        }\n      });\n    }\n\n    if (window.history\n      && window.history.pushState\n      && this._drawer.ishistory\n    ) {\n      window.history.replaceState({\n        id: this._id,\n      }, null, null);\n    }\n\n    if (this._drawer.isinitcreate) {\n      this.create();\n    }\n  }\n\n  /**\n   * Create the drawer set.\n   *\n   * @public\n   */\n  create() {\n    try {\n      this._createdrawer();\n      this._createoverlay();\n      this._enabled = true;\n\n      if (this._drawer.oncreate) {\n        this._drawer.oncreate.apply(this, [this._drawer]);\n      }\n    } catch (e) {\n      if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Destroy the drawer set.\n   *\n   * @public\n   */\n  destroy() {\n    try {\n      this._destroydrawer();\n      this._destroyoverlay();\n      this._enabled = false;\n\n      if (this._drawer.ondestroy) {\n        this._drawer.ondestroy.apply(this, [this._drawer]);\n      }\n    } catch (e) {\n      if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Open drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for open.\n   */\n  open(duration = null, isfireevent = true, ischangehistory = true) {\n    return this._changestate(\n      0,\n      duration,\n      {\n        onchangestate: isfireevent ? this._drawer.onchangestate : null,\n        done: isfireevent ? this._drawer.onopen : null,\n        fail: isfireevent ? this._drawer.onerror : null,\n      },\n      ischangehistory\n    );\n  }\n\n  /**\n   * Close drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for close.\n   */\n  close(duration = null, isfireevent = true, ischangehistory = true) {\n    return this._changestate(\n      this._getminposition(),\n      duration,\n      {\n        onchangestate: isfireevent ? this._drawer.onchangestate : null,\n        done: isfireevent ? this._drawer.onclose : null,\n        fail: isfireevent ? this._drawer.onerror : null,\n      },\n      ischangehistory\n    );\n  }\n\n  /**\n   * Toggle drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for toggle.\n   */\n  toggle(duration = null, isfireevent = true, ischangehistory = true) {\n    return new Promise((resolve, reject) => {\n      try {\n        this[this.state === 'open' ? 'close' : 'open'](duration, isfireevent, ischangehistory)\n          .then(resolve, reject);\n      } catch (e) {\n        reject(e);\n      }\n    });\n  }\n\n  /**\n   * Create drawer.\n   */\n  _createdrawer() {\n    helper.setstyle(\n      this._drawer.element,\n      Object.assign(\n        {},\n        DRAWER_STYLE,\n        support.cssanim ? TRANSITION_STYLE : {}\n      )\n    );\n\n    this._resetdrawer();\n\n    Object.keys(this._handler).forEach((name) => {\n      window.addEventListener(name, this._handler[name]);\n    });\n  }\n\n  /**\n   * Destroy drawer.\n   */\n  _destroydrawer() {\n    Object.keys(this._handler).forEach((name) => {\n      window.removeEventListener(name, this._handler[name]);\n    });\n\n    this._resetdrawer(true);\n\n    helper.unsetstyle(\n      this._drawer.element,\n      Object.keys(\n        Object.assign(\n          {},\n          DRAWER_STYLE,\n          support.cssanim ? TRANSITION_STYLE : {}\n        )\n      )\n    );\n  }\n\n  /**\n   * Create overlay.\n   */\n  _createoverlay() {\n    if (this._overlay === false) {\n      return;\n    }\n\n    if (this._overlay.zindex === -1) {\n      this._overlay.zindex = this._drawer.zindex - 1;\n    }\n\n    if (!this._overlay.element) {\n      this._overlay.element = window.document.createElement('div');\n      this._overlay.isautocreated = true;\n\n      helper.setstyle(\n        this._overlay.element,\n        Object.assign(\n          {},\n          OVERLAY_STYLE,\n          support.cssanim ? TRANSITION_STYLE : {}\n        )\n      );\n    }\n\n    if (!this._overlay.touchhandler) {\n      this._overlay.touchhandler = (e) => {\n        this.close();\n      };\n    }\n\n    window.document.body.appendChild(this._overlay.element);\n  }\n\n  /**\n   * Destroy overlay.\n   */\n  _destroyoverlay() {\n    if (this._overlay === false) {\n      return;\n    }\n\n    if (this._overlay.element) {\n      this._overlay.element.removeEventListener('click', this._overlay.touchhandler);\n\n      if (this._overlay.isautocreated) {\n        this._overlay.element.parentNode.removeChild(this._overlay.element);\n      }\n    }\n  }\n\n  /**\n   * Reset drawer.\n   *\n   * @param {boolean} [isunset] Unset style.\n   */\n  _resetdrawer(isunset = false) {\n    try {\n      this._setprops();\n\n      let ims = this._getinitdrawerstyle();\n\n      if (isunset) {\n        helper.unsetstyle(this._drawer.element, Object.keys(ims));\n      } else {\n        helper.setstyle(this._drawer.element, ims);\n      }\n    } catch (e) {\n      if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Show drawer.\n   */\n  _showdrawer() {\n    helper.setstyle(this._drawer.element, {\n      zIndex: this._drawer.zindex,\n    });\n  }\n\n  /**\n   * Hide drawer.\n   */\n  _hidedrawer() {\n    helper.setstyle(this._drawer.element, {\n      zIndex: -1,\n    });\n  }\n\n  /**\n   * Show overlay.\n   */\n  _showoverlay() {\n    helper.setstyle(this._overlay.element, {\n      zIndex: this._overlay.zindex,\n      display: 'block',\n    });\n  }\n\n  /**\n   * Hide overlay.\n   */\n  _hideoverlay() {\n    helper.setstyle(this._overlay.element, {\n      zIndex: -1,\n      display: 'none',\n    });\n  }\n\n  /**\n   * Set properties.\n   */\n  _setprops() {\n    // set sizepixel\n    let sizepixel = this._normalizepixel(\n      this._drawer.size\n    );\n\n    let maxsizepixel = this._normalizepixel(\n      this._drawer.maxsize\n    );\n\n    if (sizepixel > maxsizepixel) {\n      sizepixel = maxsizepixel;\n    }\n\n    this._sizepixel = sizepixel;\n\n    // set position\n    this._position = typeof this._position === 'undefined' ?\n      null :\n      this._position;\n  }\n\n  /**\n   * Return initial style of drawer.\n   *\n   * @return {Object} Style for drawer.\n   */\n  _getinitdrawerstyle() {\n    let style = null;\n\n    switch (this._drawer.direction) {\n      case 'top':\n        style = {\n          width: '100%',\n          height: `${this._sizepixel}px`,\n          top: `-${this._sizepixel}px`,\n          right: 'auto',\n          bottom: 'auto',\n          left: 0,\n        };\n        break;\n      case 'right':\n        style = {\n          width: `${this._sizepixel}px`,\n          height: '100%',\n          top: 0,\n          right: `-${this._sizepixel}px`,\n          bottom: 'auto',\n          left: 'auto',\n        };\n        break;\n      case 'bottom':\n        style = {\n          width: '100%',\n          height: `${this._sizepixel}px`,\n          top: 'auto',\n          right: 'auto',\n          bottom: `-${this._sizepixel}px`,\n          left: 0,\n        };\n        break;\n      case 'left':\n        style = {\n          width: `${this._sizepixel}px`,\n          height: '100%',\n          top: 0,\n          right: 'auto',\n          bottom: 'auto',\n          left: `-${this._sizepixel}px`,\n        };\n        break;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n\n    return Object.assign(style, this._drawer.style || {});\n  }\n\n  /**\n   * Return style for moving the drawer.\n   *\n   * @param {number} position Moving position.\n   * @param {number} [duration] Drawer moving time.\n   * @return {Object} Move style for drawer.\n   */\n  _getdrawerstyle(position, duration = null) {\n    let minp = this._getminposition(this._drawer);\n    let style = {};\n\n    if (support.cssanim) {\n      style.transitionDuration = `${duration === null ? this._drawer.duration : duration}ms`;\n\n      switch (this._drawer.direction) {\n        case 'top':\n          style.transform = `${support.transrate}(0,${-(minp - position)}px,0)`;\n          break;\n        case 'right':\n          style.transform = `${support.transrate}(${minp - position}px,0,0)`;\n          break;\n        case 'bottom':\n          style.transform = `${support.transrate}(0,${minp - position}px,0)`;\n          break;\n        case 'left':\n          style.transform = `${support.transrate}(${-(minp - position)}px,0,0)`;\n          break;\n        default:\n          throw new Error(`'${this._drawer.direction}' does not support`);\n      }\n    } else {\n      style[this._drawer.direction] = `${position}px`;\n    }\n\n    return style;\n  }\n\n  /**\n   * Return style for moving the overlay.\n   *\n   * @param {float} opacity Overlay opacity.\n   * @param {number} [duration] Drawer moving time.\n   * @return {Object} Move style for overlay.\n   */\n  _getoverlaystyle(opacity, duration = null) {\n    let style = {\n      opacity,\n    };\n\n    if (support.cssanim) {\n      style.transitionDuration = `${duration === null ? this._drawer.duration : duration}ms`;\n    }\n\n    return style;\n  }\n\n  /**\n   * Make animation with CSS3.\n   *\n   * @param {number} duration Drawer moving time.\n   */\n  _cssanimate(duration) {\n    helper.setstyle(\n      this._overlay.element,\n      this._getoverlaystyle(\n        this._getoverlayopacityfromposition(this._position),\n        duration\n      )\n    );\n\n    helper.setstyle(\n      this._drawer.element,\n      this._getdrawerstyle(this._position, duration)\n    );\n  }\n\n  /**\n   * Make animation with Javascript.\n   *\n   * @param {number} duration Drawer moving time.\n   */\n  _jsanimate(duration) {\n    let start = +new Date();\n    let fromopy = this._getoverlayopacityfromstyle();\n    let toopy = this._getoverlayopacityfromposition(this._position);\n    let frompos = this._getdrawerpositionfromstyle();\n    let topos = this._position;\n\n    if (this._intervalid) {\n      clearInterval(this._intervalid);\n    }\n\n    this._intervalid = setInterval(() => {\n      let time = new Date() - start;\n      let nowpos = null;\n      let nowopy = null;\n\n      if (time > duration) {\n        clearInterval(this._intervalid);\n        this._intervalid = null;\n        nowopy = toopy;\n        nowpos = topos;\n      } else {\n        let prp = (time /= duration) * (time - 2);\n        nowopy = fromopy - ((toopy - fromopy) * prp);\n        nowpos = frompos - ((topos - frompos) * prp);\n      }\n\n      helper.setstyle(\n        this._overlay.element,\n        this._getoverlaystyle(nowopy, duration)\n      );\n\n      helper.setstyle(\n        this._drawer.element,\n        this._getdrawerstyle(nowpos, duration)\n      );\n    }, 10);\n  }\n\n  /**\n   * Return state by touch movement.\n   *\n   * @param {Array} touches Touch object array.\n   * @param {Object} time Time information on start and end of movement.\n   * @return {string} State by touch movement.\n   */\n  _gettouchmovestate(touches, time) {\n    if (time.end - time.start <= 300) {\n      let len = touches.length;\n\n      if (len >= 2) {\n        let moveinfo = this._gettouchmoveinfo(\n          touches[len - 2],\n          touches[len - 1]\n        );\n        let ish = moveinfo.axis === 'horizontal';\n        let isv = moveinfo.axis === 'vertical';\n        let ist = this._drawer.direction === 'top' && moveinfo.y >= 0;\n        let isr = this._drawer.direction === 'right' && moveinfo.x < 0;\n        let isb = this._drawer.direction === 'bottom' && moveinfo.y < 0;\n        let isl = this._drawer.direction === 'left' && moveinfo.x >= 0;\n\n        return (ish && (isr || isl)) || (isv && (isb || ist)) ?\n          'open' :\n          'close';\n      }\n    }\n\n    return this._getstatefromposition();\n  }\n\n  /**\n   * Return drawer event handler.\n   *\n   * @return {Object} Drawer event handler.\n   */\n  _getdrawerhandler() {\n    let handler = {};\n\n    handler.resize = () => {\n      this._resetdrawer();\n      this[this.state](0, false, false);\n\n      if (this._drawer.onresize) {\n        this._drawer.onresize.apply(\n          this,\n          [this._drawer]\n        );\n      }\n    };\n\n    if (this._drawer.isswipeable) {\n      for (let event of TOUCH_EVENTS) {\n        handler[event] = this._touchhandler.bind(this);\n      }\n    }\n\n    if (window.history\n      && window.history.pushState\n      && this._drawer.ishistory\n    ) {\n      handler.popstate = (e) => {\n        if (e.state && e.state.id === this._id && this.state === 'open') {\n          this.close(null, true, false);\n        }\n      };\n    }\n\n    return handler;\n  }\n\n  /**\n   * Touch event handler.\n   *\n   * @param {Event} ev Touch event object.\n   * @return {boolean} Event bubbling.\n   */\n  _touchhandler(ev) {\n    try {\n      if (ev.touches.length > 1) {\n        return true;\n      }\n\n      let touch = ev.touches[0];\n\n      if (touch) {\n        this._process.touches.push(touch);\n      }\n\n      switch (ev.type) {\n        case 'touchstart':\n          this._ontouchstart(ev);\n          break;\n        case 'touchmove':\n          this._ontouchmove(ev);\n          break;\n        case 'touchcancel':\n        case 'touchend':\n          this._ontouchfinish(ev);\n          break;\n        default:\n          break;\n      }\n    } catch (e) {\n      if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n\n    return true;\n  }\n\n  /**\n   * Touch start event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchstart(ev) {\n    this._process.time.start = new Date().getTime();\n  }\n\n  /**\n   * Touch move event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchmove(ev) {\n    let len = this._process.touches.length;\n    let isfiretouchstart = false;\n\n    if (!this._process.istouchactive && len >= 2) {\n      this._process.istouchactive = this._istouchactive(\n        this._process.touches[0]\n      );\n\n      if (this._process.istouchactive) {\n        this._showoverlay();\n        this._showdrawer();\n\n        if (this._drawer.ontouchstart) {\n          isfiretouchstart = true;\n        }\n      }\n    }\n\n    if (this._process.istouchactive) {\n      ev.stopPropagation();\n      ev.preventDefault();\n\n      this._position = this._getdrawerpositionfromtouches(\n        this._process.touches[len - 2],\n        this._process.touches[len - 1]\n      );\n\n      if (isfiretouchstart) {\n        this._drawer.ontouchstart.apply(\n          this,\n          [this._drawer, this._position]\n        );\n      }\n\n      helper.setstyle(\n        this._overlay.element,\n        this._getoverlaystyle(\n          this._getoverlayopacityfromposition(this._position),\n          0\n        )\n      );\n\n      helper.setstyle(\n        this._drawer.element,\n        this._getdrawerstyle(this._position, 0)\n      );\n\n      if (this._drawer.ontouchmove) {\n        this._drawer.ontouchmove.apply(\n          this,\n          [this._drawer, this._position]\n        );\n      }\n    }\n  }\n\n  /**\n   * Touch finish event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchfinish(ev) {\n    let len = this._process.touches.length;\n\n    if (this._process.istouchactive && len >= 2) {\n      this._process.time.end = new Date().getTime();\n\n      let state = this._gettouchmovestate(\n        this._process.touches,\n        this._process.time\n      );\n\n      let changestate = this.state !== state;\n\n      this[state](null, changestate, changestate);\n\n      if (this._drawer.ontouchfinish) {\n        this._drawer.ontouchfinish.apply(\n          this,\n          [\n            this._drawer,\n            this._getdrawerpositionfromtouches(\n              this._process.touches[len - 2],\n              this._process.touches[len - 1]\n            ),\n          ]\n        );\n      }\n    }\n\n    this._process.touches = [];\n    this._process.istouchactive = false;\n    this._process.time.start = 0;\n    this._process.time.end = 0;\n  }\n\n  /**\n   * Return whether or not a valid touch.\n   *\n   * @param {number} position Moving position.\n   * @param {number} [duration=null] Drawer moving time.\n   * @param {Object} [callbacks=null] Callback objects.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object.\n   */\n  _changestate(\n    position,\n    duration = null,\n    callbacks = null,\n    ischangehistory = true\n  ) {\n    return this._handlecallback(new Promise((resolve, reject) => {\n      try {\n        this._position = position;\n\n        let du = duration === null ? this._drawer.duration : duration;\n\n        if (this._timeoutid !== null) {\n          clearTimeout(this._timeoutid);\n          this._timeoutid = null;\n        }\n\n        let state = this._getstatefromposition();\n\n        if (state === 'open') {\n          this._showoverlay();\n          this._showdrawer();\n        } else {\n          this._overlay.element.removeEventListener('click', this._overlay.touchhandler);\n        }\n\n        if (ischangehistory\n          && this._drawer.ishistory\n          && window.history\n          && window.history.pushState\n        ) {\n          if (state === 'open') {\n            window.history.pushState({\n              id: this._id,\n            }, null, null);\n          } else {\n            window.history.back();\n          }\n        }\n\n        this[support.cssanim\n          ? '_cssanimate'\n          : '_jsanimate'](du);\n\n        this._timeoutid = setTimeout(\n          () => {\n            if (state === 'open') {\n              this._overlay.element.addEventListener('click', this._overlay.touchhandler);\n            } else {\n              this._hidedrawer();\n              this._hideoverlay();\n            }\n\n            this._timeoutid = null;\n          },\n          du\n        );\n\n        this.state = state;\n\n        if (typeof callbacks === 'object' && callbacks.onchangestate) {\n          callbacks.onchangestate.apply(\n            this,\n            [this._drawer, state]\n          );\n        }\n\n        resolve.apply(this, [this._drawer]);\n      } catch (e) {\n        reject(e);\n      }\n    }), {\n      done: typeof callbacks === 'object' && callbacks.done ? callbacks.done : null,\n      fail: typeof callbacks === 'object' && callbacks.fail ? callbacks.fail : null,\n    });\n  }\n\n  /**\n   * Return whether or not a valid touch.\n   *\n   * @param {Object} touch Start touch information.\n   * @return {boolean} Result of valid touch.\n   */\n  _istouchactive(touch) {\n    let rg = this._getrange(\n      this.state === 'open' ?\n        '100%' :\n        this._drawer.swipearea\n    );\n\n    return (rg.from.x <= touch.clientX &&\n      touch.clientX <= rg.to.x &&\n      rg.from.y <= touch.clientY &&\n      touch.clientY <= rg.to.y);\n  }\n\n  /**\n   * Return the state of the drawer.\n   *\n   * @return {string} State of the drawer.\n   */\n  _getstatefromposition() {\n    let pos = this._position === null ?\n      this._getdrawerpositionfromstyle() :\n      this._position;\n\n    return Math.abs(pos) < this._sizepixel / 2 ?\n      'open' :\n      'close';\n  }\n\n  /**\n   * Return the position of the drawer.\n   *\n   * @param {Object} touchbasis Basic touch information.\n   * @param {Object} touchlast Last touch information.\n   * @return {number} Position of the drawer.\n   */\n  _getdrawerpositionfromtouches(touchbasis, touchlast) {\n    let distance = this._getdistance(\n      this._gettouchmoveinfo(touchbasis, touchlast)\n    );\n\n    let curpos = this._position === null ?\n      this._getdrawerpositionfromstyle() :\n      this._position;\n\n    let pos = Math.round(curpos + distance);\n    let minp = this._getminposition(this._drawer);\n\n    if (pos > 0) {\n      pos = 0;\n    } else if (pos < minp) {\n      pos = minp;\n    }\n\n    return pos;\n  }\n\n  /**\n   * Return the position in the style.\n   *\n   * @return {number} Position in the style.\n   */\n  _getdrawerpositionfromstyle() {\n    let value = this._drawer.element.style[this._drawer.direction];\n    return this._normalizenumber(value).value;\n  }\n\n\n  /**\n   * Return the opacity of the overlay.\n   *\n   * @param {number} position Moving position.\n   * @return {number} Position of the drawer.\n   */\n  _getoverlayopacityfromposition(position) {\n    let minp = this._getminposition(this._drawer);\n    let posratio = 1 - (Math.abs(position) / Math.abs(minp));\n    return ((this._overlay.opacity * posratio) * 10000) / 10000;\n  }\n\n  /**\n   * Return the opacity in the style.\n   *\n   * @return {number} Opacity in the style.\n   */\n  _getoverlayopacityfromstyle() {\n    return parseFloat(this._overlay.element.style.opacity);\n  }\n\n  /**\n   * Return the swipe range.\n   *\n   * @param {string|number} value Target swipe area value.\n   * @return {Object} Drag range.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getrange(value) {\n    let basis = this._convertpixelabs(value);\n    let width = window.innerWidth;\n    let height = window.innerHeight;\n\n    switch (this._drawer.direction) {\n      case 'top':\n        return {from: {x: 0, y: 0}, to: {x: width, y: basis}};\n      case 'right':\n        return {from: {x: basis, y: 0}, to: {x: width, y: height}};\n      case 'bottom':\n        return {from: {x: 0, y: basis}, to: {x: width, y: height}};\n      case 'left':\n        return {from: {x: 0, y: 0}, to: {x: basis, y: height}};\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return a value converted to the absolute value of the pixel.\n   *\n   * @param {string|number} value Target value.\n   * @return {number} Converted to the absolute value of the pixel.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _convertpixelabs(value) {\n    let nvalue = this._normalizepixel(value);\n\n    switch (this._drawer.direction) {\n      case 'top':\n      case 'left':\n        return nvalue;\n      case 'right':\n        return window.innerWidth - nvalue;\n      case 'bottom':\n        return window.innerHeight - nvalue;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the normalized pixel value.\n   *\n   * @param {string|number} value Target value.\n   * @return {number} Normalized pixel value.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _normalizepixel(value) {\n    let normalized = this._normalizenumber(value);\n\n    if (normalized.unit === 'number' || normalized.unit === 'pixel') {\n      return normalized.value;\n    } else if (normalized.unit === 'percent') {\n      switch (this._drawer.direction) {\n        case 'top':\n        case 'bottom':\n          return window.innerHeight * (normalized.value / 100);\n        case 'right':\n        case 'left':\n          return window.innerWidth * (normalized.value / 100);\n        default:\n          throw new Error(`'${this._drawer.direction}' does not support`);\n      }\n    }\n  }\n\n  /**\n   * Return the numeric normalized information.\n   *\n   * @param {string|number} value Target value.\n   * @return {Object} Numeric normalized information.\n   * @throws {Error} Is thrown if value is invalid.\n   */\n  _normalizenumber(value) {\n    if (typeof value === 'number') {\n      return {value: value, unit: 'number'};\n    } else if (String(value).match(/^[.\\-0-9]+$/)) {\n      return {value: Number(value), unit: 'number'};\n    } else if (value.match(/^[.\\-0-9]+px$/)) {\n      return {value: Number(value.replace(/px$/ig, '')), unit: 'pixel'};\n    } else if (value.match(/[.\\-0-9]+%$/)) {\n      return {value: Number(value.replace(/%$/ig, '')), unit: 'percent'};\n    }\n\n    throw new Error(`'${value}' does not support`);\n  }\n\n  /**\n   * Return to the minimum position for the drawer.\n   *\n   * @return {number} Minimum position for the drawer.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getminposition() {\n    switch (this._drawer.direction) {\n      case 'top':\n      case 'bottom':\n        return -1 * this._drawer.element.offsetHeight;\n      case 'right':\n      case 'left':\n        return -1 * this._drawer.element.offsetWidth;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the distance of the drawer.\n   *\n   * @param {Object} moveinfo Movement information of the drawer.\n   * @return {number} Distance of the drawer.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getdistance(moveinfo) {\n    switch (this._drawer.direction) {\n      case 'top':\n        return moveinfo.y;\n      case 'right':\n        return -1 * moveinfo.x;\n      case 'bottom':\n        return -1 * moveinfo.y;\n      case 'left':\n        return moveinfo.x;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the information of touch move.\n   *\n   * @param {Object} touchbasis Basic touch information.\n   * @param {Object} touchlast Last touch information.\n   * @return {Object} Movement distance of the x, y direction, movement direction.\n   */\n  _gettouchmoveinfo(touchbasis, touchlast) {\n    let x = touchlast.clientX - touchbasis.clientX;\n    let y = touchlast.clientY - touchbasis.clientY;\n    let axis = Math.abs(x) >= Math.abs(y) ? 'horizontal' : 'vertical';\n\n    return {x, y, axis};\n  }\n\n  /**\n   * Return the information of touch move.\n   *\n   * @param {Promise} promise Promise instance.\n   * @param {Object} callbacks Callback function with the key to 'done', 'fail', 'always' (each optional).\n   * @return {Promise} Promise instance.\n   */\n  _handlecallback(promise, callbacks) {\n    if (!callbacks) {\n      return promise;\n    }\n\n    for (let key of Object.keys(callbacks)) {\n      let callback = callbacks[key];\n\n      if (!callback) {\n        continue;\n      }\n\n      let cb = isarray(callback) ? callback : [callback];\n      let rcb = null;\n\n      switch (key) {\n        case 'done':\n          rcb = (prom, value) => prom.then(value.bind(this));\n          break;\n        case 'fail':\n          rcb = (prom, value) => prom.catch(value.bind(this));\n          break;\n        case 'always':\n          rcb = (prom, value) => prom.then(value.bind(this), value.bind(this));\n          break;\n        default:\n          break;\n      }\n\n      if (rcb) {\n        cb.reduce(rcb, promise);\n      }\n    }\n\n    return promise;\n  }\n}\n\nmodule.exports = Highendrawer;\n",
+    "content": "'use strict';\n\nimport {\n  DEFAULT_DRAWER_PROPERTY,\n  DEFAULT_OVERLAY_PROPERTY,\n  DEFAULT_PROCESS,\n  DRAWER_STYLE,\n  OVERLAY_STYLE,\n  TOUCH_EVENTS,\n  TRANSITION_STYLE,\n} from './const';\n\nimport {isarray} from './util';\nimport * as helper from './helper';\nimport {support} from './support';\n\n/**\n * Class providing a drawer function.\n *\n * @public\n * @class\n * @example\n * var drawer = new DrawerMenu({\n *   element: document.getElementById('drawer')\n * });\n */\nexport default class Highendrawer {\n\n  /**\n   * Initialize object.\n   *\n   * @constructor\n   * @param {Drawer} drawer Initial parameters of drawer.\n   */\n  constructor(drawer) {\n    /**\n     * Drawer status ('open' or 'close')\n     *\n     * @public\n     * @type {string}\n     */\n    this.state = 'close';\n\n    this._id = helper.generateid();\n    this._drawer = Object.assign({}, DEFAULT_DRAWER_PROPERTY, drawer);\n    this._overlay = this._drawer.overlay === false ?\n      false :\n      Object.assign({}, DEFAULT_OVERLAY_PROPERTY, this._drawer.overlay);\n    this._timeoutid = null;\n    this._intervalid = null;\n    this._process = Object.assign({}, DEFAULT_PROCESS);\n    this._enabled = false;\n    this._handler = this._getdrawerhandler();\n\n    if (this._drawer.enabledmaxwidth > -1) {\n      window.addEventListener('resize', () => {\n        if (this._enabled\n          && window.innerWidth > this._drawer.enabledmaxwidth) {\n          this.destroy();\n        } else if (!this._enabled\n          && window.innerWidth <= this._drawer.enabledmaxwidth) {\n          this.create();\n        }\n      });\n    }\n\n    if (window.history\n      && window.history.pushState\n      && this._drawer.history\n    ) {\n      window.history.replaceState({\n        id: this._id,\n      }, null, null);\n    }\n\n    if (this._drawer.initcreate) {\n      this.create();\n    }\n  }\n\n  /**\n   * Create the drawer set.\n   *\n   * @public\n   */\n  create() {\n    try {\n      this._createdrawer();\n      this._createoverlay();\n      this._enabled = true;\n\n      if (this._drawer.oncreate) {\n        this._drawer.oncreate.apply(this, [this._drawer]);\n      }\n    } catch (e) {\n      if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Destroy the drawer set.\n   *\n   * @public\n   */\n  destroy() {\n    try {\n      this._destroydrawer();\n      this._destroyoverlay();\n      this._enabled = false;\n\n      if (this._drawer.ondestroy) {\n        this._drawer.ondestroy.apply(this, [this._drawer]);\n      }\n    } catch (e) {\n      if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Open drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for open.\n   */\n  open(duration = null, isfireevent = true, ischangehistory = true) {\n    return this._changestate(\n      0,\n      duration,\n      {\n        onchangestate: isfireevent ? this._drawer.onchangestate : null,\n        done: isfireevent ? this._drawer.onopen : null,\n        fail: isfireevent ? this._drawer.onerror : null,\n      },\n      ischangehistory\n    );\n  }\n\n  /**\n   * Close drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for close.\n   */\n  close(duration = null, isfireevent = true, ischangehistory = true) {\n    return this._changestate(\n      this._getminposition(),\n      duration,\n      {\n        onchangestate: isfireevent ? this._drawer.onchangestate : null,\n        done: isfireevent ? this._drawer.onclose : null,\n        fail: isfireevent ? this._drawer.onerror : null,\n      },\n      ischangehistory\n    );\n  }\n\n  /**\n   * Toggle drawer.\n   *\n   * @public\n   * @param {number} [duration] Drawer moving time.\n   * @param {boolean} [isfireevent] Whether to fire an event on the drawer.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object for toggle.\n   */\n  toggle(duration = null, isfireevent = true, ischangehistory = true) {\n    return new Promise((resolve, reject) => {\n      try {\n        this[this.state === 'open' ? 'close' : 'open'](duration, isfireevent, ischangehistory)\n          .then(resolve, reject);\n      } catch (e) {\n        reject(e);\n      }\n    });\n  }\n\n  /**\n   * Create drawer.\n   */\n  _createdrawer() {\n    helper.setstyle(\n      this._drawer.element,\n      Object.assign(\n        {},\n        DRAWER_STYLE,\n        support.cssanim ? TRANSITION_STYLE : {}\n      )\n    );\n\n    this._resetdrawer();\n\n    Object.keys(this._handler).forEach((name) => {\n      window.addEventListener(name, this._handler[name]);\n    });\n  }\n\n  /**\n   * Destroy drawer.\n   */\n  _destroydrawer() {\n    Object.keys(this._handler).forEach((name) => {\n      window.removeEventListener(name, this._handler[name]);\n    });\n\n    this._resetdrawer(true);\n\n    helper.unsetstyle(\n      this._drawer.element,\n      Object.keys(\n        Object.assign(\n          {},\n          DRAWER_STYLE,\n          support.cssanim ? TRANSITION_STYLE : {}\n        )\n      )\n    );\n  }\n\n  /**\n   * Create overlay.\n   */\n  _createoverlay() {\n    if (this._overlay === false) {\n      return;\n    }\n\n    if (this._overlay.zindex === -1) {\n      this._overlay.zindex = this._drawer.zindex - 1;\n    }\n\n    if (!this._overlay.element) {\n      this._overlay.element = window.document.createElement('div');\n      this._overlay.isautocreated = true;\n\n      helper.setstyle(\n        this._overlay.element,\n        Object.assign(\n          {},\n          OVERLAY_STYLE,\n          support.cssanim ? TRANSITION_STYLE : {}\n        )\n      );\n    }\n\n    if (!this._overlay.touchhandler) {\n      this._overlay.touchhandler = (e) => {\n        this.close();\n      };\n    }\n\n    window.document.body.appendChild(this._overlay.element);\n  }\n\n  /**\n   * Destroy overlay.\n   */\n  _destroyoverlay() {\n    if (this._overlay === false) {\n      return;\n    }\n\n    if (this._overlay.element) {\n      this._overlay.element.removeEventListener('click', this._overlay.touchhandler);\n\n      if (this._overlay.isautocreated) {\n        this._overlay.element.parentNode.removeChild(this._overlay.element);\n      }\n    }\n  }\n\n  /**\n   * Reset drawer.\n   *\n   * @param {boolean} [isunset] Unset style.\n   */\n  _resetdrawer(isunset = false) {\n    try {\n      this._setprops();\n\n      let ims = this._getinitdrawerstyle();\n\n      if (isunset) {\n        helper.unsetstyle(this._drawer.element, Object.keys(ims));\n      } else {\n        helper.setstyle(this._drawer.element, ims);\n      }\n    } catch (e) {\n      if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n  }\n\n  /**\n   * Show drawer.\n   */\n  _showdrawer() {\n    helper.setstyle(this._drawer.element, {\n      zIndex: this._drawer.zindex,\n      display: 'block',\n    });\n  }\n\n  /**\n   * Hide drawer.\n   */\n  _hidedrawer() {\n    helper.setstyle(this._drawer.element, {\n      zIndex: -1,\n      display: 'none',\n    });\n  }\n\n  /**\n   * Show overlay.\n   */\n  _showoverlay() {\n    helper.setstyle(this._overlay.element, {\n      zIndex: this._overlay.zindex,\n      display: 'block',\n    });\n  }\n\n  /**\n   * Hide overlay.\n   */\n  _hideoverlay() {\n    helper.setstyle(this._overlay.element, {\n      zIndex: -1,\n      display: 'none',\n    });\n  }\n\n  /**\n   * Set properties.\n   */\n  _setprops() {\n    // set sizepixel\n    let sizepixel = this._normalizepixel(\n      this._drawer.size\n    );\n\n    if (this._drawer.maxsize && this._drawer.maxsize !== -1) {\n      let maxsizepixel = this._normalizepixel(\n        this._drawer.maxsize\n      );\n\n      if (sizepixel > maxsizepixel) {\n        sizepixel = maxsizepixel;\n      }\n    }\n\n    this._sizepixel = sizepixel;\n\n    // set position\n    this._position = typeof this._position === 'undefined' ?\n      null :\n      this._position;\n  }\n\n  /**\n   * Return initial style of drawer.\n   *\n   * @return {Object} Style for drawer.\n   */\n  _getinitdrawerstyle() {\n    let style = null;\n\n    switch (this._drawer.direction) {\n      case 'top':\n        style = {\n          width: '100%',\n          height: `${this._sizepixel}px`,\n          top: `-${this._sizepixel}px`,\n          right: 'auto',\n          bottom: 'auto',\n          left: 0,\n        };\n        break;\n      case 'right':\n        style = {\n          width: `${this._sizepixel}px`,\n          height: '100%',\n          top: 0,\n          right: `-${this._sizepixel}px`,\n          bottom: 'auto',\n          left: 'auto',\n        };\n        break;\n      case 'bottom':\n        style = {\n          width: '100%',\n          height: `${this._sizepixel}px`,\n          top: 'auto',\n          right: 'auto',\n          bottom: `-${this._sizepixel}px`,\n          left: 0,\n        };\n        break;\n      case 'left':\n        style = {\n          width: `${this._sizepixel}px`,\n          height: '100%',\n          top: 0,\n          right: 'auto',\n          bottom: 'auto',\n          left: `-${this._sizepixel}px`,\n        };\n        break;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n\n    return Object.assign(style, this._drawer.style || {});\n  }\n\n  /**\n   * Return style for moving the drawer.\n   *\n   * @param {number} position Moving position.\n   * @param {number} [duration] Drawer moving time.\n   * @return {Object} Move style for drawer.\n   */\n  _getdrawerstyle(position, duration = null) {\n    let minp = this._getminposition(this._drawer);\n    let style = {};\n\n    if (support.cssanim) {\n      style.transitionDuration = `${duration === null ? this._drawer.duration : duration}ms`;\n\n      switch (this._drawer.direction) {\n        case 'top':\n          style.transform = `${support.transrate}(0,${-(minp - position)}px,0)`;\n          break;\n        case 'right':\n          style.transform = `${support.transrate}(${minp - position}px,0,0)`;\n          break;\n        case 'bottom':\n          style.transform = `${support.transrate}(0,${minp - position}px,0)`;\n          break;\n        case 'left':\n          style.transform = `${support.transrate}(${-(minp - position)}px,0,0)`;\n          break;\n        default:\n          throw new Error(`'${this._drawer.direction}' does not support`);\n      }\n    } else {\n      style[this._drawer.direction] = `${position}px`;\n    }\n\n    return style;\n  }\n\n  /**\n   * Return style for moving the overlay.\n   *\n   * @param {float} opacity Overlay opacity.\n   * @param {number} [duration] Drawer moving time.\n   * @return {Object} Move style for overlay.\n   */\n  _getoverlaystyle(opacity, duration = null) {\n    let style = {\n      opacity,\n    };\n\n    if (support.cssanim) {\n      style.transitionDuration = `${duration === null ? this._drawer.duration : duration}ms`;\n    }\n\n    return style;\n  }\n\n  /**\n   * Make animation with CSS3.\n   *\n   * @param {number} duration Drawer moving time.\n   */\n  _cssanimate(duration) {\n    helper.setstyle(\n      this._overlay.element,\n      this._getoverlaystyle(\n        this._getoverlayopacityfromposition(this._position),\n        duration\n      )\n    );\n\n    helper.setstyle(\n      this._drawer.element,\n      this._getdrawerstyle(this._position, duration)\n    );\n  }\n\n  /**\n   * Make animation with Javascript.\n   *\n   * @param {number} duration Drawer moving time.\n   */\n  _jsanimate(duration) {\n    let start = +new Date();\n    let fromopy = this._getoverlayopacityfromstyle();\n    let toopy = this._getoverlayopacityfromposition(this._position);\n    let frompos = this._getdrawerpositionfromstyle();\n    let topos = this._position;\n\n    if (this._intervalid) {\n      clearInterval(this._intervalid);\n    }\n\n    this._intervalid = setInterval(() => {\n      let time = new Date() - start;\n      let nowpos = null;\n      let nowopy = null;\n\n      if (time > duration) {\n        clearInterval(this._intervalid);\n        this._intervalid = null;\n        nowopy = toopy;\n        nowpos = topos;\n      } else {\n        let prp = (time /= duration) * (time - 2);\n        nowopy = fromopy - ((toopy - fromopy) * prp);\n        nowpos = frompos - ((topos - frompos) * prp);\n      }\n\n      helper.setstyle(\n        this._overlay.element,\n        this._getoverlaystyle(nowopy, duration)\n      );\n\n      helper.setstyle(\n        this._drawer.element,\n        this._getdrawerstyle(nowpos, duration)\n      );\n    }, 10);\n  }\n\n  /**\n   * Return state by touch movement.\n   *\n   * @return {string} State by touch movement.\n   */\n  _gettouchmovestate() {\n    if (this._process.time.end - this._process.time.start <= 300) {\n      let len = this._process.touches.length;\n      let moveinfo = this._gettouchmoveinfo(\n        this._process.touches[len - 2],\n        this._process.touches[len - 1]\n      );\n      let vertical = moveinfo.axis === 'vertical';\n      let horizontal = moveinfo.axis === 'horizontal';\n      let top = this._drawer.direction === 'top' && moveinfo.y >= 0;\n      let right = this._drawer.direction === 'right' && moveinfo.x < 0;\n      let bottom = this._drawer.direction === 'bottom' && moveinfo.y < 0;\n      let left = this._drawer.direction === 'left' && moveinfo.x >= 0;\n\n      return (vertical && (bottom || top)) ||\n        (horizontal && (right || left)) ?\n        'open' :\n        'close';\n    }\n\n    return this._getstatefromposition();\n  }\n\n  /**\n   * Return drawer event handler.\n   *\n   * @return {Object} Drawer event handler.\n   */\n  _getdrawerhandler() {\n    let handler = {};\n\n    handler.resize = () => {\n      this._resetdrawer();\n      this[this.state](0, false, false);\n\n      if (this._drawer.onresize) {\n        this._drawer.onresize.apply(\n          this,\n          [this._drawer]\n        );\n      }\n    };\n\n    if (this._drawer.swipeable) {\n      for (let event of TOUCH_EVENTS) {\n        handler[event] = this._touchhandler.bind(this);\n      }\n    }\n\n    if (window.history\n      && window.history.pushState\n      && this._drawer.history\n    ) {\n      handler.popstate = (e) => {\n        if (e.state && e.state.id === this._id && this.state === 'open') {\n          this.close(null, true, false);\n        }\n      };\n    }\n\n    return handler;\n  }\n\n  /**\n   * Touch event handler.\n   *\n   * @param {Event} ev Touch event object.\n   * @return {boolean} Event bubbling.\n   */\n  _touchhandler(ev) {\n    try {\n      if (ev.touches.length > 1) {\n        return true;\n      }\n\n      let touch = ev.touches[0];\n\n      if (touch) {\n        this._process.touches.push(touch);\n      }\n\n      switch (ev.type) {\n        case 'touchstart':\n          this._ontouchstart(ev);\n          break;\n        case 'touchmove':\n          this._ontouchmove(ev);\n          break;\n        case 'touchcancel':\n        case 'touchend':\n          this._ontouchfinish(ev);\n          break;\n        default:\n          break;\n      }\n    } catch (e) {\n      if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {\n        this._drawer.onerror.apply(this, [e]);\n      } else {\n        throw e;\n      }\n    }\n\n    return true;\n  }\n\n  /**\n   * Touch start event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchstart(ev) {\n    this._process.time.start = new Date().getTime();\n  }\n\n  /**\n   * Touch move event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchmove(ev) {\n    let len = this._process.touches.length;\n    let isfiretouchstart = false;\n\n    if (!this._process.istouchactive && len >= 2) {\n      this._process.istouchactive = this._istouchactive();\n\n      if (this._process.istouchactive) {\n        this._showoverlay();\n        this._showdrawer();\n\n        if (this._drawer.ontouchstart) {\n          isfiretouchstart = true;\n        }\n      }\n    }\n\n    if (this._process.istouchactive) {\n      ev.stopPropagation();\n      ev.preventDefault();\n\n      this._position = this._getdrawerpositionfromtouches(\n        this._process.touches[len - 2],\n        this._process.touches[len - 1]\n      );\n\n      if (isfiretouchstart) {\n        this._drawer.ontouchstart.apply(\n          this,\n          [this._drawer, this._position]\n        );\n      }\n\n      helper.setstyle(\n        this._overlay.element,\n        this._getoverlaystyle(\n          this._getoverlayopacityfromposition(this._position),\n          0\n        )\n      );\n\n      helper.setstyle(\n        this._drawer.element,\n        this._getdrawerstyle(this._position, 0)\n      );\n\n      if (this._drawer.ontouchmove) {\n        this._drawer.ontouchmove.apply(\n          this,\n          [this._drawer, this._position]\n        );\n      }\n    }\n  }\n\n  /**\n   * Touch finish event handler.\n   *\n   * @param {Event} ev Touch event object.\n   */\n  _ontouchfinish(ev) {\n    let len = this._process.touches.length;\n\n    if (this._process.istouchactive && len >= 2) {\n      this._process.time.end = new Date().getTime();\n\n      let state = this._gettouchmovestate();\n      let changestate = this.state !== state;\n\n      this[state](null, changestate, changestate);\n\n      if (this._drawer.ontouchfinish) {\n        this._drawer.ontouchfinish.apply(\n          this,\n          [\n            this._drawer,\n            this._getdrawerpositionfromtouches(\n              this._process.touches[len - 2],\n              this._process.touches[len - 1]\n            ),\n          ]\n        );\n      }\n    }\n\n    this._process.touches = [];\n    this._process.istouchactive = false;\n    this._process.time.start = 0;\n    this._process.time.end = 0;\n  }\n\n  /**\n   * Return whether or not a valid touch.\n   *\n   * @param {number} position Moving position.\n   * @param {number} [duration=null] Drawer moving time.\n   * @param {Object} [callbacks=null] Callback objects.\n   * @param {boolean} [ischangehistory=false] Make a change in history.\n   * @return {Promise} Promise object.\n   */\n  _changestate(\n    position,\n    duration = null,\n    callbacks = null,\n    ischangehistory = true\n  ) {\n    return this._handlecallback(new Promise((resolve, reject) => {\n      try {\n        this._position = position;\n\n        let du = duration === null ? this._drawer.duration : duration;\n\n        if (this._timeoutid !== null) {\n          clearTimeout(this._timeoutid);\n          this._timeoutid = null;\n        }\n\n        let state = this._getstatefromposition();\n\n        if (state === 'open') {\n          this._showoverlay();\n          this._showdrawer();\n        } else {\n          this._overlay.element.removeEventListener('click', this._overlay.touchhandler);\n        }\n\n        if (ischangehistory\n          && this._drawer.history\n          && window.history\n          && window.history.pushState\n        ) {\n          if (state === 'open') {\n            window.history.pushState({\n              id: this._id,\n            }, null, null);\n          } else {\n            window.history.back();\n          }\n        }\n\n        this[support.cssanim\n          ? '_cssanimate'\n          : '_jsanimate'](du);\n\n        this._timeoutid = setTimeout(\n          () => {\n            if (state === 'open') {\n              this._overlay.element.addEventListener('click', this._overlay.touchhandler);\n            } else {\n              this._hidedrawer();\n              this._hideoverlay();\n            }\n\n            this._timeoutid = null;\n          },\n          du\n        );\n\n        this.state = state;\n\n        if (typeof callbacks === 'object' && callbacks.onchangestate) {\n          callbacks.onchangestate.apply(\n            this,\n            [this._drawer, state]\n          );\n        }\n\n        resolve.apply(this, [this._drawer]);\n      } catch (e) {\n        reject(e);\n      }\n    }), {\n      done: typeof callbacks === 'object' && callbacks.done ? callbacks.done : null,\n      fail: typeof callbacks === 'object' && callbacks.fail ? callbacks.fail : null,\n    });\n  }\n\n  /**\n   * Return whether or not a valid touch.\n   *\n   * @return {boolean} Result of valid touch.\n   */\n  _istouchactive() {\n    let rg = this._getrange(\n      this.state === 'open' ?\n        this._sizepixel :\n        this._drawer.swipearea\n    );\n\n    if (!(rg.from.x <= this._process.touches[0].clientX &&\n      this._process.touches[0].clientX <= rg.to.x &&\n      rg.from.y <= this._process.touches[0].clientY &&\n      this._process.touches[0].clientY <= rg.to.y)\n    ) {\n      return false;\n    }\n\n    let len = this._process.touches.length;\n    let moveinfo = this._gettouchmoveinfo(\n      this._process.touches[len - 2],\n      this._process.touches[len - 1]\n    );\n    let vertical = moveinfo.axis === 'vertical';\n    let horizontal = moveinfo.axis === 'horizontal';\n\n    if (!(vertical &&\n      (this._drawer.direction === 'top' ||\n      this._drawer.direction === 'bottom') ||\n      horizontal &&\n      (this._drawer.direction === 'right' ||\n      this._drawer.direction === 'left'))\n    ) {\n      return false;\n    }\n\n    return (\n      (\n        this.state === 'open' &&\n        (\n          this._drawer.direction === 'top' && moveinfo.y < 0 ||\n          this._drawer.direction === 'right' && moveinfo.x >= 0 ||\n          this._drawer.direction === 'bottom' && moveinfo.y >= 0 ||\n          this._drawer.direction === 'left' && moveinfo.x < 0\n        )\n      ) ||\n      (\n        this.state === 'close' &&\n        (\n          this._drawer.direction === 'top' && moveinfo.y >= 0 ||\n          this._drawer.direction === 'right' && moveinfo.x < 0 ||\n          this._drawer.direction === 'bottom' && moveinfo.y < 0 ||\n          this._drawer.direction === 'left' && moveinfo.x >= 0\n        )\n      )\n    );\n  }\n\n  /**\n   * Return the state of the drawer.\n   *\n   * @return {string} State of the drawer.\n   */\n  _getstatefromposition() {\n    let pos = this._position === null ?\n      this._getdrawerpositionfromstyle() :\n      this._position;\n\n    return Math.abs(pos) < this._sizepixel / 2 ?\n      'open' :\n      'close';\n  }\n\n  /**\n   * Return the position of the drawer.\n   *\n   * @param {Object} touchbasis Basic touch information.\n   * @param {Object} touchlast Last touch information.\n   * @return {number} Position of the drawer.\n   */\n  _getdrawerpositionfromtouches(touchbasis, touchlast) {\n    let distance = this._getdistance(\n      this._gettouchmoveinfo(touchbasis, touchlast)\n    );\n\n    let curpos = this._position === null ?\n      this._getdrawerpositionfromstyle() :\n      this._position;\n\n    let pos = Math.round(curpos + distance);\n    let minp = this._getminposition(this._drawer);\n\n    if (pos > 0) {\n      pos = 0;\n    } else if (pos < minp) {\n      pos = minp;\n    }\n\n    return pos;\n  }\n\n  /**\n   * Return the position in the style.\n   *\n   * @return {number} Position in the style.\n   */\n  _getdrawerpositionfromstyle() {\n    let value = this._drawer.element.style[this._drawer.direction];\n    return this._normalizenumber(value).value;\n  }\n\n\n  /**\n   * Return the opacity of the overlay.\n   *\n   * @param {number} position Moving position.\n   * @return {number} Position of the drawer.\n   */\n  _getoverlayopacityfromposition(position) {\n    let minp = this._getminposition(this._drawer);\n    let posratio = 1 - (Math.abs(position) / Math.abs(minp));\n    return ((this._overlay.opacity * posratio) * 10000) / 10000;\n  }\n\n  /**\n   * Return the opacity in the style.\n   *\n   * @return {number} Opacity in the style.\n   */\n  _getoverlayopacityfromstyle() {\n    return parseFloat(this._overlay.element.style.opacity);\n  }\n\n  /**\n   * Return the swipe range.\n   *\n   * @param {string|number} value Target swipe area value.\n   * @return {Object} Drag range.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getrange(value) {\n    let basis = this._convertpixelabs(value);\n    let width = window.innerWidth;\n    let height = window.innerHeight;\n\n    switch (this._drawer.direction) {\n      case 'top':\n        return {from: {x: 0, y: 0}, to: {x: width, y: basis}};\n      case 'right':\n        return {from: {x: basis, y: 0}, to: {x: width, y: height}};\n      case 'bottom':\n        return {from: {x: 0, y: basis}, to: {x: width, y: height}};\n      case 'left':\n        return {from: {x: 0, y: 0}, to: {x: basis, y: height}};\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return a value converted to the absolute value of the pixel.\n   *\n   * @param {string|number} value Target value.\n   * @return {number} Converted to the absolute value of the pixel.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _convertpixelabs(value) {\n    let nvalue = this._normalizepixel(value);\n\n    switch (this._drawer.direction) {\n      case 'top':\n      case 'left':\n        return nvalue;\n      case 'right':\n        return window.innerWidth - nvalue;\n      case 'bottom':\n        return window.innerHeight - nvalue;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the normalized pixel value.\n   *\n   * @param {string|number} value Target value.\n   * @return {number} Normalized pixel value.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _normalizepixel(value) {\n    let normalized = this._normalizenumber(value);\n\n    if (normalized.unit === 'number' || normalized.unit === 'pixel') {\n      return normalized.value;\n    } else if (normalized.unit === 'percent') {\n      switch (this._drawer.direction) {\n        case 'top':\n        case 'bottom':\n          return window.innerHeight * (normalized.value / 100);\n        case 'right':\n        case 'left':\n          return window.innerWidth * (normalized.value / 100);\n        default:\n          throw new Error(`'${this._drawer.direction}' does not support`);\n      }\n    }\n  }\n\n  /**\n   * Return the numeric normalized information.\n   *\n   * @param {string|number} value Target value.\n   * @return {Object} Numeric normalized information.\n   * @throws {Error} Is thrown if value is invalid.\n   */\n  _normalizenumber(value) {\n    if (typeof value === 'number') {\n      return {value: value, unit: 'number'};\n    } else if (String(value).match(/^[.\\-0-9]+$/)) {\n      return {value: Number(value), unit: 'number'};\n    } else if (value.match(/^[.\\-0-9]+px$/)) {\n      return {value: Number(value.replace(/px$/ig, '')), unit: 'pixel'};\n    } else if (value.match(/[.\\-0-9]+%$/)) {\n      return {value: Number(value.replace(/%$/ig, '')), unit: 'percent'};\n    }\n\n    throw new Error(`'${value}' does not support`);\n  }\n\n  /**\n   * Return to the minimum position for the drawer.\n   *\n   * @return {number} Minimum position for the drawer.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getminposition() {\n    switch (this._drawer.direction) {\n      case 'top':\n      case 'bottom':\n        return -1 * this._drawer.element.offsetHeight;\n      case 'right':\n      case 'left':\n        return -1 * this._drawer.element.offsetWidth;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the distance of the drawer.\n   *\n   * @param {Object} moveinfo Movement information of the drawer.\n   * @return {number} Distance of the drawer.\n   * @throws {Error} Is thrown if direction value is invalid.\n   */\n  _getdistance(moveinfo) {\n    switch (this._drawer.direction) {\n      case 'top':\n        return moveinfo.y;\n      case 'right':\n        return -1 * moveinfo.x;\n      case 'bottom':\n        return -1 * moveinfo.y;\n      case 'left':\n        return moveinfo.x;\n      default:\n        throw new Error(`'${this._drawer.direction}' does not support`);\n    }\n  }\n\n  /**\n   * Return the information of touch move.\n   *\n   * @param {Object} touchbasis Basic touch information.\n   * @param {Object} touchlast Last touch information.\n   * @return {Object} Movement distance of the x, y direction, movement direction.\n   */\n  _gettouchmoveinfo(touchbasis, touchlast) {\n    let x = touchlast.clientX - touchbasis.clientX;\n    let y = touchlast.clientY - touchbasis.clientY;\n    let axis = Math.abs(x) >= Math.abs(y) ? 'horizontal' : 'vertical';\n\n    return {x, y, axis};\n  }\n\n  /**\n   * Return the information of touch move.\n   *\n   * @param {Promise} promise Promise instance.\n   * @param {Object} callbacks Callback function with the key to 'done', 'fail', 'always' (each optional).\n   * @return {Promise} Promise instance.\n   */\n  _handlecallback(promise, callbacks) {\n    if (!callbacks) {\n      return promise;\n    }\n\n    for (let key of Object.keys(callbacks)) {\n      let callback = callbacks[key];\n\n      if (!callback) {\n        continue;\n      }\n\n      let cb = isarray(callback) ? callback : [callback];\n      let rcb = null;\n\n      switch (key) {\n        case 'done':\n          rcb = (prom, value) => prom.then(value.bind(this));\n          break;\n        case 'fail':\n          rcb = (prom, value) => prom.catch(value.bind(this));\n          break;\n        case 'always':\n          rcb = (prom, value) => prom.then(value.bind(this), value.bind(this));\n          break;\n        default:\n          break;\n      }\n\n      if (rcb) {\n        cb.reduce(rcb, promise);\n      }\n    }\n\n    return promise;\n  }\n}\n\nmodule.exports = Highendrawer;\n",
     "static": true,
     "longname": "src/highendrawer.js",
     "access": null,
@@ -1028,7 +1028,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_hidedrawer",
     "access": null,
     "description": "Hide drawer.",
-    "lineNumber": 322,
+    "lineNumber": 323,
     "params": []
   },
   {
@@ -1042,7 +1042,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_showoverlay",
     "access": null,
     "description": "Show overlay.",
-    "lineNumber": 331,
+    "lineNumber": 333,
     "params": []
   },
   {
@@ -1056,7 +1056,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_hideoverlay",
     "access": null,
     "description": "Hide overlay.",
-    "lineNumber": 341,
+    "lineNumber": 343,
     "params": []
   },
   {
@@ -1070,7 +1070,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_setprops",
     "access": null,
     "description": "Set properties.",
-    "lineNumber": 351,
+    "lineNumber": 353,
     "params": []
   },
   {
@@ -1082,7 +1082,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_sizepixel",
     "access": null,
     "description": null,
-    "lineNumber": 365,
+    "lineNumber": 369,
     "undocument": true,
     "unknown": [
       {
@@ -1105,7 +1105,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_position",
     "access": null,
     "description": null,
-    "lineNumber": 368,
+    "lineNumber": 372,
     "undocument": true,
     "unknown": [
       {
@@ -1130,7 +1130,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getinitdrawerstyle",
     "access": null,
     "description": "Return initial style of drawer.",
-    "lineNumber": 378,
+    "lineNumber": 382,
     "params": [],
     "return": {
       "nullable": null,
@@ -1152,7 +1152,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getdrawerstyle",
     "access": null,
     "description": "Return style for moving the drawer.",
-    "lineNumber": 436,
+    "lineNumber": 440,
     "params": [
       {
         "nullable": null,
@@ -1195,7 +1195,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getoverlaystyle",
     "access": null,
     "description": "Return style for moving the overlay.",
-    "lineNumber": 473,
+    "lineNumber": 477,
     "params": [
       {
         "nullable": null,
@@ -1238,7 +1238,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_cssanimate",
     "access": null,
     "description": "Make animation with CSS3.",
-    "lineNumber": 490,
+    "lineNumber": 494,
     "params": [
       {
         "nullable": null,
@@ -1263,7 +1263,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_jsanimate",
     "access": null,
     "description": "Make animation with Javascript.",
-    "lineNumber": 510,
+    "lineNumber": 514,
     "params": [
       {
         "nullable": null,
@@ -1286,7 +1286,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_intervalid",
     "access": null,
     "description": null,
-    "lineNumber": 521,
+    "lineNumber": 525,
     "undocument": true,
     "unknown": [
       {
@@ -1309,7 +1309,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_intervalid",
     "access": null,
     "description": null,
-    "lineNumber": 528,
+    "lineNumber": 532,
     "undocument": true,
     "unknown": [
       {
@@ -1334,29 +1334,8 @@
     "longname": "src/highendrawer.js~Highendrawer#_gettouchmovestate",
     "access": null,
     "description": "Return state by touch movement.",
-    "lineNumber": 556,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "touches",
-        "description": "Touch object array."
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "time",
-        "description": "Time information on start and end of movement."
-      }
-    ],
+    "lineNumber": 558,
+    "params": [],
     "return": {
       "nullable": null,
       "types": [
@@ -1480,7 +1459,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_position",
     "access": null,
     "description": null,
-    "lineNumber": 701,
+    "lineNumber": 699,
     "undocument": true,
     "unknown": [
       {
@@ -1505,7 +1484,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_ontouchfinish",
     "access": null,
     "description": "Touch finish event handler.",
-    "lineNumber": 740,
+    "lineNumber": 738,
     "params": [
       {
         "nullable": null,
@@ -1530,7 +1509,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_changestate",
     "access": null,
     "description": "Return whether or not a valid touch.",
-    "lineNumber": 784,
+    "lineNumber": 778,
     "params": [
       {
         "nullable": null,
@@ -1597,7 +1576,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_position",
     "access": null,
     "description": null,
-    "lineNumber": 792,
+    "lineNumber": 786,
     "undocument": true,
     "unknown": [
       {
@@ -1620,7 +1599,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_timeoutid",
     "access": null,
     "description": null,
-    "lineNumber": 798,
+    "lineNumber": 792,
     "undocument": true,
     "unknown": [
       {
@@ -1643,7 +1622,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_timeoutid",
     "access": null,
     "description": null,
-    "lineNumber": 828,
+    "lineNumber": 822,
     "undocument": true,
     "unknown": [
       {
@@ -1666,7 +1645,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_timeoutid",
     "access": null,
     "description": null,
-    "lineNumber": 837,
+    "lineNumber": 831,
     "undocument": true,
     "unknown": [
       {
@@ -1689,7 +1668,7 @@
     "longname": "src/highendrawer.js~Highendrawer#state",
     "access": null,
     "description": null,
-    "lineNumber": 842,
+    "lineNumber": 836,
     "undocument": true,
     "unknown": [
       {
@@ -1714,19 +1693,8 @@
     "longname": "src/highendrawer.js~Highendrawer#_istouchactive",
     "access": null,
     "description": "Return whether or not a valid touch.",
-    "lineNumber": 867,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Object"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "touch",
-        "description": "Start touch information."
-      }
-    ],
+    "lineNumber": 860,
+    "params": [],
     "return": {
       "nullable": null,
       "types": [
@@ -1747,7 +1715,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getstatefromposition",
     "access": null,
     "description": "Return the state of the drawer.",
-    "lineNumber": 885,
+    "lineNumber": 920,
     "params": [],
     "return": {
       "nullable": null,
@@ -1769,7 +1737,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getdrawerpositionfromtouches",
     "access": null,
     "description": "Return the position of the drawer.",
-    "lineNumber": 902,
+    "lineNumber": 937,
     "params": [
       {
         "nullable": null,
@@ -1812,7 +1780,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getdrawerpositionfromstyle",
     "access": null,
     "description": "Return the position in the style.",
-    "lineNumber": 928,
+    "lineNumber": 963,
     "params": [],
     "return": {
       "nullable": null,
@@ -1834,7 +1802,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getoverlayopacityfromposition",
     "access": null,
     "description": "Return the opacity of the overlay.",
-    "lineNumber": 940,
+    "lineNumber": 975,
     "params": [
       {
         "nullable": null,
@@ -1867,7 +1835,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getoverlayopacityfromstyle",
     "access": null,
     "description": "Return the opacity in the style.",
-    "lineNumber": 951,
+    "lineNumber": 986,
     "params": [],
     "return": {
       "nullable": null,
@@ -1889,7 +1857,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getrange",
     "access": null,
     "description": "Return the swipe range.",
-    "lineNumber": 962,
+    "lineNumber": 997,
     "params": [
       {
         "nullable": null,
@@ -1931,7 +1899,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_convertpixelabs",
     "access": null,
     "description": "Return a value converted to the absolute value of the pixel.",
-    "lineNumber": 988,
+    "lineNumber": 1023,
     "params": [
       {
         "nullable": null,
@@ -1973,7 +1941,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_normalizepixel",
     "access": null,
     "description": "Return the normalized pixel value.",
-    "lineNumber": 1011,
+    "lineNumber": 1046,
     "params": [
       {
         "nullable": null,
@@ -2015,7 +1983,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_normalizenumber",
     "access": null,
     "description": "Return the numeric normalized information.",
-    "lineNumber": 1037,
+    "lineNumber": 1072,
     "params": [
       {
         "nullable": null,
@@ -2057,7 +2025,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getminposition",
     "access": null,
     "description": "Return to the minimum position for the drawer.",
-    "lineNumber": 1057,
+    "lineNumber": 1092,
     "params": [],
     "return": {
       "nullable": null,
@@ -2087,7 +2055,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_getdistance",
     "access": null,
     "description": "Return the distance of the drawer.",
-    "lineNumber": 1077,
+    "lineNumber": 1112,
     "params": [
       {
         "nullable": null,
@@ -2128,7 +2096,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_gettouchmoveinfo",
     "access": null,
     "description": "Return the information of touch move.",
-    "lineNumber": 1099,
+    "lineNumber": 1134,
     "params": [
       {
         "nullable": null,
@@ -2171,7 +2139,7 @@
     "longname": "src/highendrawer.js~Highendrawer#_handlecallback",
     "access": null,
     "description": "Return the information of touch move.",
-    "lineNumber": 1114,
+    "lineNumber": 1149,
     "params": [
       {
         "nullable": null,
@@ -2262,7 +2230,7 @@
     "__docId__": 85,
     "kind": "file",
     "name": "src/typedef.js",
-    "content": "/**\n * Drawer object.\n *\n * @typedef {Object} Drawer\n * @property {!Object} element HTML DOM Element.\n * @property {string} [direction=\"right\"] Drawer placement direction.\n * @property {string|number} [size=\"80%\"] Drawer size. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {string|number} [maxsize=256] Drawer max size. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {boolean} [isswipeable=true] Enable opening and closing of the drawer with a swipe gesture.\n * @property {string|number} [swipearea=\"8%\"] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {number} [duration=256] Drawer moving time.\n * @property {number} [zindex=9999] Drawer stacking order.\n * @property {Object} [style={}] Drawer's css style.\n * @property {boolean} [isinitcreate=true] Create a drawer at initialization.\n * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.\n * @property {boolean} [ishistory=true] Activate if history is supported.\n * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.\n * @property {function} [oncreate=null] Called when a drawer is created.\n * @property {function} [ondestroy=null] Called when a drawer is destroyed.\n * @property {function} [onopen=null] Called when a drawer is opened.\n * @property {function} [onclose=null] Called when a drawer is closed.\n * @property {function} [onchangestate=null] Called when the opening / closing state is changed.\n * @property {function} [onresize=null] Called when the size of the drawer has changed.\n * @property {function} [ontouchstart=null] Called when the drawer starts moving with a swipe gesture.\n * @property {function} [ontouchmove=null] Called when the drawer is moving with a swipe gesture.\n * @property {function} [ontouchfinish=null] Called when the drawer has finished moving with a swipe gesture.\n * @property {function} [onerror=null] Called when there is an error in processing within the object.\n */\n\n/**\n * Overlay object.\n *\n * @typedef {Object} Overlay\n * @property {Object} element HTML DOM Element.\n * @property {number} [opacity=0.2] Overlay object transparency.\n * @property {number} [zindex=-1] Overlay stacking order. If -1, zindex - 1 of the drawer is specified automatically.\n */\n",
+    "content": "/**\n * Drawer object.\n *\n * @typedef {Object} Drawer\n * @property {!Object} element HTML DOM Element.\n * @property {string} [direction=\"right\"] Drawer placement direction.\n * @property {string|number} [size=\"80%\"] Drawer size. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {string|number} [maxsize=-1] Drawer max size. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.\n * @property {string|number} [swipearea=5] Swipeable area. In the case of character strings, the units are '%' and 'px' are supported.\n * @property {number} [duration=256] Drawer moving time.\n * @property {number} [zindex=9999] Drawer stacking order.\n * @property {Object} [style={}] Drawer's css style.\n * @property {boolean} [initcreate=true] Create a drawer at initialization.\n * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.\n * @property {boolean} [history=true] Activate if history is supported.\n * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.\n * @property {function} [oncreate=null] Called when a drawer is created.\n * @property {function} [ondestroy=null] Called when a drawer is destroyed.\n * @property {function} [onopen=null] Called when a drawer is opened.\n * @property {function} [onclose=null] Called when a drawer is closed.\n * @property {function} [onchangestate=null] Called when the opening / closing state is changed.\n * @property {function} [onresize=null] Called when the size of the drawer has changed.\n * @property {function} [ontouchstart=null] Called when the drawer starts moving with a swipe gesture.\n * @property {function} [ontouchmove=null] Called when the drawer is moving with a swipe gesture.\n * @property {function} [ontouchfinish=null] Called when the drawer has finished moving with a swipe gesture.\n * @property {function} [onerror=null] Called when there is an error in processing within the object.\n */\n\n/**\n * Overlay object.\n *\n * @typedef {Object} Overlay\n * @property {Object} element HTML DOM Element.\n * @property {number} [opacity=0.2] Overlay object transparency.\n * @property {number} [zindex=-1] Overlay stacking order. If -1, zindex - 1 of the drawer is specified automatically.\n */\n",
     "static": true,
     "longname": "src/typedef.js",
     "access": null,
@@ -2322,8 +2290,8 @@
         ],
         "spread": false,
         "optional": true,
-        "defaultValue": "256",
-        "defaultRaw": 256,
+        "defaultValue": "-1",
+        "defaultRaw": -1,
         "name": "maxsize",
         "description": "Drawer max size. In the case of character strings, the units are '%' and 'px' are supported."
       },
@@ -2336,7 +2304,7 @@
         "optional": true,
         "defaultValue": "true",
         "defaultRaw": true,
-        "name": "isswipeable",
+        "name": "swipeable",
         "description": "Enable opening and closing of the drawer with a swipe gesture."
       },
       {
@@ -2347,8 +2315,8 @@
         ],
         "spread": false,
         "optional": true,
-        "defaultValue": "\"8%\"",
-        "defaultRaw": "8%",
+        "defaultValue": "5",
+        "defaultRaw": 5,
         "name": "swipearea",
         "description": "Swipeable area. In the case of character strings, the units are '%' and 'px' are supported."
       },
@@ -2397,7 +2365,7 @@
         "optional": true,
         "defaultValue": "true",
         "defaultRaw": true,
-        "name": "isinitcreate",
+        "name": "initcreate",
         "description": "Create a drawer at initialization."
       },
       {
@@ -2421,7 +2389,7 @@
         "optional": true,
         "defaultValue": "true",
         "defaultRaw": true,
-        "name": "ishistory",
+        "name": "history",
         "description": "Activate if history is supported."
       },
       {

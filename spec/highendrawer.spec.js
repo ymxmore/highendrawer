@@ -48,16 +48,16 @@ describe('Testing the constructor', () => {
       expect(ins._drawer).toEqual({
         direction: 'right',
         size: '80%',
-        maxsize: 256,
-        isswipeable: true,
-        swipearea: '8%',
+        maxsize: -1,
+        swipeable: true,
+        swipearea: 5,
         element: elem,
         duration: 300,
         zindex: 9999,
         style: {},
-        isinitcreate: true,
+        initcreate: true,
         enabledmaxwidth: -1,
-        ishistory: true,
+        history: true,
         overlay: null,
         oncreate: null,
         ondestroy: null,
@@ -146,7 +146,7 @@ describe('Testing the constructor', () => {
     });
 
     it('Drawer should have the correct style', () => {
-      expect(ins._drawer.element.style.display).toBe('block');
+      expect(ins._drawer.element.style.display).toBe('none');
       expect(ins._drawer.element.style.position).toBe('fixed');
       expect(ins._drawer.element.style.overflowX).toBe('hidden');
       expect(ins._drawer.element.style.overflowY).toBe('auto');
@@ -204,7 +204,7 @@ describe('Testing the constructor', () => {
         direction: 'left',
         size: '60%',
         maxsize: 320,
-        isswipeable: false,
+        swipeable: false,
         swipearea: '5%',
         element: elem,
         duration: 200,
@@ -217,9 +217,9 @@ describe('Testing the constructor', () => {
           opacity: 0.2,
           zindex: 50000
         },
-        isinitcreate: true,
+        initcreate: true,
         enabledmaxwidth: 320,
-        ishistory: true,
+        history: true,
       }));
     });
 
@@ -245,7 +245,7 @@ describe('Testing the constructor', () => {
         direction: 'left',
         size: '60%',
         maxsize: 320,
-        isswipeable: false,
+        swipeable: false,
         swipearea: '5%',
         element: elem,
         duration: 200,
@@ -258,9 +258,9 @@ describe('Testing the constructor', () => {
           opacity: 0.2,
           zindex: 50000
         },
-        isinitcreate: true,
+        initcreate: true,
         enabledmaxwidth: 320,
-        ishistory: true
+        history: true
       }));
 
       expect(ins._drawer.element).toBe(elem);
@@ -328,7 +328,7 @@ describe('Testing the constructor', () => {
     });
 
     it('Drawer should have the correct style', () => {
-      expect(ins._drawer.element.style.display).toBe('block');
+      expect(ins._drawer.element.style.display).toBe('none');
       expect(ins._drawer.element.style.position).toBe('fixed');
       expect(ins._drawer.element.style.overflowX).toBe('hidden');
       expect(ins._drawer.element.style.overflowY).toBe('auto');
@@ -387,7 +387,7 @@ describe('Testing the create and destroy', () => {
     // Setup instance
     ins = new Highendrawer(Object.assign(cbs, {
       element: elem,
-      isinitcreate: false
+      initcreate: false
     }));
   });
 
@@ -416,7 +416,7 @@ describe('Testing the create and destroy', () => {
     expect(cbs.oncreate).toHaveBeenCalledTimes(1);
     expect(cbs.ondestroy).toHaveBeenCalledTimes(0);
     expect(document.getElementsByTagName('div').length).toBe(2);
-    expect(ins._drawer.element.style.display).toBe('block');
+    expect(ins._drawer.element.style.display).toBe('none');
 
     // Destroy
     ins.destroy();
@@ -434,7 +434,7 @@ describe('Testing the create and destroy', () => {
     expect(cbs.oncreate).toHaveBeenCalledTimes(2);
     expect(cbs.ondestroy).toHaveBeenCalledTimes(1);
     expect(document.getElementsByTagName('div').length).toBe(2);
-    expect(ins._drawer.element.style.display).toBe('block');
+    expect(ins._drawer.element.style.display).toBe('none');
 
     // Destroy
     ins.destroy();

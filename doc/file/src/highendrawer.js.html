@@ -123,14 +123,14 @@ export default class Highendrawer {
 
     if (window.history
       &amp;&amp; window.history.pushState
-      &amp;&amp; this._drawer.ishistory
+      &amp;&amp; this._drawer.history
     ) {
       window.history.replaceState({
         id: this._id,
       }, null, null);
     }
 
-    if (this._drawer.isinitcreate) {
+    if (this._drawer.initcreate) {
       this.create();
     }
   }
@@ -370,6 +370,7 @@ export default class Highendrawer {
   _showdrawer() {
     helper.setstyle(this._drawer.element, {
       zIndex: this._drawer.zindex,
+      display: &apos;block&apos;,
     });
   }
 
@@ -379,6 +380,7 @@ export default class Highendrawer {
   _hidedrawer() {
     helper.setstyle(this._drawer.element, {
       zIndex: -1,
+      display: &apos;none&apos;,
     });
   }
 
@@ -411,12 +413,14 @@ export default class Highendrawer {
       this._drawer.size
     );
 
-    let maxsizepixel = this._normalizepixel(
-      this._drawer.maxsize
-    );
+    if (this._drawer.maxsize &amp;&amp; this._drawer.maxsize !== -1) {
+      let maxsizepixel = this._normalizepixel(
+        this._drawer.maxsize
+      );
 
-    if (sizepixel &gt; maxsizepixel) {
-      sizepixel = maxsizepixel;
+      if (sizepixel &gt; maxsizepixel) {
+        sizepixel = maxsizepixel;
+      }
     }
 
     this._sizepixel = sizepixel;
@@ -606,30 +610,26 @@ export default class Highendrawer {
   /**
    * Return state by touch movement.
    *
-   * @param {Array} touches Touch object array.
-   * @param {Object} time Time information on start and end of movement.
    * @return {string} State by touch movement.
    */
-  _gettouchmovestate(touches, time) {
-    if (time.end - time.start &lt;= 300) {
-      let len = touches.length;
+  _gettouchmovestate() {
+    if (this._process.time.end - this._process.time.start &lt;= 300) {
+      let len = this._process.touches.length;
+      let moveinfo = this._gettouchmoveinfo(
+        this._process.touches[len - 2],
+        this._process.touches[len - 1]
+      );
+      let vertical = moveinfo.axis === &apos;vertical&apos;;
+      let horizontal = moveinfo.axis === &apos;horizontal&apos;;
+      let top = this._drawer.direction === &apos;top&apos; &amp;&amp; moveinfo.y &gt;= 0;
+      let right = this._drawer.direction === &apos;right&apos; &amp;&amp; moveinfo.x &lt; 0;
+      let bottom = this._drawer.direction === &apos;bottom&apos; &amp;&amp; moveinfo.y &lt; 0;
+      let left = this._drawer.direction === &apos;left&apos; &amp;&amp; moveinfo.x &gt;= 0;
 
-      if (len &gt;= 2) {
-        let moveinfo = this._gettouchmoveinfo(
-          touches[len - 2],
-          touches[len - 1]
-        );
-        let ish = moveinfo.axis === &apos;horizontal&apos;;
-        let isv = moveinfo.axis === &apos;vertical&apos;;
-        let ist = this._drawer.direction === &apos;top&apos; &amp;&amp; moveinfo.y &gt;= 0;
-        let isr = this._drawer.direction === &apos;right&apos; &amp;&amp; moveinfo.x &lt; 0;
-        let isb = this._drawer.direction === &apos;bottom&apos; &amp;&amp; moveinfo.y &lt; 0;
-        let isl = this._drawer.direction === &apos;left&apos; &amp;&amp; moveinfo.x &gt;= 0;
-
-        return (ish &amp;&amp; (isr || isl)) || (isv &amp;&amp; (isb || ist)) ?
-          &apos;open&apos; :
-          &apos;close&apos;;
-      }
+      return (vertical &amp;&amp; (bottom || top)) ||
+        (horizontal &amp;&amp; (right || left)) ?
+        &apos;open&apos; :
+        &apos;close&apos;;
     }
 
     return this._getstatefromposition();
@@ -655,7 +655,7 @@ export default class Highendrawer {
       }
     };
 
-    if (this._drawer.isswipeable) {
+    if (this._drawer.swipeable) {
       for (let event of TOUCH_EVENTS) {
         handler[event] = this._touchhandler.bind(this);
       }
@@ -663,7 +663,7 @@ export default class Highendrawer {
 
     if (window.history
       &amp;&amp; window.history.pushState
-      &amp;&amp; this._drawer.ishistory
+      &amp;&amp; this._drawer.history
     ) {
       handler.popstate = (e) =&gt; {
         if (e.state &amp;&amp; e.state.id === this._id &amp;&amp; this.state === &apos;open&apos;) {
@@ -737,9 +737,7 @@ export default class Highendrawer {
     let isfiretouchstart = false;
 
     if (!this._process.istouchactive &amp;&amp; len &gt;= 2) {
-      this._process.istouchactive = this._istouchactive(
-        this._process.touches[0]
-      );
+      this._process.istouchactive = this._istouchactive();
 
       if (this._process.istouchactive) {
         this._showoverlay();
@@ -800,11 +798,7 @@ export default class Highendrawer {
     if (this._process.istouchactive &amp;&amp; len &gt;= 2) {
       this._process.time.end = new Date().getTime();
 
-      let state = this._gettouchmovestate(
-        this._process.touches,
-        this._process.time
-      );
-
+      let state = this._gettouchmovestate();
       let changestate = this.state !== state;
 
       this[state](null, changestate, changestate);
@@ -865,7 +859,7 @@ export default class Highendrawer {
         }
 
         if (ischangehistory
-          &amp;&amp; this._drawer.ishistory
+          &amp;&amp; this._drawer.history
           &amp;&amp; window.history
           &amp;&amp; window.history.pushState
         ) {
@@ -918,20 +912,61 @@ export default class Highendrawer {
   /**
    * Return whether or not a valid touch.
    *
-   * @param {Object} touch Start touch information.
    * @return {boolean} Result of valid touch.
    */
-  _istouchactive(touch) {
+  _istouchactive() {
     let rg = this._getrange(
       this.state === &apos;open&apos; ?
-        &apos;100%&apos; :
+        this._sizepixel :
         this._drawer.swipearea
     );
 
-    return (rg.from.x &lt;= touch.clientX &amp;&amp;
-      touch.clientX &lt;= rg.to.x &amp;&amp;
-      rg.from.y &lt;= touch.clientY &amp;&amp;
-      touch.clientY &lt;= rg.to.y);
+    if (!(rg.from.x &lt;= this._process.touches[0].clientX &amp;&amp;
+      this._process.touches[0].clientX &lt;= rg.to.x &amp;&amp;
+      rg.from.y &lt;= this._process.touches[0].clientY &amp;&amp;
+      this._process.touches[0].clientY &lt;= rg.to.y)
+    ) {
+      return false;
+    }
+
+    let len = this._process.touches.length;
+    let moveinfo = this._gettouchmoveinfo(
+      this._process.touches[len - 2],
+      this._process.touches[len - 1]
+    );
+    let vertical = moveinfo.axis === &apos;vertical&apos;;
+    let horizontal = moveinfo.axis === &apos;horizontal&apos;;
+
+    if (!(vertical &amp;&amp;
+      (this._drawer.direction === &apos;top&apos; ||
+      this._drawer.direction === &apos;bottom&apos;) ||
+      horizontal &amp;&amp;
+      (this._drawer.direction === &apos;right&apos; ||
+      this._drawer.direction === &apos;left&apos;))
+    ) {
+      return false;
+    }
+
+    return (
+      (
+        this.state === &apos;open&apos; &amp;&amp;
+        (
+          this._drawer.direction === &apos;top&apos; &amp;&amp; moveinfo.y &lt; 0 ||
+          this._drawer.direction === &apos;right&apos; &amp;&amp; moveinfo.x &gt;= 0 ||
+          this._drawer.direction === &apos;bottom&apos; &amp;&amp; moveinfo.y &gt;= 0 ||
+          this._drawer.direction === &apos;left&apos; &amp;&amp; moveinfo.x &lt; 0
+        )
+      ) ||
+      (
+        this.state === &apos;close&apos; &amp;&amp;
+        (
+          this._drawer.direction === &apos;top&apos; &amp;&amp; moveinfo.y &gt;= 0 ||
+          this._drawer.direction === &apos;right&apos; &amp;&amp; moveinfo.x &lt; 0 ||
+          this._drawer.direction === &apos;bottom&apos; &amp;&amp; moveinfo.y &lt; 0 ||
+          this._drawer.direction === &apos;left&apos; &amp;&amp; moveinfo.x &gt;= 0
+        )
+      )
+    );
   }
 
   /**

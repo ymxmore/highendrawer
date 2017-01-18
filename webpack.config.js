@@ -97,6 +97,14 @@ module.exports = [
     eslint: {
       configFile: '.eslintrc.yml'
     },
+    babel: {
+      presets: [
+        'es2015'
+      ],
+      plugins: [
+        'transform-object-assign'
+      ]
+    },
     resolve: {
       extensions: ['', '.js', '.json'],
       modulesDirectories: [
@@ -117,13 +125,7 @@ module.exports = [
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel',
-          query: {
-            presets: ['es2015'],
-            plugins: [
-              'transform-object-assign'
-            ]
-          }
+          loader: 'babel'
         }
       ]
     },

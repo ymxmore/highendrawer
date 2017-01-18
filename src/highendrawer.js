@@ -20,7 +20,7 @@ import {support} from './support';
  * @public
  * @class
  * @example
- * var drawer = new DrawerMenu({
+ * var drawer = new Highendrawer({
  *   element: document.getElementById('drawer')
  * });
  */

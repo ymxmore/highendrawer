@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.11
+ * @version v0.0.12
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -92,7 +92,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @public
 	 * @class
 	 * @example
-	 * var drawer = new DrawerMenu({
+	 * var drawer = new Highendrawer({
 	 *   element: document.getElementById('drawer')
 	 * });
 	 */

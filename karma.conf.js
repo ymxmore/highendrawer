@@ -86,17 +86,27 @@ module.exports = (config) => {
       eslint: {
         configFile: '.eslintrc.yml'
       },
+      babel: {
+        presets: [
+          'es2015'
+        ],
+        plugins: [
+          'transform-object-assign'
+        ]
+      },
+      isparta: {
+        embedSource: true,
+        noAutoWrap: true,
+        babel: {
+          presets: ['es2015']
+        }
+      },
       module: {
         preLoaders: [
           {
             test: /\.js/,
             exclude: /(spec|node_modules)/,
-            loader: 'isparta-instrumenter',
-            query: {
-              babel: {
-                presets: ['es2015']
-              }
-            }
+            loader: 'isparta'
           },
           {
             test: /\.js$/,
@@ -108,13 +118,7 @@ module.exports = (config) => {
           {
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-              presets: ['es2015'],
-              plugins: [
-                'transform-object-assign'
-              ]
-            }
+            loader: 'babel'
           }
         ],
       },

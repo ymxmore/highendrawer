@@ -37,7 +37,7 @@ module.exports = (config) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'coverage'],
+    reporters: ['spec', 'coverage-istanbul'],
 
     // web server port
     port: 9876,
@@ -69,67 +69,62 @@ module.exports = (config) => {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-    coverageReporter: {
+    coverageIstanbulReporter: {
       dir: 'report/coverage/',
-      reporters: [
-        {type: 'html'},
-        {type: 'text'}
-      ]
+      reports: ['html', 'lcovonly', 'text-summary'],
+      'report-config': {
+        html: {
+          subdir: 'html',
+        },
+      },
     },
 
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
 
     webpack: {
       devtool: 'inline-source-map',
-      eslint: {
-        configFile: '.eslintrc.yml'
-      },
-      babel: {
-        presets: [
-          'es2015'
+      resolve: {
+        extensions: ['.js', '.json'],
+        modules: [
+          'src',
+          'node_modules',
         ],
-        plugins: [
-          'transform-object-assign'
-        ]
-      },
-      isparta: {
-        embedSource: true,
-        noAutoWrap: true,
-        babel: {
-          presets: ['es2015']
-        }
       },
       module: {
-        preLoaders: [
+        rules: [
           {
-            test: /\.js/,
+            enforce: 'pre',
+            test: /\.js$/,
             exclude: /(spec|node_modules)/,
-            loader: 'isparta'
+            loader: 'eslint-loader',
+            options: {
+              configFile: './.eslintrc.yml',
+            },
           },
           {
             test: /\.js$/,
-            exclude: /(spec|node_modules)/,
-            loader: 'eslint'
-          }
-        ],
-        loaders: [
-          {
-            test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel'
-          }
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015'],
+              plugins: ['transform-object-assign'],
+            },
+          },
+          {
+            enforce: 'post',
+            test: /\.js$/,
+            exclude: /(spec|node_modules)/,
+            loader: 'istanbul-instrumenter-loader',
+            options: {
+              debug: true,
+              preserveComments: true,
+              esModules: true
+            },
+          },
         ],
       },
-      resolve: {
-        extensions: ['', '.js', '.json'],
-        modulesDirectories: [
-          '',
-          'src',
-          'node_modules',
-        ]
-      }
-    }
+    },
   });
 };

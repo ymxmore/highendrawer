@@ -47,7 +47,7 @@ export const OVERLAY_STYLE = Object.freeze({
 export const TRANSITION_STYLE = Object.freeze({
   transform: '',
   transitionProperty: 'transform,opacity',
-  transitionTimingFunction: 'cubic-bezier(0,0,0.25,1)',
+  transitionTimingFunction: 'cubic-bezier(0, 0.8, 0.95, 1)',
   transitionDuration: '0ms',
 });
 
@@ -63,7 +63,7 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
   maxsize: -1,
   swipeable: true,
   swipearea: 20,
-  duration: 300,
+  duration: 400,
   zindex: 9999,
   style: {},
   initcreate: true,
@@ -89,7 +89,7 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
  */
 export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
-  opacity: 0.2,
+  opacity: 0.4,
   zindex: -1,
   autocreate: false,
 });

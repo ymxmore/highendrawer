@@ -25,40 +25,43 @@ module.exports = [
       libraryTarget: 'umd',
       sourceMapFilename: '[name].js.map'
     },
-    eslint: {
-      configFile: '.eslintrc.yml'
-    },
-    babel: {
-      presets: [
-        'es2015'
-      ],
-      plugins: [
-        'transform-object-assign'
-      ]
-    },
     resolve: {
-      extensions: ['', '.js', '.json'],
-      modulesDirectories: [
+      extensions: ['.js', '.json'],
+      modules: [
         'src',
         'node_modules',
         __dirname + '/node_modules'
       ]
     },
     module: {
-      preLoaders: [
+      rules: [
         {
+          enforce: 'pre',
           test: /\.js$/,
           exclude: /(spec|node_modules)/,
-          loader: 'eslint'
-        }
-      ],
-      loaders: [
+          use: [
+            {
+              loader: 'eslint-loader',
+              options: {
+                configFile: './.eslintrc.yml',
+              },
+            },
+          ],
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel'
-        }
-      ]
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['es2015'],
+                plugins: ['transform-object-assign'],
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new BrowserSyncPlugin({
@@ -74,10 +77,9 @@ module.exports = [
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('development')
-        }
+        },
       }),
-      new webpack.NoErrorsPlugin(),
-    ]
+    ],
   },
 
   // Production
@@ -94,58 +96,58 @@ module.exports = [
       libraryTarget: 'umd',
       sourceMapFilename: '[name].min.js.map'
     },
-    eslint: {
-      configFile: '.eslintrc.yml'
-    },
-    babel: {
-      presets: [
-        'es2015'
-      ],
-      plugins: [
-        'transform-object-assign'
-      ]
-    },
     resolve: {
-      extensions: ['', '.js', '.json'],
-      modulesDirectories: [
+      extensions: ['.js', '.json'],
+      modules: [
         'src',
         'node_modules',
         __dirname + '/node_modules'
       ]
     },
     module: {
-      preLoaders: [
+      rules: [
         {
+          enforce: 'pre',
           test: /\.js$/,
           exclude: /(spec|node_modules)/,
-          loader: 'eslint'
-        }
-      ],
-      loaders: [
+          use: [
+            {
+              loader: 'eslint-loader',
+              options: {
+                configFile: './.eslintrc.yml',
+              },
+            },
+          ],
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel'
-        }
-      ]
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['es2015'],
+                plugins: ['transform-object-assign'],
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new webpack.BannerPlugin(banner),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('production')
-        }
+        },
       }),
-      new webpack.NoErrorsPlugin(),
-      new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
         preserveComments: 'some',
         compress: {
           warnings: false
-        }
-      })
-    ]
-  }
+        },
+        sourceMap: true,
+      }),
+    ],
+  },
 ];

@@ -52,7 +52,7 @@ describe('Testing the constructor', () => {
         swipeable: true,
         swipearea: 20,
         element: elem,
-        duration: 300,
+        duration: 400,
         zindex: 9999,
         style: {},
         initcreate: true,
@@ -68,7 +68,7 @@ describe('Testing the constructor', () => {
         ontouchstart: null,
         ontouchmove: null,
         ontouchfinish: null,
-        onerror: null
+        onerror: null,
       });
 
       expect(ins._drawer.element).toBe(elem);
@@ -132,7 +132,7 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.left).toBe('0px');
       expect(ins._overlay.element.style.zIndex).toBe('-1');
       expect(ins._overlay.element.style.opacity).toBe('0');
-      expect(ins._overlay.opacity).toBe(0.2);
+      expect(ins._overlay.opacity).toBe(0.4);
       expect(ins._overlay.zindex).toBe(9998);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
@@ -154,8 +154,8 @@ describe('Testing the constructor', () => {
       expect(ins._drawer.element.style.overflowY).toBe('auto');
       expect(ins._drawer.element.style.zIndex).toBe('-1');
       expect(ins._drawer.element.style.opacity).toBe('0');
-      expect(ins._drawer.element.style.transition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
-      expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
+      expect(ins._drawer.element.style.transition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
+      expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
       expect(ins._drawer.element.style.width).toBe('256px');
       expect(ins._drawer.element.style.height).toBe('100%');
       expect(ins._drawer.element.style.top).toBe('0px');
@@ -217,7 +217,7 @@ describe('Testing the constructor', () => {
         },
         overlay: {
           element: oelem,
-          opacity: 0.2,
+          opacity: 0.4,
           zindex: 50000
         },
         initcreate: true,
@@ -258,7 +258,7 @@ describe('Testing the constructor', () => {
         },
         overlay: {
           element: oelem,
-          opacity: 0.2,
+          opacity: 0.4,
           zindex: 50000
         },
         initcreate: true,
@@ -320,7 +320,7 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.left).toBe('');
       expect(ins._overlay.element.style.zIndex).toBe('');
       expect(ins._overlay.element.style.opacity).toBe('');
-      expect(ins._overlay.opacity).toBe(0.2);
+      expect(ins._overlay.opacity).toBe(0.4);
       expect(ins._overlay.zindex).toBe(50000);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
@@ -339,8 +339,8 @@ describe('Testing the constructor', () => {
       expect(ins._drawer.element.style.overflowY).toBe('auto');
       expect(ins._drawer.element.style.zIndex).toBe('-1');
       expect(ins._drawer.element.style.opacity).toBe('0');
-      expect(ins._drawer.element.style.transition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
-      expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
+      expect(ins._drawer.element.style.transition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
+      expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
       expect(ins._drawer.element.style.width).toBe('192px');
       expect(ins._drawer.element.style.height).toBe('100%');
       expect(ins._drawer.element.style.top).toBe('0px');
@@ -503,7 +503,7 @@ describe('Testing the open, close and toggle', () => {
     expect(cbs.onchangestate).toHaveBeenCalledTimes(0);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
-    expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0, 0.25, 1)');
+    expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('');
     expect(ins._overlay.element.style.zIndex).toBe('-1');
     expect(ins._overlay.element.style.opacity).toBe('0');
@@ -513,63 +513,63 @@ describe('Testing the open, close and toggle', () => {
 
     expect(ins.state).toBe('open');
 
-    jasmine.clock().tick(301);
+    jasmine.clock().tick(401);
 
     expect(cbs.onchangestate).toHaveBeenCalledTimes(1);
     expect(ins._drawer.element.style.zIndex).toBe('9999');
     expect(ins._drawer.element.style.opacity).toBe('1');
-    expect(ins._drawer.element.style.webkitTransition).toBe('300ms cubic-bezier(0, 0, 0.25, 1)');
+    expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(-256px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('9998');
-    expect(ins._overlay.element.style.opacity).toBe('0.2');
-    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('300ms');
+    expect(ins._overlay.element.style.opacity).toBe('0.4');
+    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
 
     ins.close();
 
     expect(ins.state).toBe('close');
     expect(ins._drawer.element.style.zIndex).toBe('9999');
 
-    jasmine.clock().tick(301);
+    jasmine.clock().tick(401);
 
     expect(cbs.onchangestate).toHaveBeenCalledTimes(2);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
-    expect(ins._drawer.element.style.webkitTransition).toBe('300ms cubic-bezier(0, 0, 0.25, 1)');
+    expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(0px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('-1');
     expect(ins._overlay.element.style.opacity).toBe('0');
-    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('300ms');
+    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
 
     ins.toggle();
 
     expect(ins.state).toBe('open');
 
-    jasmine.clock().tick(301);
+    jasmine.clock().tick(401);
 
     expect(cbs.onchangestate).toHaveBeenCalledTimes(3);
     expect(ins._drawer.element.style.zIndex).toBe('9999');
     expect(ins._drawer.element.style.opacity).toBe('1');
-    expect(ins._drawer.element.style.webkitTransition).toBe('300ms cubic-bezier(0, 0, 0.25, 1)');
+    expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(-256px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('9998');
-    expect(ins._overlay.element.style.opacity).toBe('0.2');
-    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('300ms');
+    expect(ins._overlay.element.style.opacity).toBe('0.4');
+    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
 
     ins.toggle();
 
     expect(ins.state).toBe('close');
     expect(ins._drawer.element.style.zIndex).toBe('9999');
 
-    jasmine.clock().tick(301);
+    jasmine.clock().tick(401);
 
     expect(cbs.onchangestate).toHaveBeenCalledTimes(4);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
-    expect(ins._drawer.element.style.webkitTransition).toBe('300ms cubic-bezier(0, 0, 0.25, 1)');
+    expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(0px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('-1');
     expect(ins._overlay.element.style.opacity).toBe('0');
-    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('300ms');
+    expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
   });
 });
 

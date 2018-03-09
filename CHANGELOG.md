@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.16
+
+* Update variables and properties to upper camel and respond to change of addEventListener.
+* Fix initialization processing when enabledMaxWidth is specified and change default transparency of overlay.
+
 ## 0.0.10
 
 * Fix to not interfere with the operation inside the drawer.

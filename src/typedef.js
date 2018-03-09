@@ -32,6 +32,6 @@
  *
  * @typedef {Object} Overlay
  * @property {Object} element HTML DOM Element.
- * @property {number} [opacity=0.4] Overlay object transparency.
+ * @property {number} [opacity=0.6] Overlay object transparency.
  * @property {number} [zindex=-1] Overlay stacking order. If -1, zindex - 1 of the drawer is specified automatically.
  */

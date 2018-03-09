@@ -23,7 +23,7 @@ describe('Testing the constructor', () => {
 
       // Setup instance
       ins = new Highendrawer({
-        element: elem
+        element: elem,
       });
     });
 
@@ -82,8 +82,8 @@ describe('Testing the constructor', () => {
         istouchdirectionactive: null,
         time: {
           start: 0,
-          end: 0
-        }
+          end: 0,
+        },
       });
     });
 
@@ -132,7 +132,7 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.left).toBe('0px');
       expect(ins._overlay.element.style.zIndex).toBe('-1');
       expect(ins._overlay.element.style.opacity).toBe('0');
-      expect(ins._overlay.opacity).toBe(0.4);
+      expect(ins._overlay.opacity).toBe(0.6);
       expect(ins._overlay.zindex).toBe(9998);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
@@ -199,7 +199,7 @@ describe('Testing the constructor', () => {
         'ontouchstart',
         'ontouchmove',
         'ontouchfinish',
-        'onerror'
+        'onerror',
       ]);
 
       // Setup instance
@@ -213,12 +213,12 @@ describe('Testing the constructor', () => {
         duration: 200,
         zindex: 99999,
         style: {
-          backgroundColor: '#333'
+          backgroundColor: '#333',
         },
         overlay: {
           element: oelem,
-          opacity: 0.4,
-          zindex: 50000
+          opacity: 0.6,
+          zindex: 50000,
         },
         initcreate: true,
         enabledmaxwidth: 320,
@@ -254,16 +254,16 @@ describe('Testing the constructor', () => {
         duration: 200,
         zindex: 99999,
         style: {
-          backgroundColor: '#333'
+          backgroundColor: '#333',
         },
         overlay: {
           element: oelem,
-          opacity: 0.4,
-          zindex: 50000
+          opacity: 0.6,
+          zindex: 50000,
         },
         initcreate: true,
         enabledmaxwidth: 320,
-        history: true
+        history: true,
       }));
 
       expect(ins._drawer.element).toBe(elem);
@@ -277,8 +277,8 @@ describe('Testing the constructor', () => {
         istouchdirectionactive: null,
         time: {
           start: 0,
-          end: 0
-        }
+          end: 0,
+        },
       });
     });
 
@@ -320,7 +320,7 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.left).toBe('');
       expect(ins._overlay.element.style.zIndex).toBe('');
       expect(ins._overlay.element.style.opacity).toBe('');
-      expect(ins._overlay.opacity).toBe(0.4);
+      expect(ins._overlay.opacity).toBe(0.6);
       expect(ins._overlay.zindex).toBe(50000);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
@@ -393,7 +393,7 @@ describe('Testing the create and destroy', () => {
     // Setup instance
     ins = new Highendrawer(Object.assign(cbs, {
       element: elem,
-      initcreate: false
+      initcreate: false,
     }));
   });
 
@@ -521,7 +521,7 @@ describe('Testing the open, close and toggle', () => {
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(-256px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('9998');
-    expect(ins._overlay.element.style.opacity).toBe('0.4');
+    expect(ins._overlay.element.style.opacity).toBe('0.6');
     expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
 
     ins.close();
@@ -552,7 +552,7 @@ describe('Testing the open, close and toggle', () => {
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
     expect(ins._drawer.element.style.webkitTransform).toBe('translate3d(-256px, 0, 0)');
     expect(ins._overlay.element.style.zIndex).toBe('9998');
-    expect(ins._overlay.element.style.opacity).toBe('0.4');
+    expect(ins._overlay.element.style.opacity).toBe('0.6');
     expect(ins._overlay.element.style.webkitTransitionDuration).toBe('400ms');
 
     ins.toggle();

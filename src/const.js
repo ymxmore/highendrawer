@@ -89,7 +89,7 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
  */
 export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
-  opacity: 0.4,
+  opacity: 0.6,
   zindex: -1,
   autocreate: false,
 });

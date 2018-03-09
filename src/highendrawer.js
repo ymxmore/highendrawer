@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   DEFAULT_DRAWER_PROPERTY,
   DEFAULT_OVERLAY_PROPERTY,
@@ -25,7 +23,6 @@ import {support} from './support';
  * });
  */
 export default class Highendrawer {
-
   /**
    * Initialize object.
    *
@@ -52,6 +49,14 @@ export default class Highendrawer {
     this._enabled = false;
     this._handler = this._getdrawerhandler();
 
+    if (!this._drawer.element) {
+      throw new Error(`'element' is required.`);
+    }
+
+    if (!this._isHTMLElement(this._drawer.element)) {
+      throw new Error(`Invalid HTMLElement specified for 'element'.`);
+    }
+
     if (this._drawer.enabledmaxwidth > -1) {
       window.addEventListener('resize', () => {
         if (this._enabled
@@ -73,7 +78,10 @@ export default class Highendrawer {
       }, null, null);
     }
 
-    if (this._drawer.initcreate) {
+    if (this._drawer.initcreate
+      && (this._drawer.enabledmaxwidth < 0
+        || window.innerWidth <= this._drawer.enabledmaxwidth)
+    ) {
       this.create();
     }
   }
@@ -108,6 +116,10 @@ export default class Highendrawer {
    */
   destroy() {
     try {
+      if (this.state === 'open') {
+        this.close(0, true, true);
+      }
+
       this._destroydrawer();
       this._destroyoverlay();
       this._enabled = false;
@@ -807,6 +819,10 @@ export default class Highendrawer {
   ) {
     return this._handlecallback(new Promise((resolve, reject) => {
       try {
+        if (!this._enabled) {
+          throw new Error('Drawer is disabled.');
+        }
+
         this._position = position;
 
         let du = duration === null ? this._drawer.duration : duration;
@@ -1166,6 +1182,23 @@ export default class Highendrawer {
     let axis = Math.abs(x) >= Math.abs(y) ? 'horizontal' : 'vertical';
 
     return {x, y, axis};
+  }
+
+  /**
+   * Validate HTMLElement
+   *
+   * @param {*} obj HTMLElement to be verified.
+   * @return {boolean} Result of valid HTMLElement.
+   */
+  _isHTMLElement(obj) {
+    try {
+      return obj instanceof HTMLElement;
+    } catch (e) {
+      return (typeof obj === 'object') &&
+        (obj.nodeType === 1) &&
+        (typeof obj.style === 'object') &&
+        (typeof obj.ownerDocument === 'object');
+    }
   }
 
   /**

@@ -1,31 +1,46 @@
 {
-  "coverage": "100%",
-  "expectCount": 23,
-  "actualCount": 23,
+  "coverage": "82.66%",
+  "expectCount": 75,
+  "actualCount": 62,
   "files": {
     "src/const.js": {
       "expectCount": 8,
       "actualCount": 8,
       "undocumentLines": []
     },
-    "src/highendrawer.js": {
-      "expectCount": 8,
-      "actualCount": 8,
-      "undocumentLines": []
-    },
     "src/helper.js": {
-      "expectCount": 4,
+      "expectCount": 7,
       "actualCount": 4,
+      "undocumentLines": [
+        6,
+        8,
+        9
+      ]
+    },
+    "src/highendrawer.js": {
+      "expectCount": 56,
+      "actualCount": 46,
+      "undocumentLines": [
+        41,
+        42,
+        43,
+        46,
+        47,
+        48,
+        49,
+        50,
+        381,
+        384
+      ]
+    },
+    "src/support.js": {
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     },
     "src/util.js": {
       "expectCount": 2,
       "actualCount": 2,
-      "undocumentLines": []
-    },
-    "src/support.js": {
-      "expectCount": 1,
-      "actualCount": 1,
       "undocumentLines": []
     }
   }

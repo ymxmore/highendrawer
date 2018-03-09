@@ -1,6 +1,6 @@
 /*!
  * highendrawer - Highendrawer provides javascript and css drawers to your website and applications.
- * @version v0.0.12
+ * @version v0.0.15
  * @link https://github.com/ym-aozora/highendrawer#readme
  * @license MIT
  */
@@ -13,7 +13,7 @@
 		exports["Highendrawer"] = factory();
 	else
 		root["Highendrawer"] = factory();
-})(this, function() {
+})(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -49,9 +49,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -61,6 +58,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 				get: getter
 /******/ 			});
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -78,12 +80,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/highendrawer.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./src/const.js":
+/*!**********************!*\
+  !*** ./src/const.js ***!
+  \**********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -182,7 +190,7 @@ var DEFAULT_DRAWER_PROPERTY = exports.DEFAULT_DRAWER_PROPERTY = Object.freeze({
  */
 var DEFAULT_OVERLAY_PROPERTY = exports.DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
-  opacity: 0.4,
+  opacity: 0.6,
   zindex: -1,
   autocreate: false
 });
@@ -211,7 +219,12 @@ var DEFAULT_PROCESS = exports.DEFAULT_PROCESS = Object.freeze({
 var TOUCH_EVENTS = exports.TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend', 'touchcancel'];
 
 /***/ }),
-/* 1 */
+
+/***/ "./src/helper.js":
+/*!***********************!*\
+  !*** ./src/helper.js ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -225,9 +238,9 @@ exports.hasstyle = hasstyle;
 exports.setstyle = setstyle;
 exports.unsetstyle = unsetstyle;
 
-var _const = __webpack_require__(0);
+var _const = __webpack_require__(/*! ./const */ "./src/const.js");
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(/*! ./util */ "./src/util.js");
 
 var dom = window.document.createElement('div');
 
@@ -397,78 +410,12 @@ function unsetstyle(element, styles) {
 }
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-/**
- * Convert the first letter to uppercase.
- *
- * @param {string} str Target character string.
- * @return {string} Converted string.
- */
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ucfirst = ucfirst;
-exports.isarray = isarray;
-function ucfirst(str) {
-  return str.charAt(0).toUpperCase() + str.substr(1);
-}
-
-/**
- * Whether or not the object is an array.
- *
- * @param {any} obj Target object.
- * @return {boolean} Returns true if object is an Array.
- */
-function isarray(obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
-}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.support = undefined;
-
-var _helper = __webpack_require__(1);
-
-/**
- * Browser support information.
- *
- * @type {Object}
- */
-var sup = {};
-
-sup.transform3d = (0, _helper.hasstyle)(['perspectiveProperty', 'webkitPerspective', 'mozPerspective', 'oPerspective', 'msPerspective']);
-
-sup.transform = (0, _helper.hasstyle)(['transformProperty', 'webkitTransform', 'mozTransform', 'oTransform', 'msTransform']);
-
-sup.transition = (0, _helper.hasstyle)(['transitionProperty', 'webkitTransitionProperty', 'mozTransitionProperty', 'oTransitionProperty', 'msTransitionProperty']);
-
-sup.cssanim = (sup.transform3d || sup.transform) && sup.transition;
-
-sup.transrate = sup.transform3d ? 'translate3d' : 'translate';
-
-/**
- * Browser support information.
- *
- * @type {Object}
- */
-var support = exports.support = Object.freeze(sup);
-
-/***/ }),
-/* 4 */
+/***/ "./src/highendrawer.js":
+/*!*****************************!*\
+  !*** ./src/highendrawer.js ***!
+  \*****************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -484,15 +431,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _const = __webpack_require__(0);
+var _const = __webpack_require__(/*! ./const */ "./src/const.js");
 
-var _util = __webpack_require__(2);
+var _util = __webpack_require__(/*! ./util */ "./src/util.js");
 
-var _helper = __webpack_require__(1);
+var _helper = __webpack_require__(/*! ./helper */ "./src/helper.js");
 
 var helper = _interopRequireWildcard(_helper);
 
-var _support = __webpack_require__(3);
+var _support = __webpack_require__(/*! ./support */ "./src/support.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -509,7 +456,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * });
  */
 var Highendrawer = function () {
-
   /**
    * Initialize object.
    *
@@ -538,6 +484,14 @@ var Highendrawer = function () {
     this._enabled = false;
     this._handler = this._getdrawerhandler();
 
+    if (!this._drawer.element) {
+      throw new Error('\'element\' is required.');
+    }
+
+    if (!this._isHTMLElement(this._drawer.element)) {
+      throw new Error('Invalid HTMLElement specified for \'element\'.');
+    }
+
     if (this._drawer.enabledmaxwidth > -1) {
       window.addEventListener('resize', function () {
         if (_this._enabled && window.innerWidth > _this._drawer.enabledmaxwidth) {
@@ -554,7 +508,7 @@ var Highendrawer = function () {
       }, null, null);
     }
 
-    if (this._drawer.initcreate) {
+    if (this._drawer.initcreate && (this._drawer.enabledmaxwidth < 0 || window.innerWidth <= this._drawer.enabledmaxwidth)) {
       this.create();
     }
   }
@@ -596,6 +550,10 @@ var Highendrawer = function () {
     key: 'destroy',
     value: function destroy() {
       try {
+        if (this.state === 'open') {
+          this.close(0, true, true);
+        }
+
         this._destroydrawer();
         this._destroyoverlay();
         this._enabled = false;
@@ -1329,6 +1287,10 @@ var Highendrawer = function () {
 
       return this._handlecallback(new Promise(function (resolve, reject) {
         try {
+          if (!_this8._enabled) {
+            throw new Error('Drawer is disabled.');
+          }
+
           _this8._position = position;
 
           var du = duration === null ? _this8._drawer.duration : duration;
@@ -1677,6 +1639,23 @@ var Highendrawer = function () {
     }
 
     /**
+     * Validate HTMLElement
+     *
+     * @param {*} obj HTMLElement to be verified.
+     * @return {boolean} Result of valid HTMLElement.
+     */
+
+  }, {
+    key: '_isHTMLElement',
+    value: function _isHTMLElement(obj) {
+      try {
+        return obj instanceof HTMLElement;
+      } catch (e) {
+        return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.nodeType === 1 && _typeof(obj.style) === 'object' && _typeof(obj.ownerDocument) === 'object';
+      }
+    }
+
+    /**
      * Return the information of touch move.
      *
      * @param {Promise} promise Promise instance.
@@ -1761,7 +1740,89 @@ exports.default = Highendrawer;
 
 module.exports = Highendrawer;
 
+/***/ }),
+
+/***/ "./src/support.js":
+/*!************************!*\
+  !*** ./src/support.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.support = undefined;
+
+var _helper = __webpack_require__(/*! ./helper */ "./src/helper.js");
+
+/**
+ * Browser support information.
+ *
+ * @type {Object}
+ */
+var sup = {};
+
+sup.transform3d = (0, _helper.hasstyle)(['perspectiveProperty', 'webkitPerspective', 'mozPerspective', 'oPerspective', 'msPerspective']);
+
+sup.transform = (0, _helper.hasstyle)(['transformProperty', 'webkitTransform', 'mozTransform', 'oTransform', 'msTransform']);
+
+sup.transition = (0, _helper.hasstyle)(['transitionProperty', 'webkitTransitionProperty', 'mozTransitionProperty', 'oTransitionProperty', 'msTransitionProperty']);
+
+sup.cssanim = (sup.transform3d || sup.transform) && sup.transition;
+
+sup.transrate = sup.transform3d ? 'translate3d' : 'translate';
+
+/**
+ * Browser support information.
+ *
+ * @type {Object}
+ */
+var support = exports.support = Object.freeze(sup);
+
+/***/ }),
+
+/***/ "./src/util.js":
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Convert the first letter to uppercase.
+ *
+ * @param {string} str Target character string.
+ * @return {string} Converted string.
+ */
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ucfirst = ucfirst;
+exports.isarray = isarray;
+function ucfirst(str) {
+  return str.charAt(0).toUpperCase() + str.substr(1);
+}
+
+/**
+ * Whether or not the object is an array.
+ *
+ * @param {any} obj Target object.
+ * @return {boolean} Returns true if object is an Array.
+ */
+function isarray(obj) {
+  return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
 /***/ })
-/******/ ]);
+
+/******/ });
 });
 //# sourceMappingURL=highendrawer.js.map

@@ -1,5 +1,3 @@
-'use strict';
-
 const pkg = require('./package.json');
 const webpack = require('webpack');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -7,31 +5,32 @@ const banner = [
   `${pkg.name} - ${pkg.description}`,
   `@version v${pkg.version}`,
   `@link ${pkg.homepage}`,
-  `@license ${pkg.license}`
-].join("\n");
+  `@license ${pkg.license}`,
+].join('\n');
 
 module.exports = [
   // Development
   {
+    mode: 'development',
     context: __dirname,
     devtool: 'source-map',
     entry: {
-      'highendrawer': './src/highendrawer.js'
+      'highendrawer': './src/highendrawer.js',
     },
     output: {
       path: __dirname + '/dist',
       filename: '[name].js',
       library: 'Highendrawer',
       libraryTarget: 'umd',
-      sourceMapFilename: '[name].js.map'
+      sourceMapFilename: '[name].js.map',
     },
     resolve: {
       extensions: ['.js', '.json'],
       modules: [
         'src',
         'node_modules',
-        __dirname + '/node_modules'
-      ]
+        __dirname + '/node_modules',
+      ],
     },
     module: {
       rules: [
@@ -39,27 +38,19 @@ module.exports = [
           enforce: 'pre',
           test: /\.js$/,
           exclude: /(spec|node_modules)/,
-          use: [
-            {
-              loader: 'eslint-loader',
-              options: {
-                configFile: './.eslintrc.yml',
-              },
-            },
-          ],
+          loader: 'eslint-loader',
+          options: {
+            configFile: './.eslintrc.yml',
+          },
         },
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['es2015'],
-                plugins: ['transform-object-assign'],
-              },
-            },
-          ],
+          loader: 'babel-loader',
+          options: {
+            plugins: ['transform-object-assign'],
+            presets: ['env'],
+          },
         },
       ],
     },
@@ -71,12 +62,12 @@ module.exports = [
         files: [
           'dist/*.js',
           'index.html',
-        ]
+        ],
       }),
       new webpack.BannerPlugin(banner),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('development')
+          NODE_ENV: JSON.stringify('development'),
         },
       }),
     ],
@@ -84,25 +75,26 @@ module.exports = [
 
   // Production
   {
+    mode: 'production',
     context: __dirname,
     devtool: 'source-map',
     entry: {
-      'highendrawer': './src/highendrawer.js'
+      'highendrawer': './src/highendrawer.js',
     },
     output: {
       path: __dirname + '/dist',
       filename: '[name].min.js',
       library: 'Highendrawer',
       libraryTarget: 'umd',
-      sourceMapFilename: '[name].min.js.map'
+      sourceMapFilename: '[name].min.js.map',
     },
     resolve: {
       extensions: ['.js', '.json'],
       modules: [
         'src',
         'node_modules',
-        __dirname + '/node_modules'
-      ]
+        __dirname + '/node_modules',
+      ],
     },
     module: {
       rules: [
@@ -126,8 +118,8 @@ module.exports = [
             {
               loader: 'babel-loader',
               options: {
-                presets: ['es2015'],
                 plugins: ['transform-object-assign'],
+                presets: ['env'],
               },
             },
           ],
@@ -138,15 +130,8 @@ module.exports = [
       new webpack.BannerPlugin(banner),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('production')
+          NODE_ENV: JSON.stringify('production'),
         },
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        preserveComments: 'some',
-        compress: {
-          warnings: false
-        },
-        sourceMap: true,
       }),
     ],
   },

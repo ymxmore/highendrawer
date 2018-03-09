@@ -18,7 +18,7 @@ module.exports = (config) => {
     files: [
       'node_modules/phantomjs-polyfill/bind-polyfill.js',
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'spec/**/*.spec.js'
+      'spec/**/*.spec.js',
     ],
 
 
@@ -30,7 +30,7 @@ module.exports = (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec/**/*.spec.js': ['webpack', 'sourcemap']
+      'spec/**/*.spec.js': ['webpack', 'sourcemap'],
     },
 
 
@@ -70,8 +70,8 @@ module.exports = (config) => {
     concurrency: Infinity,
 
     coverageIstanbulReporter: {
-      dir: 'report/coverage/',
-      reports: ['html', 'lcovonly', 'text-summary'],
+      'dir': 'report/coverage/',
+      'reports': ['html', 'lcovonly', 'text-summary'],
       'report-config': {
         html: {
           subdir: 'html',
@@ -84,6 +84,7 @@ module.exports = (config) => {
     },
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       resolve: {
         extensions: ['.js', '.json'],
@@ -108,8 +109,8 @@ module.exports = (config) => {
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
-              presets: ['es2015'],
               plugins: ['transform-object-assign'],
+              presets: ['env'],
             },
           },
           {
@@ -120,7 +121,7 @@ module.exports = (config) => {
             options: {
               debug: true,
               preserveComments: true,
-              esModules: true
+              esModules: true,
             },
           },
         ],

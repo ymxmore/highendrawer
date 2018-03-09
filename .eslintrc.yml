@@ -3,10 +3,12 @@ extends: google
 parser: babel-eslint
 
 env:
-  es6: true
+  node: true
+  browser: true
 
-ecmaFeatures:
-  modules: true
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
 
 globals:
   window: false
@@ -32,3 +34,4 @@ globals:
 
 rules:
   max-len: [1, 80, 4, {ignoreComments: true, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true}]
+  switch-colon-spacing: 0

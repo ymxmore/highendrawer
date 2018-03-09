@@ -17,7 +17,7 @@
   font-size: 16px;
   line-height: 1.5;
   color: #333;
-  background-color: #fbfbfb;
+  background-color: #fcfcfc;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 h1 {
   padding: 0 .5em;
   margin: 80px 0 1.5em;
-  color: #666;
+  color: #333;
   font-size: 1.4em;
 }
 
@@ -36,7 +36,7 @@ h2 {
   padding: 0 .5em;
   margin: 1.5em 0 .5em;
   font-size: 1.2em;
-  color: #666;
+  color: #333;
 }
 
 a, a:visited, a:active {
@@ -45,7 +45,7 @@ a, a:visited, a:active {
 }
 
 a:hover {
-  color: #888;
+  color: #666;
 }
 
 .container {
@@ -60,7 +60,7 @@ a:hover {
 .list li {
   font-size: .8em;
   margin-bottom: .5em;
-  padding: .2em .5em .2em;
+  padding: .2em .5em;
 }
 
 #drawer {
@@ -76,8 +76,8 @@ a:hover {
 }
 
 #drawer li {
-  padding: .4em .6em;
-  font-size: 1em;
+  padding: .8em 1.2em;
+  font-size: .8em;
   border-bottom: 1px solid #efefef;
 }
 
@@ -85,7 +85,7 @@ a:hover {
   position: fixed;
   top: .5em;
   left: .5em;
-  color: #666;
+  color: #222;
   border: 1px solid #cfcfcf;
   background-color: #fff;
   border-radius: 4px;
@@ -123,35 +123,36 @@ a:hover {
 <a id="btn-toggle" href="#"></a>
 <div id="drawer">
   <ul>
-    <li>MENU 01</li>
-    <li>MENU 02</li>
-    <li>MENU 03</li>
-    <li>MENU 04</li>
-    <li>MENU 05</li>
-    <li>MENU 06</li>
-    <li>MENU 07</li>
-    <li>MENU 08</li>
-    <li>MENU 09</li>
-    <li>MENU 10</li>
-    <li>MENU 11</li>
-    <li>MENU 12</li>
-    <li>MENU 13</li>
-    <li>MENU 14</li>
-    <li>MENU 15</li>
-    <li>MENU 16</li>
-    <li>MENU 17</li>
-    <li>MENU 18</li>
-    <li>MENU 19</li>
-    <li>MENU 20</li>
+    <li>Menu 01</li>
+    <li>Menu 02</li>
+    <li>Menu 03</li>
+    <li>Menu 04</li>
+    <li>Menu 05</li>
+    <li>Menu 06</li>
+    <li>Menu 07</li>
+    <li>Menu 08</li>
+    <li>Menu 09</li>
+    <li>Menu 10</li>
+    <li>Menu 11</li>
+    <li>Menu 12</li>
+    <li>Menu 13</li>
+    <li>Menu 14</li>
+    <li>Menu 15</li>
+    <li>Menu 16</li>
+    <li>Menu 17</li>
+    <li>Menu 18</li>
+    <li>Menu 19</li>
+    <li>Menu 20</li>
   </ul>
 </div>
-<script src="dist/highendrawer.js"></script>
+<script src="dist/highendrawer.min.js"></script>
 <script>
   var togglebtn = document.getElementById('btn-toggle');
 
   var drawer = new Highendrawer({
     element: document.getElementById('drawer'),
-    onchangestate: function(drawer, state) {
+    maxWidth: 250,
+    onChangeState: function(drawer, state) {
       togglebtn.innerHTML = state === 'open' ? 'CL' : 'OP';
     }
   });

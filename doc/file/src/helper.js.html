@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -52,23 +54,33 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/helper.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
-
-import {PREFIX} from &apos;./const&apos;;
-import {isarray, ucfirst} from &apos;./util&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {PREFIX} from &apos;./const&apos;;
+import {isArray, ucFirst} from &apos;./util&apos;;
 
 const dom = window.document.createElement(&apos;div&apos;);
+const validStyleName = {};
+let currentId = 0;
 
-let currentid = 0;
-let validstylename = {};
+// Feature detection for method &apos;preventDefault&apos; of event.
+let supportsPassive = false;
+
+try {
+  const opts = Object.defineProperty({}, &apos;passive&apos;, {
+    get: () =&gt; {
+      supportsPassive = true;
+    },
+  });
+
+  window.addEventListener(&apos;supportsPassiveTestEvent&apos;, null, opts);
+} catch (e) {}
 
 /**
  * Generate ID.
  *
  * @return {number} ID.
  */
-export function generateid() {
-  return ++currentid;
+export function generateId() {
+  return ++currentId;
 }
 
 /**
@@ -77,12 +89,8 @@ export function generateid() {
  * @param {string[]|string} styles Css styles.
  * @return {boolean} Result of verification.
  */
-export function hasstyle(styles) {
-  let ss = styles;
-
-  if (!isarray(styles)) {
-    ss = [styles];
-  }
+export function hasStyle(styles) {
+  const ss = isArray(styles) ? styles : [styles];
 
   for (let style of ss) {
     if (typeof dom.style[style] !== &apos;undefined&apos;) {
@@ -99,27 +107,27 @@ export function hasstyle(styles) {
  * @param {Object} element Target element object.
  * @param {Object} style Css style.
  */
-export function setstyle(element, style) {
+export function setStyle(element, style) {
   for (let name of Object.keys(style)) {
-    let vsn = validstylename[name];
+    const vsn = validStyleName[name];
 
     if (vsn) {
       element.style[vsn] = style[name];
     } else if (typeof element.style[name] === &apos;undefined&apos;) {
       for (let i = 0; i &lt; 2; i++) {
         for (let pfx of PREFIX) {
-          let namewithprefix = (i === 0 ? pfx : ucfirst(pfx)) +
-            ucfirst(name);
+          const nwp = (i === 0 ? pfx : ucFirst(pfx)) +
+            ucFirst(name);
 
-          if (typeof element.style[namewithprefix] !== &apos;undefined&apos;) {
-            validstylename[name] = namewithprefix;
-            element.style[namewithprefix] = style[name];
+          if (typeof element.style[nwp] !== &apos;undefined&apos;) {
+            validStyleName[name] = nwp;
+            element.style[nwp] = style[name];
             break;
           }
         }
       }
     } else {
-      validstylename[name] = name;
+      validStyleName[name] = name;
       element.style[name] = style[name];
     }
   }
@@ -131,14 +139,53 @@ export function setstyle(element, style) {
  * @param {Object} element Target element object.
  * @param {string[]|string} styles Css styles.
  */
-export function unsetstyle(element, styles) {
-  let style = {};
+export function unsetStyle(element, styles) {
+  const style = {};
 
-  for (let name of isarray(styles) ? styles : [styles]) {
+  for (let name of isArray(styles) ? styles : [styles]) {
     style[name] = &apos;&apos;;
   }
 
-  setstyle(element, style);
+  setStyle(element, style);
+}
+
+/**
+ * Validate HTMLElement.
+ *
+ * @param {*} obj HTMLElement to be verified.
+ * @return {boolean} Result of valid HTMLElement.
+ */
+export function isHTMLElement(obj) {
+  try {
+    return obj instanceof HTMLElement;
+  } catch (e) {
+    return (typeof obj === &apos;object&apos;) &amp;&amp;
+      (obj.nodeType === 1) &amp;&amp;
+      (typeof obj.style === &apos;object&apos;) &amp;&amp;
+      (typeof obj.ownerDocument === &apos;object&apos;);
+  }
+}
+
+/**
+ * Add event listener with options.
+ *
+ * @param {Object} target Target object.
+ * @param {string} type Event type.
+ * @param {function} handler Event handler.
+ * @param {Object} [options={}] Event options.
+ */
+export function addEventListenerWithOptions(
+  target, type, handler, options = {}
+) {
+  const optionsOrCapture = Object.assign({
+    passive: true,
+    capture: false,
+  }, options);
+
+  target.addEventListener(type, handler, supportsPassive ?
+    optionsOrCapture :
+    optionsOrCapture.capture
+  );
 }
 </code></pre>
 

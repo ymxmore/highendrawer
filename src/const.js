@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Vendor prefix list.
  *
@@ -60,26 +58,26 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
   element: null,
   direction: 'right',
   size: '80%',
-  maxsize: -1,
+  maxSize: -1,
   swipeable: true,
-  swipearea: 20,
+  swipeArea: 20,
   duration: 400,
-  zindex: 9999,
+  zIndex: 9999,
   style: {},
-  initcreate: true,
-  enabledmaxwidth: -1,
+  initCreate: true,
+  enabledMaxWidth: -1,
   history: true,
   overlay: null,
-  oncreate: null,
-  ondestroy: null,
-  onopen: null,
-  onclose: null,
-  onchangestate: null,
-  onresize: null,
-  ontouchstart: null,
-  ontouchmove: null,
-  ontouchfinish: null,
-  onerror: null,
+  onCreate: null,
+  onDestroy: null,
+  onOpen: null,
+  onClose: null,
+  onChangeState: null,
+  onResize: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchFinish: null,
+  onError: null,
 });
 
 /**
@@ -90,8 +88,8 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
 export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
   opacity: 0.6,
-  zindex: -1,
-  autocreate: false,
+  zIndex: -1,
+  autoCreate: false,
 });
 
 /**
@@ -101,9 +99,9 @@ export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
  */
 export const DEFAULT_PROCESS = Object.freeze({
   touches: [],
-  istouchactive: null,
-  istouchpointactive: null,
-  istouchdirectionactive: null,
+  isTouchActive: null,
+  isTouchPointActive: null,
+  isTouchDirectionActive: null,
   time: {
     start: 0,
     end: 0,

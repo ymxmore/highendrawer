@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -52,9 +54,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/const.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
-
-/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * Vendor prefix list.
  *
  * @type {string[]}
@@ -114,26 +114,26 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
   element: null,
   direction: &apos;right&apos;,
   size: &apos;80%&apos;,
-  maxsize: -1,
+  maxSize: -1,
   swipeable: true,
-  swipearea: 20,
+  swipeArea: 20,
   duration: 400,
-  zindex: 9999,
+  zIndex: 9999,
   style: {},
-  initcreate: true,
-  enabledmaxwidth: -1,
+  initCreate: true,
+  enabledMaxWidth: -1,
   history: true,
   overlay: null,
-  oncreate: null,
-  ondestroy: null,
-  onopen: null,
-  onclose: null,
-  onchangestate: null,
-  onresize: null,
-  ontouchstart: null,
-  ontouchmove: null,
-  ontouchfinish: null,
-  onerror: null,
+  onCreate: null,
+  onDestroy: null,
+  onOpen: null,
+  onClose: null,
+  onChangeState: null,
+  onResize: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchFinish: null,
+  onError: null,
 });
 
 /**
@@ -144,8 +144,8 @@ export const DEFAULT_DRAWER_PROPERTY = Object.freeze({
 export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
   opacity: 0.6,
-  zindex: -1,
-  autocreate: false,
+  zIndex: -1,
+  autoCreate: false,
 });
 
 /**
@@ -155,9 +155,9 @@ export const DEFAULT_OVERLAY_PROPERTY = Object.freeze({
  */
 export const DEFAULT_PROCESS = Object.freeze({
   touches: [],
-  istouchactive: null,
-  istouchpointactive: null,
-  istouchdirectionactive: null,
+  isTouchActive: null,
+  isTouchPointActive: null,
+  isTouchDirectionActive: null,
   time: {
     start: 0,
     end: 0,

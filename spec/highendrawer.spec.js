@@ -1,5 +1,3 @@
-'use strict';
-
 import Highendrawer from '../src/highendrawer';
 
 describe('Testing the constructor', () => {
@@ -40,35 +38,35 @@ describe('Testing the constructor', () => {
     });
 
     it('Property timeoutid should be created successfully', () => {
-      expect(ins._timeoutid).toBeNull();
-      expect(ins._intervalid).toBeNull();
+      expect(ins._timeoutId).toBeNull();
+      expect(ins._intervalId).toBeNull();
     });
 
     it('Property drawer should be created successfully', () => {
       expect(ins._drawer).toEqual({
         direction: 'right',
         size: '80%',
-        maxsize: -1,
+        maxSize: -1,
         swipeable: true,
-        swipearea: 20,
+        swipeArea: 20,
         element: elem,
         duration: 400,
-        zindex: 9999,
+        zIndex: 9999,
         style: {},
-        initcreate: true,
-        enabledmaxwidth: -1,
+        initCreate: true,
+        enabledMaxWidth: -1,
         history: true,
         overlay: null,
-        oncreate: null,
-        ondestroy: null,
-        onopen: null,
-        onclose: null,
-        onchangestate: null,
-        onresize: null,
-        ontouchstart: null,
-        ontouchmove: null,
-        ontouchfinish: null,
-        onerror: null,
+        onCreate: null,
+        onDestroy: null,
+        onOpen: null,
+        onClose: null,
+        onChangeState: null,
+        onResize: null,
+        onTouchStart: null,
+        onTouchMove: null,
+        onTouchFinish: null,
+        onError: null,
       });
 
       expect(ins._drawer.element).toBe(elem);
@@ -77,9 +75,9 @@ describe('Testing the constructor', () => {
     it('Property process should be created successfully', () => {
       expect(ins._process).toEqual({
         touches: [],
-        istouchactive: null,
-        istouchpointactive: null,
-        istouchdirectionactive: null,
+        isTouchActive: null,
+        isTouchPointActive: null,
+        isTouchDirectionActive: null,
         time: {
           start: 0,
           end: 0,
@@ -112,15 +110,15 @@ describe('Testing the constructor', () => {
       expect(ins._position).toBe(null);
     });
 
-    it('Property sizepixel should be created successfully', () => {
-      expect(ins._sizepixel).toBe(256);
+    it('Property sizePixel should be created successfully', () => {
+      expect(ins._sizePixel).toBe(256);
     });
 
     it('Property overlay should be created successfully', () => {
       expect(ins._overlay).toEqual(jasmine.any(Object));
       expect(ins._overlay.element).not.toBeUndefined();
       expect(ins._overlay.opacity).not.toBeUndefined();
-      expect(ins._overlay.zindex).not.toBeUndefined();
+      expect(ins._overlay.zIndex).not.toBeUndefined();
       expect(ins._overlay.element.tagName).toBe('DIV');
       expect(ins._overlay.element.innerHTML).toBe('');
       expect(ins._overlay.element.style.display).toBe('none');
@@ -133,18 +131,18 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.zIndex).toBe('-1');
       expect(ins._overlay.element.style.opacity).toBe('0');
       expect(ins._overlay.opacity).toBe(0.6);
-      expect(ins._overlay.zindex).toBe(9998);
+      expect(ins._overlay.zIndex).toBe(9998);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
 
     it('Event should be registered correctly', () => {
       expect(window.addEventListener).toHaveBeenCalledTimes(6);
-      expect(window.addEventListener).toHaveBeenCalledWith('resize', ins._handler.resize);
-      expect(window.addEventListener).toHaveBeenCalledWith('touchstart', ins._handler.touchstart);
-      expect(window.addEventListener).toHaveBeenCalledWith('touchmove', ins._handler.touchmove);
-      expect(window.addEventListener).toHaveBeenCalledWith('touchend', ins._handler.touchend);
-      expect(window.addEventListener).toHaveBeenCalledWith('touchcancel', ins._handler.touchcancel);
-      expect(window.addEventListener).toHaveBeenCalledWith('popstate', ins._handler.popstate);
+      expect(window.addEventListener).toHaveBeenCalledWith('resize', ins._handler.resize, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('touchstart', ins._handler.touchstart, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('touchmove', ins._handler.touchmove, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('touchend', ins._handler.touchend, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('touchcancel', ins._handler.touchcancel, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('popstate', ins._handler.popstate, false);
     });
 
     it('Drawer should have the correct style', () => {
@@ -190,38 +188,38 @@ describe('Testing the constructor', () => {
       spyOn(window, 'addEventListener');
 
       cbs = jasmine.createSpyObj('callbacks', [
-        'oncreate',
-        'ondestroy',
-        'onopen',
-        'onclose',
-        'onchangestate',
-        'onresize',
-        'ontouchstart',
-        'ontouchmove',
-        'ontouchfinish',
-        'onerror',
+        'onCreate',
+        'onDestroy',
+        'onOpen',
+        'onClose',
+        'onChangeState',
+        'onResize',
+        'onTouchStart',
+        'onTouchMove',
+        'onTouchFinish',
+        'onError',
       ]);
 
       // Setup instance
       ins = new Highendrawer(Object.assign(cbs, {
         direction: 'left',
         size: '60%',
-        maxsize: 320,
+        maxSize: 320,
         swipeable: false,
-        swipearea: '5%',
+        swipeArea: '5%',
         element: elem,
         duration: 200,
-        zindex: 99999,
+        zIndex: 99999,
         style: {
           backgroundColor: '#333',
         },
         overlay: {
           element: oelem,
           opacity: 0.6,
-          zindex: 50000,
+          zIndex: 50000,
         },
-        initcreate: true,
-        enabledmaxwidth: 320,
+        initCreate: true,
+        enabledMaxWidth: 320,
         history: true,
       }));
     });
@@ -238,31 +236,31 @@ describe('Testing the constructor', () => {
       expect(ins.state).toBe('close');
     });
 
-    it('Property timeoutid should be created successfully', () => {
-      expect(ins._timeoutid).toBeNull();
-      expect(ins._intervalid).toBeNull();
+    it('Property timeoutId should be created successfully', () => {
+      expect(ins._timeoutId).toBeNull();
+      expect(ins._intervalId).toBeNull();
     });
 
     it('Property drawer should be created successfully', () => {
       expect(ins._drawer).toEqual(Object.assign(cbs, {
         direction: 'left',
         size: '60%',
-        maxsize: 320,
+        maxSize: 320,
         swipeable: false,
-        swipearea: '5%',
+        swipeArea: '5%',
         element: elem,
         duration: 200,
-        zindex: 99999,
+        zIndex: 99999,
         style: {
           backgroundColor: '#333',
         },
         overlay: {
           element: oelem,
           opacity: 0.6,
-          zindex: 50000,
+          zIndex: 50000,
         },
-        initcreate: true,
-        enabledmaxwidth: 320,
+        initCreate: true,
+        enabledMaxWidth: 320,
         history: true,
       }));
 
@@ -272,9 +270,9 @@ describe('Testing the constructor', () => {
     it('Property process should be created successfully', () => {
       expect(ins._process).toEqual({
         touches: [],
-        istouchactive: null,
-        istouchpointactive: null,
-        istouchdirectionactive: null,
+        isTouchActive: null,
+        isTouchPointActive: null,
+        isTouchDirectionActive: null,
         time: {
           start: 0,
           end: 0,
@@ -300,15 +298,15 @@ describe('Testing the constructor', () => {
       expect(ins._position).toBe(null);
     });
 
-    it('Property sizepixel should be created successfully', () => {
-      expect(ins._sizepixel).toBe(192);
+    it('Property sizePixel should be created successfully', () => {
+      expect(ins._sizePixel).toBe(192);
     });
 
     it('Property overlay should be created successfully', () => {
       expect(ins._overlay).toEqual(jasmine.any(Object));
       expect(ins._overlay.element).not.toBeUndefined();
       expect(ins._overlay.opacity).not.toBeUndefined();
-      expect(ins._overlay.zindex).not.toBeUndefined();
+      expect(ins._overlay.zIndex).not.toBeUndefined();
       expect(ins._overlay.element.tagName).toBe('DIV');
       expect(ins._overlay.element.innerHTML).toBe('');
       expect(ins._overlay.element.style.display).toBe('');
@@ -321,15 +319,15 @@ describe('Testing the constructor', () => {
       expect(ins._overlay.element.style.zIndex).toBe('');
       expect(ins._overlay.element.style.opacity).toBe('');
       expect(ins._overlay.opacity).toBe(0.6);
-      expect(ins._overlay.zindex).toBe(50000);
+      expect(ins._overlay.zIndex).toBe(50000);
       expect(document.getElementsByTagName('div').length).toBe(2);
     });
 
     it('Event should be registered correctly', () => {
       expect(window.addEventListener).toHaveBeenCalledTimes(3);
-      expect(window.addEventListener.calls.first().args).toEqual(['resize', jasmine.any(Function)]);
-      expect(window.addEventListener).toHaveBeenCalledWith('resize', ins._handler.resize);
-      expect(window.addEventListener).toHaveBeenCalledWith('popstate', ins._handler.popstate);
+      expect(window.addEventListener.calls.first().args).toEqual(['resize', jasmine.any(Function), false]);
+      expect(window.addEventListener).toHaveBeenCalledWith('resize', ins._handler.resize, false);
+      expect(window.addEventListener).toHaveBeenCalledWith('popstate', ins._handler.popstate, false);
     });
 
     it('Drawer should have the correct style', () => {
@@ -351,17 +349,17 @@ describe('Testing the constructor', () => {
     });
 
     it('Required callbacks should be called', () => {
-      expect(cbs.oncreate).toHaveBeenCalledTimes(1);
-      expect(cbs.oncreate).toHaveBeenCalledWith(ins._drawer);
-      expect(cbs.ondestroy).toHaveBeenCalledTimes(0);
-      expect(cbs.onopen).toHaveBeenCalledTimes(0);
-      expect(cbs.onclose).toHaveBeenCalledTimes(0);
-      expect(cbs.onchangestate).toHaveBeenCalledTimes(0);
-      expect(cbs.onresize).toHaveBeenCalledTimes(0);
-      expect(cbs.ontouchstart).toHaveBeenCalledTimes(0);
-      expect(cbs.ontouchmove).toHaveBeenCalledTimes(0);
-      expect(cbs.ontouchfinish).toHaveBeenCalledTimes(0);
-      expect(cbs.onerror).toHaveBeenCalledTimes(0);
+      expect(cbs.onCreate).toHaveBeenCalledTimes(1);
+      expect(cbs.onCreate).toHaveBeenCalledWith(ins._drawer);
+      expect(cbs.onDestroy).toHaveBeenCalledTimes(0);
+      expect(cbs.onOpen).toHaveBeenCalledTimes(0);
+      expect(cbs.onClose).toHaveBeenCalledTimes(0);
+      expect(cbs.onChangeState).toHaveBeenCalledTimes(0);
+      expect(cbs.onResize).toHaveBeenCalledTimes(0);
+      expect(cbs.onTouchStart).toHaveBeenCalledTimes(0);
+      expect(cbs.onTouchMove).toHaveBeenCalledTimes(0);
+      expect(cbs.onTouchFinish).toHaveBeenCalledTimes(0);
+      expect(cbs.onError).toHaveBeenCalledTimes(0);
     });
   });
 });
@@ -386,14 +384,14 @@ describe('Testing the create and destroy', () => {
     spyOn(window, 'addEventListener');
 
     cbs = jasmine.createSpyObj('callbacks', [
-      'oncreate',
-      'ondestroy',
+      'onCreate',
+      'onDestroy',
     ]);
 
     // Setup instance
     ins = new Highendrawer(Object.assign(cbs, {
       element: elem,
-      initcreate: false,
+      initCreate: false,
     }));
   });
 
@@ -410,8 +408,8 @@ describe('Testing the create and destroy', () => {
 
   it('Drawer should be created successfully when calling method', () => {
     expect(ins._enabled).toBe(false);
-    expect(cbs.oncreate).toHaveBeenCalledTimes(0);
-    expect(cbs.ondestroy).toHaveBeenCalledTimes(0);
+    expect(cbs.onCreate).toHaveBeenCalledTimes(0);
+    expect(cbs.onDestroy).toHaveBeenCalledTimes(0);
     expect(document.getElementsByTagName('div').length).toBe(1);
     expect(ins._drawer.element.style.display).toBe('');
 
@@ -419,8 +417,8 @@ describe('Testing the create and destroy', () => {
     ins.create();
 
     expect(ins._enabled).toBe(true);
-    expect(cbs.oncreate).toHaveBeenCalledTimes(1);
-    expect(cbs.ondestroy).toHaveBeenCalledTimes(0);
+    expect(cbs.onCreate).toHaveBeenCalledTimes(1);
+    expect(cbs.onDestroy).toHaveBeenCalledTimes(0);
     expect(document.getElementsByTagName('div').length).toBe(2);
     expect(ins._drawer.element.style.display).toBe('block');
 
@@ -428,8 +426,8 @@ describe('Testing the create and destroy', () => {
     ins.destroy();
 
     expect(ins._enabled).toBe(false);
-    expect(cbs.oncreate).toHaveBeenCalledTimes(1);
-    expect(cbs.ondestroy).toHaveBeenCalledTimes(1);
+    expect(cbs.onCreate).toHaveBeenCalledTimes(1);
+    expect(cbs.onDestroy).toHaveBeenCalledTimes(1);
     expect(document.getElementsByTagName('div').length).toBe(1);
     expect(ins._drawer.element.style.display).toBe('');
 
@@ -437,8 +435,8 @@ describe('Testing the create and destroy', () => {
     ins.create();
 
     expect(ins._enabled).toBe(true);
-    expect(cbs.oncreate).toHaveBeenCalledTimes(2);
-    expect(cbs.ondestroy).toHaveBeenCalledTimes(1);
+    expect(cbs.onCreate).toHaveBeenCalledTimes(2);
+    expect(cbs.onDestroy).toHaveBeenCalledTimes(1);
     expect(document.getElementsByTagName('div').length).toBe(2);
     expect(ins._drawer.element.style.display).toBe('block');
 
@@ -446,8 +444,8 @@ describe('Testing the create and destroy', () => {
     ins.destroy();
 
     expect(ins._enabled).toBe(false);
-    expect(cbs.oncreate).toHaveBeenCalledTimes(2);
-    expect(cbs.ondestroy).toHaveBeenCalledTimes(2);
+    expect(cbs.onCreate).toHaveBeenCalledTimes(2);
+    expect(cbs.onDestroy).toHaveBeenCalledTimes(2);
     expect(document.getElementsByTagName('div').length).toBe(1);
     expect(ins._drawer.element.style.display).toBe('');
   });
@@ -475,11 +473,11 @@ describe('Testing the open, close and toggle', () => {
     spyOn(window, 'addEventListener');
 
     cbs = jasmine.createSpyObj('callbacks', [
-      'oncreate',
-      'ondestroy',
-      'onopen',
-      'onclose',
-      'onchangestate',
+      'onCreate',
+      'onDestroy',
+      'onOpen',
+      'onClose',
+      'onChangeState',
     ]);
 
     // Setup instance
@@ -500,7 +498,7 @@ describe('Testing the open, close and toggle', () => {
 
   it('Drawer should be opened when calling method', () => {
     expect(ins.state).toBe('close');
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(0);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(0);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
     expect(ins._drawer.element.style.webkitTransition).toBe('0ms cubic-bezier(0, 0.8, 0.95, 1)');
@@ -515,7 +513,7 @@ describe('Testing the open, close and toggle', () => {
 
     jasmine.clock().tick(401);
 
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(1);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(1);
     expect(ins._drawer.element.style.zIndex).toBe('9999');
     expect(ins._drawer.element.style.opacity).toBe('1');
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
@@ -531,7 +529,7 @@ describe('Testing the open, close and toggle', () => {
 
     jasmine.clock().tick(401);
 
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(2);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(2);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
@@ -546,7 +544,7 @@ describe('Testing the open, close and toggle', () => {
 
     jasmine.clock().tick(401);
 
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(3);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(3);
     expect(ins._drawer.element.style.zIndex).toBe('9999');
     expect(ins._drawer.element.style.opacity).toBe('1');
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
@@ -562,7 +560,7 @@ describe('Testing the open, close and toggle', () => {
 
     jasmine.clock().tick(401);
 
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(4);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(4);
     expect(ins._drawer.element.style.zIndex).toBe('-1');
     expect(ins._drawer.element.style.opacity).toBe('0');
     expect(ins._drawer.element.style.webkitTransition).toBe('400ms cubic-bezier(0, 0.8, 0.95, 1)');
@@ -593,11 +591,11 @@ describe('Testing the callback on opened', () => {
     spyOn(window, 'addEventListener');
 
     cbs = jasmine.createSpyObj('callbacks', [
-      'oncreate',
-      'ondestroy',
-      'onopen',
-      'onclose',
-      'onchangestate',
+      'onCreate',
+      'onDestroy',
+      'onOpen',
+      'onClose',
+      'onChangeState',
     ]);
 
     // Setup instance
@@ -617,9 +615,9 @@ describe('Testing the callback on opened', () => {
   });
 
   it('Drawer should be opened when calling method', () => {
-    expect(cbs.onopen).toHaveBeenCalledTimes(1);
-    expect(cbs.onclose).toHaveBeenCalledTimes(0);
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(1);
+    expect(cbs.onOpen).toHaveBeenCalledTimes(1);
+    expect(cbs.onClose).toHaveBeenCalledTimes(0);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -643,11 +641,11 @@ describe('Testing the callback on closed', () => {
     spyOn(window, 'addEventListener');
 
     cbs = jasmine.createSpyObj('callbacks', [
-      'oncreate',
-      'ondestroy',
-      'onopen',
-      'onclose',
-      'onchangestate',
+      'onCreate',
+      'onDestroy',
+      'onOpen',
+      'onClose',
+      'onChangeState',
     ]);
 
     // Setup instance
@@ -669,8 +667,8 @@ describe('Testing the callback on closed', () => {
   });
 
   it('Drawer should be closed when calling method', () => {
-    expect(cbs.onopen).toHaveBeenCalledTimes(1);
-    expect(cbs.onclose).toHaveBeenCalledTimes(1);
-    expect(cbs.onchangestate).toHaveBeenCalledTimes(2);
+    expect(cbs.onOpen).toHaveBeenCalledTimes(1);
+    expect(cbs.onClose).toHaveBeenCalledTimes(1);
+    expect(cbs.onChangeState).toHaveBeenCalledTimes(2);
   });
 });

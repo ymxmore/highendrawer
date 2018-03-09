@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -51,7 +53,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">62/75</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">64/78</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -77,36 +79,38 @@
 <span><a href="variable/index.html#static-variable-TOUCH_EVENTS">TOUCH_EVENTS</a></span>
 <span><a href="variable/index.html#static-variable-TRANSITION_STYLE">TRANSITION_STYLE</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">8/8</span></td>
-      <td style="display: none;" data-ice="size">2019 byte</td>
-      <td style="display: none;" data-ice="lines">123</td>
-      <td style="display: none;" data-ice="updated">2018-03-06 18:17:00 (UTC)</td>
+      <td style="display: none;" data-ice="size">2004 byte</td>
+      <td style="display: none;" data-ice="lines">121</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 21:18:41 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/helper.js.html#errorLines=6,8,9">src/helper.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-generateid">generateid</a></span>
-<span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span>
-<span><a href="function/index.html#static-function-setstyle">setstyle</a></span>
-<span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></td>
-      <td class="coverage"><span data-ice="coverage">57 %</span><span data-ice="coverageCount" class="coverage-count">4/7</span></td>
-      <td style="display: none;" data-ice="size">1844 byte</td>
-      <td style="display: none;" data-ice="lines">88</td>
-      <td style="display: none;" data-ice="updated">2017-01-02 19:29:18 (UTC)</td>
+      <td data-ice="filePath"><span><a href="file/src/helper.js.html#errorLines=4,5,6,9">src/helper.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span>
+<span><a href="function/index.html#static-function-generateId">generateId</a></span>
+<span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span>
+<span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span>
+<span><a href="function/index.html#static-function-setStyle">setStyle</a></span>
+<span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></td>
+      <td class="coverage"><span data-ice="coverage">60 %</span><span data-ice="coverageCount" class="coverage-count">6/10</span></td>
+      <td style="display: none;" data-ice="size">2982 byte</td>
+      <td style="display: none;" data-ice="lines">133</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 21:59:49 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/highendrawer.js.html#errorLines=381,384,41,42,43,46,47,48,49,50">src/highendrawer.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/src/highendrawer.js.html#errorLines=383,386,41,42,43,46,47,48,49,50">src/highendrawer.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></td>
       <td class="coverage"><span data-ice="coverage">82 %</span><span data-ice="coverageCount" class="coverage-count">46/56</span></td>
-      <td style="display: none;" data-ice="size">31011 byte</td>
-      <td style="display: none;" data-ice="lines">1249</td>
-      <td style="display: none;" data-ice="updated">2018-03-06 18:42:11 (UTC)</td>
+      <td style="display: none;" data-ice="size">31013 byte</td>
+      <td style="display: none;" data-ice="lines">1242</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 21:52:05 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/support.js.html">src/support.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-support">support</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">801 byte</td>
-      <td style="display: none;" data-ice="lines">48</td>
-      <td style="display: none;" data-ice="updated">2017-01-02 19:29:17 (UTC)</td>
+      <td style="display: none;" data-ice="size">788 byte</td>
+      <td style="display: none;" data-ice="lines">46</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 20:48:15 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/typedef.js.html">src/typedef.js</a></span></td>
@@ -114,16 +118,16 @@
       <td class="coverage"><span data-ice="coverage">-</span></td>
       <td style="display: none;" data-ice="size">2426 byte</td>
       <td style="display: none;" data-ice="lines">37</td>
-      <td style="display: none;" data-ice="updated">2018-03-06 18:16:53 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 19:46:55 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/util.js.html">src/util.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-isarray">isarray</a></span>
-<span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-isArray">isArray</a></span>
+<span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">487 byte</td>
-      <td style="display: none;" data-ice="lines">21</td>
-      <td style="display: none;" data-ice="updated">2017-01-02 19:29:09 (UTC)</td>
+      <td style="display: none;" data-ice="size">472 byte</td>
+      <td style="display: none;" data-ice="lines">19</td>
+      <td style="display: none;" data-ice="updated">2018-03-06 19:26:56 (UTC)</td>
     </tr>
 </tbody>
 </table>

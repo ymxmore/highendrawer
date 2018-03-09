@@ -54,27 +54,39 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "highendrawer/src/helper.js~addeventlistenerwithoptions",
+    "function/index.html#static-function-addEventListenerWithOptions",
+    "<span>addEventListenerWithOptions</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function"
+  ],
+  [
     "highendrawer/src/helper.js~generateid",
-    "function/index.html#static-function-generateid",
-    "<span>generateid</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function/index.html#static-function-generateId",
+    "<span>generateId</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
     "function"
   ],
   [
     "highendrawer/src/helper.js~hasstyle",
-    "function/index.html#static-function-hasstyle",
-    "<span>hasstyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function/index.html#static-function-hasStyle",
+    "<span>hasStyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
     "function"
   ],
   [
     "highendrawer/src/util.js~isarray",
-    "function/index.html#static-function-isarray",
-    "<span>isarray</span> <span class=\"search-result-import-path\">highendrawer/src/util.js</span>",
+    "function/index.html#static-function-isArray",
+    "<span>isArray</span> <span class=\"search-result-import-path\">highendrawer/src/util.js</span>",
+    "function"
+  ],
+  [
+    "highendrawer/src/helper.js~ishtmlelement",
+    "function/index.html#static-function-isHTMLElement",
+    "<span>isHTMLElement</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
     "function"
   ],
   [
     "highendrawer/src/helper.js~setstyle",
-    "function/index.html#static-function-setstyle",
-    "<span>setstyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function/index.html#static-function-setStyle",
+    "<span>setStyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
     "function"
   ],
   [
@@ -85,14 +97,14 @@ window.esdocSearchIndex = [
   ],
   [
     "highendrawer/src/util.js~ucfirst",
-    "function/index.html#static-function-ucfirst",
-    "<span>ucfirst</span> <span class=\"search-result-import-path\">highendrawer/src/util.js</span>",
+    "function/index.html#static-function-ucFirst",
+    "<span>ucFirst</span> <span class=\"search-result-import-path\">highendrawer/src/util.js</span>",
     "function"
   ],
   [
     "highendrawer/src/helper.js~unsetstyle",
-    "function/index.html#static-function-unsetstyle",
-    "<span>unsetstyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
+    "function/index.html#static-function-unsetStyle",
+    "<span>unsetStyle</span> <span class=\"search-result-import-path\">highendrawer/src/helper.js</span>",
     "function"
   ],
   [
@@ -396,45 +408,51 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/highendrawer.js~highendrawer#_changeoverlaystate",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_changeOverlayState",
+    "src/highendrawer.js~Highendrawer#_changeOverlayState",
+    "method"
+  ],
+  [
     "src/highendrawer.js~highendrawer#_changestate",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_changestate",
-    "src/highendrawer.js~Highendrawer#_changestate",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_changeState",
+    "src/highendrawer.js~Highendrawer#_changeState",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_convertpixelabs",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_convertpixelabs",
-    "src/highendrawer.js~Highendrawer#_convertpixelabs",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_convertPixelAbs",
+    "src/highendrawer.js~Highendrawer#_convertPixelAbs",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_createdrawer",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_createdrawer",
-    "src/highendrawer.js~Highendrawer#_createdrawer",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_createDrawer",
+    "src/highendrawer.js~Highendrawer#_createDrawer",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_createoverlay",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_createoverlay",
-    "src/highendrawer.js~Highendrawer#_createoverlay",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_createOverlay",
+    "src/highendrawer.js~Highendrawer#_createOverlay",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_cssanimate",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_cssanimate",
-    "src/highendrawer.js~Highendrawer#_cssanimate",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_cssAnimate",
+    "src/highendrawer.js~Highendrawer#_cssAnimate",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_destroydrawer",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_destroydrawer",
-    "src/highendrawer.js~Highendrawer#_destroydrawer",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyDrawer",
+    "src/highendrawer.js~Highendrawer#_destroyDrawer",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_destroyoverlay",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyoverlay",
-    "src/highendrawer.js~Highendrawer#_destroyoverlay",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyOverlay",
+    "src/highendrawer.js~Highendrawer#_destroyOverlay",
     "method"
   ],
   [
@@ -451,92 +469,92 @@ window.esdocSearchIndex = [
   ],
   [
     "src/highendrawer.js~highendrawer#_getdistance",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getdistance",
-    "src/highendrawer.js~Highendrawer#_getdistance",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getDistance",
+    "src/highendrawer.js~Highendrawer#_getDistance",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getdrawerhandler",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerhandler",
-    "src/highendrawer.js~Highendrawer#_getdrawerhandler",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerHandler",
+    "src/highendrawer.js~Highendrawer#_getDrawerHandler",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getdrawerpositionfromstyle",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerpositionfromstyle",
-    "src/highendrawer.js~Highendrawer#_getdrawerpositionfromstyle",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerPositionFromStyle",
+    "src/highendrawer.js~Highendrawer#_getDrawerPositionFromStyle",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getdrawerpositionfromtouches",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerpositionfromtouches",
-    "src/highendrawer.js~Highendrawer#_getdrawerpositionfromtouches",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerPositionFromTouches",
+    "src/highendrawer.js~Highendrawer#_getDrawerPositionFromTouches",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getdrawerstyle",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerstyle",
-    "src/highendrawer.js~Highendrawer#_getdrawerstyle",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerStyle",
+    "src/highendrawer.js~Highendrawer#_getDrawerStyle",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getinitdrawerstyle",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getinitdrawerstyle",
-    "src/highendrawer.js~Highendrawer#_getinitdrawerstyle",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getInitDrawerStyle",
+    "src/highendrawer.js~Highendrawer#_getInitDrawerStyle",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getminposition",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getminposition",
-    "src/highendrawer.js~Highendrawer#_getminposition",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getMinPosition",
+    "src/highendrawer.js~Highendrawer#_getMinPosition",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getoverlayopacityfromposition",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlayopacityfromposition",
-    "src/highendrawer.js~Highendrawer#_getoverlayopacityfromposition",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayOpacityFromPosition",
+    "src/highendrawer.js~Highendrawer#_getOverlayOpacityFromPosition",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getoverlayopacityfromstyle",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlayopacityfromstyle",
-    "src/highendrawer.js~Highendrawer#_getoverlayopacityfromstyle",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayOpacityFromStyle",
+    "src/highendrawer.js~Highendrawer#_getOverlayOpacityFromStyle",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getoverlaystyle",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlaystyle",
-    "src/highendrawer.js~Highendrawer#_getoverlaystyle",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayStyle",
+    "src/highendrawer.js~Highendrawer#_getOverlayStyle",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getrange",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getrange",
-    "src/highendrawer.js~Highendrawer#_getrange",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getRange",
+    "src/highendrawer.js~Highendrawer#_getRange",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_getstatefromposition",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getstatefromposition",
-    "src/highendrawer.js~Highendrawer#_getstatefromposition",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getStateFromPosition",
+    "src/highendrawer.js~Highendrawer#_getStateFromPosition",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_gettouchmoveinfo",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_gettouchmoveinfo",
-    "src/highendrawer.js~Highendrawer#_gettouchmoveinfo",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getTouchMoveInfo",
+    "src/highendrawer.js~Highendrawer#_getTouchMoveInfo",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_gettouchmovestate",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_gettouchmovestate",
-    "src/highendrawer.js~Highendrawer#_gettouchmovestate",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_getTouchMoveState",
+    "src/highendrawer.js~Highendrawer#_getTouchMoveState",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_handlecallback",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_handlecallback",
-    "src/highendrawer.js~Highendrawer#_handlecallback",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_handleCallback",
+    "src/highendrawer.js~Highendrawer#_handleCallback",
     "method"
   ],
   [
@@ -547,14 +565,14 @@ window.esdocSearchIndex = [
   ],
   [
     "src/highendrawer.js~highendrawer#_hidedrawer",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_hidedrawer",
-    "src/highendrawer.js~Highendrawer#_hidedrawer",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_hideDrawer",
+    "src/highendrawer.js~Highendrawer#_hideDrawer",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_hideoverlay",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_hideoverlay",
-    "src/highendrawer.js~Highendrawer#_hideoverlay",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_hideOverlay",
+    "src/highendrawer.js~Highendrawer#_hideOverlay",
     "method"
   ],
   [
@@ -565,62 +583,56 @@ window.esdocSearchIndex = [
   ],
   [
     "src/highendrawer.js~highendrawer#_intervalid",
-    "class/src/highendrawer.js~Highendrawer.html#instance-member-_intervalid",
-    "src/highendrawer.js~Highendrawer#_intervalid",
+    "class/src/highendrawer.js~Highendrawer.html#instance-member-_intervalId",
+    "src/highendrawer.js~Highendrawer#_intervalId",
     "member"
   ],
   [
-    "src/highendrawer.js~highendrawer#_ishtmlelement",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_isHTMLElement",
-    "src/highendrawer.js~Highendrawer#_isHTMLElement",
-    "method"
-  ],
-  [
     "src/highendrawer.js~highendrawer#_istouchdirectionactive",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_istouchdirectionactive",
-    "src/highendrawer.js~Highendrawer#_istouchdirectionactive",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_isTouchDirectionActive",
+    "src/highendrawer.js~Highendrawer#_isTouchDirectionActive",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_istouchpointactive",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_istouchpointactive",
-    "src/highendrawer.js~Highendrawer#_istouchpointactive",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_isTouchPointActive",
+    "src/highendrawer.js~Highendrawer#_isTouchPointActive",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_jsanimate",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_jsanimate",
-    "src/highendrawer.js~Highendrawer#_jsanimate",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_jsAnimate",
+    "src/highendrawer.js~Highendrawer#_jsAnimate",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_normalizenumber",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizenumber",
-    "src/highendrawer.js~Highendrawer#_normalizenumber",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizeNumber",
+    "src/highendrawer.js~Highendrawer#_normalizeNumber",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_normalizepixel",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizepixel",
-    "src/highendrawer.js~Highendrawer#_normalizepixel",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizePixel",
+    "src/highendrawer.js~Highendrawer#_normalizePixel",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_ontouchfinish",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchfinish",
-    "src/highendrawer.js~Highendrawer#_ontouchfinish",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchFinish",
+    "src/highendrawer.js~Highendrawer#_onTouchFinish",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_ontouchmove",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchmove",
-    "src/highendrawer.js~Highendrawer#_ontouchmove",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchMove",
+    "src/highendrawer.js~Highendrawer#_onTouchMove",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_ontouchstart",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchstart",
-    "src/highendrawer.js~Highendrawer#_ontouchstart",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchStart",
+    "src/highendrawer.js~Highendrawer#_onTouchStart",
     "method"
   ],
   [
@@ -643,44 +655,44 @@ window.esdocSearchIndex = [
   ],
   [
     "src/highendrawer.js~highendrawer#_resetdrawer",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_resetdrawer",
-    "src/highendrawer.js~Highendrawer#_resetdrawer",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_resetDrawer",
+    "src/highendrawer.js~Highendrawer#_resetDrawer",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_setprops",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_setprops",
-    "src/highendrawer.js~Highendrawer#_setprops",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_setProps",
+    "src/highendrawer.js~Highendrawer#_setProps",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_showdrawer",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_showdrawer",
-    "src/highendrawer.js~Highendrawer#_showdrawer",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_showDrawer",
+    "src/highendrawer.js~Highendrawer#_showDrawer",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_showoverlay",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_showoverlay",
-    "src/highendrawer.js~Highendrawer#_showoverlay",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_showOverlay",
+    "src/highendrawer.js~Highendrawer#_showOverlay",
     "method"
   ],
   [
     "src/highendrawer.js~highendrawer#_sizepixel",
-    "class/src/highendrawer.js~Highendrawer.html#instance-member-_sizepixel",
-    "src/highendrawer.js~Highendrawer#_sizepixel",
+    "class/src/highendrawer.js~Highendrawer.html#instance-member-_sizePixel",
+    "src/highendrawer.js~Highendrawer#_sizePixel",
     "member"
   ],
   [
     "src/highendrawer.js~highendrawer#_timeoutid",
-    "class/src/highendrawer.js~Highendrawer.html#instance-member-_timeoutid",
-    "src/highendrawer.js~Highendrawer#_timeoutid",
+    "class/src/highendrawer.js~Highendrawer.html#instance-member-_timeoutId",
+    "src/highendrawer.js~Highendrawer#_timeoutId",
     "member"
   ],
   [
     "src/highendrawer.js~highendrawer#_touchhandler",
-    "class/src/highendrawer.js~Highendrawer.html#instance-method-_touchhandler",
-    "src/highendrawer.js~Highendrawer#_touchhandler",
+    "class/src/highendrawer.js~Highendrawer.html#instance-method-_touchHandler",
+    "src/highendrawer.js~Highendrawer#_touchHandler",
     "method"
   ],
   [

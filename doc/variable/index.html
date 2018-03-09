@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -334,11 +336,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_DRAWER_PROPERTY} from &apos;<span><a href="file/src/const.js.html#lineNumber59">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_DRAWER_PROPERTY} from &apos;<span><a href="file/src/const.js.html#lineNumber57">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Default drawer property.</p>
@@ -378,11 +380,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber88">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_OVERLAY_PROPERTY} from &apos;<span><a href="file/src/const.js.html#lineNumber90">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_OVERLAY_PROPERTY} from &apos;<span><a href="file/src/const.js.html#lineNumber88">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Default overlay property.</p>
@@ -422,11 +424,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber102">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_PROCESS} from &apos;<span><a href="file/src/const.js.html#lineNumber102">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DEFAULT_PROCESS} from &apos;<span><a href="file/src/const.js.html#lineNumber100">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Default processing state object.</p>
@@ -466,11 +468,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DRAWER_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber15">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DRAWER_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber13">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Drawer&apos;s default css style.</p>
@@ -510,11 +512,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {OVERLAY_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber30">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {OVERLAY_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber28">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Overlay&apos;s default css style.</p>
@@ -554,11 +556,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber6">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {PREFIX} from &apos;<span><a href="file/src/const.js.html#lineNumber8">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {PREFIX} from &apos;<span><a href="file/src/const.js.html#lineNumber6">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Vendor prefix list.</p>
@@ -598,11 +600,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber118">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber116">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TOUCH_EVENTS} from &apos;<span><a href="file/src/const.js.html#lineNumber118">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TOUCH_EVENTS} from &apos;<span><a href="file/src/const.js.html#lineNumber116">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Touch event list.</p>
@@ -642,11 +644,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/const.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TRANSITION_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber47">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TRANSITION_STYLE} from &apos;<span><a href="file/src/const.js.html#lineNumber45">highendrawer/src/const.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Css transition style.</p>
@@ -686,11 +688,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/support.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/support.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {support} from &apos;<span><a href="file/src/support.js.html#lineNumber48">highendrawer/src/support.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {support} from &apos;<span><a href="file/src/support.js.html#lineNumber46">highendrawer/src/support.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Browser support information.</p>

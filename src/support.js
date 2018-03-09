@@ -1,15 +1,13 @@
-'use strict';
-
-import {hasstyle} from './helper';
+import {hasStyle} from './helper';
 
 /**
  * Browser support information.
  *
  * @type {Object}
  */
-let sup = {};
+const sup = {};
 
-sup.transform3d = hasstyle([
+sup.transform3d = hasStyle([
   'perspectiveProperty',
   'webkitPerspective',
   'mozPerspective',
@@ -17,7 +15,7 @@ sup.transform3d = hasstyle([
   'msPerspective',
 ]);
 
-sup.transform = hasstyle([
+sup.transform = hasStyle([
   'transformProperty',
   'webkitTransform',
   'mozTransform',
@@ -25,7 +23,7 @@ sup.transform = hasstyle([
   'msTransform',
 ]);
 
-sup.transition = hasstyle([
+sup.transition = hasStyle([
   'transitionProperty',
   'webkitTransitionProperty',
   'mozTransitionProperty',
@@ -33,7 +31,7 @@ sup.transition = hasstyle([
   'msTransitionProperty',
 ]);
 
-sup.cssanim = (sup.transform3d || sup.transform) &&
+sup.cssAnim = (sup.transform3d || sup.transform) &&
   sup.transition;
 
 sup.transrate = sup.transform3d ?

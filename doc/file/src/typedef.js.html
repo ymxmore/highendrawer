@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -59,26 +61,26 @@
  * @property {!Object} element HTML DOM Element.
  * @property {string} [direction=&quot;right&quot;] Drawer placement direction.
  * @property {string|number} [size=&quot;80%&quot;] Drawer size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
- * @property {string|number} [maxsize=-1] Drawer max size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
+ * @property {string|number} [maxSize=-1] Drawer max size. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
  * @property {boolean} [swipeable=true] Enable opening and closing of the drawer with a swipe gesture.
- * @property {string|number} [swipearea=20] Swipeable area. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
+ * @property {string|number} [swipeArea=20] Swipeable area. In the case of character strings, the units are &apos;%&apos; and &apos;px&apos; are supported.
  * @property {number} [duration=400] Drawer moving time.
- * @property {number} [zindex=9999] Drawer stacking order.
+ * @property {number} [zIndex=9999] Drawer stacking order.
  * @property {Object} [style={}] Drawer&apos;s css style.
- * @property {boolean} [initcreate=true] Create a drawer at initialization.
- * @property {number} [enabledmaxwidth=-1] Maximum screen width with drawer enabled. Always valid when -1.
+ * @property {boolean} [initCreate=true] Create a drawer at initialization.
+ * @property {number} [enabledMaxWidth=-1] Maximum screen width with drawer enabled. Always valid when -1.
  * @property {boolean} [history=true] Activate if history is supported.
  * @property {Overlay} [overlay=null] Overlay object. If not specified, it will be created automatically. Specify false if it is unnecessary.
- * @property {function} [oncreate=null] Called when a drawer is created.
- * @property {function} [ondestroy=null] Called when a drawer is destroyed.
- * @property {function} [onopen=null] Called when a drawer is opened.
- * @property {function} [onclose=null] Called when a drawer is closed.
- * @property {function} [onchangestate=null] Called when the opening / closing state is changed.
- * @property {function} [onresize=null] Called when the size of the drawer has changed.
- * @property {function} [ontouchstart=null] Called when the drawer starts moving with a swipe gesture.
- * @property {function} [ontouchmove=null] Called when the drawer is moving with a swipe gesture.
- * @property {function} [ontouchfinish=null] Called when the drawer has finished moving with a swipe gesture.
- * @property {function} [onerror=null] Called when there is an error in processing within the object.
+ * @property {function} [onCreate=null] Called when a drawer is created.
+ * @property {function} [onDestroy=null] Called when a drawer is destroyed.
+ * @property {function} [onOpen=null] Called when a drawer is opened.
+ * @property {function} [onClose=null] Called when a drawer is closed.
+ * @property {function} [onChangeState=null] Called when the opening / closing state is changed.
+ * @property {function} [onResize=null] Called when the size of the drawer has changed.
+ * @property {function} [onTouchStart=null] Called when the drawer starts moving with a swipe gesture.
+ * @property {function} [onTouchMove=null] Called when the drawer is moving with a swipe gesture.
+ * @property {function} [onTouchFinish=null] Called when the drawer has finished moving with a swipe gesture.
+ * @property {function} [onError=null] Called when there is an error in processing within the object.
  */
 
 /**
@@ -87,7 +89,7 @@
  * @typedef {Object} Overlay
  * @property {Object} element HTML DOM Element.
  * @property {number} [opacity=0.6] Overlay object transparency.
- * @property {number} [zindex=-1] Overlay stacking order. If -1, zindex - 1 of the drawer is specified automatically.
+ * @property {number} [zIndex=-1] Overlay stacking order. If -1, zIndex - 1 of the drawer is specified automatically.
  */
 </code></pre>
 

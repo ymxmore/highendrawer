@@ -97,15 +97,14 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Vendor prefix list.
  *
  * @type {string[]}
  */
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 var PREFIX = exports.PREFIX = ['webkit', 'moz', 'o', 'ms'];
 
 /**
@@ -161,26 +160,26 @@ var DEFAULT_DRAWER_PROPERTY = exports.DEFAULT_DRAWER_PROPERTY = Object.freeze({
   element: null,
   direction: 'right',
   size: '80%',
-  maxsize: -1,
+  maxSize: -1,
   swipeable: true,
-  swipearea: 20,
+  swipeArea: 20,
   duration: 400,
-  zindex: 9999,
+  zIndex: 9999,
   style: {},
-  initcreate: true,
-  enabledmaxwidth: -1,
+  initCreate: true,
+  enabledMaxWidth: -1,
   history: true,
   overlay: null,
-  oncreate: null,
-  ondestroy: null,
-  onopen: null,
-  onclose: null,
-  onchangestate: null,
-  onresize: null,
-  ontouchstart: null,
-  ontouchmove: null,
-  ontouchfinish: null,
-  onerror: null
+  onCreate: null,
+  onDestroy: null,
+  onOpen: null,
+  onClose: null,
+  onChangeState: null,
+  onResize: null,
+  onTouchStart: null,
+  onTouchMove: null,
+  onTouchFinish: null,
+  onError: null
 });
 
 /**
@@ -191,8 +190,8 @@ var DEFAULT_DRAWER_PROPERTY = exports.DEFAULT_DRAWER_PROPERTY = Object.freeze({
 var DEFAULT_OVERLAY_PROPERTY = exports.DEFAULT_OVERLAY_PROPERTY = Object.freeze({
   element: null,
   opacity: 0.6,
-  zindex: -1,
-  autocreate: false
+  zIndex: -1,
+  autoCreate: false
 });
 
 /**
@@ -202,9 +201,9 @@ var DEFAULT_OVERLAY_PROPERTY = exports.DEFAULT_OVERLAY_PROPERTY = Object.freeze(
  */
 var DEFAULT_PROCESS = exports.DEFAULT_PROCESS = Object.freeze({
   touches: [],
-  istouchactive: null,
-  istouchpointactive: null,
-  istouchdirectionactive: null,
+  isTouchActive: null,
+  isTouchPointActive: null,
+  isTouchDirectionActive: null,
   time: {
     start: 0,
     end: 0
@@ -233,27 +232,46 @@ var TOUCH_EVENTS = exports.TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend'
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateid = generateid;
-exports.hasstyle = hasstyle;
-exports.setstyle = setstyle;
-exports.unsetstyle = unsetstyle;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.generateId = generateId;
+exports.hasStyle = hasStyle;
+exports.setStyle = setStyle;
+exports.unsetStyle = unsetStyle;
+exports.isHTMLElement = isHTMLElement;
+exports.addEventListenerWithOptions = addEventListenerWithOptions;
 
 var _const = __webpack_require__(/*! ./const */ "./src/const.js");
 
 var _util = __webpack_require__(/*! ./util */ "./src/util.js");
 
 var dom = window.document.createElement('div');
+var validStyleName = {};
+var currentId = 0;
 
-var currentid = 0;
-var validstylename = {};
+// Feature detection for method 'preventDefault' of event.
+var supportsPassive = false;
+
+try {
+  var opts = Object.defineProperty({}, 'passive', {
+    get: function get() {
+      supportsPassive = true;
+    }
+  });
+
+  window.addEventListener('supportsPassiveTestEvent', null, opts);
+} catch (e) {}
 
 /**
  * Generate ID.
  *
  * @return {number} ID.
  */
-function generateid() {
-  return ++currentid;
+function generateId() {
+  return ++currentId;
 }
 
 /**
@@ -262,12 +280,8 @@ function generateid() {
  * @param {string[]|string} styles Css styles.
  * @return {boolean} Result of verification.
  */
-function hasstyle(styles) {
-  var ss = styles;
-
-  if (!(0, _util.isarray)(styles)) {
-    ss = [styles];
-  }
+function hasStyle(styles) {
+  var ss = (0, _util.isArray)(styles) ? styles : [styles];
 
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
@@ -305,7 +319,7 @@ function hasstyle(styles) {
  * @param {Object} element Target element object.
  * @param {Object} style Css style.
  */
-function setstyle(element, style) {
+function setStyle(element, style) {
   var _iteratorNormalCompletion2 = true;
   var _didIteratorError2 = false;
   var _iteratorError2 = undefined;
@@ -314,7 +328,7 @@ function setstyle(element, style) {
     for (var _iterator2 = Object.keys(style)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
       var name = _step2.value;
 
-      var vsn = validstylename[name];
+      var vsn = validStyleName[name];
 
       if (vsn) {
         element.style[vsn] = style[name];
@@ -328,11 +342,11 @@ function setstyle(element, style) {
             for (var _iterator3 = _const.PREFIX[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
               var pfx = _step3.value;
 
-              var namewithprefix = (i === 0 ? pfx : (0, _util.ucfirst)(pfx)) + (0, _util.ucfirst)(name);
+              var nwp = (i === 0 ? pfx : (0, _util.ucFirst)(pfx)) + (0, _util.ucFirst)(name);
 
-              if (typeof element.style[namewithprefix] !== 'undefined') {
-                validstylename[name] = namewithprefix;
-                element.style[namewithprefix] = style[name];
+              if (typeof element.style[nwp] !== 'undefined') {
+                validStyleName[name] = nwp;
+                element.style[nwp] = style[name];
                 break;
               }
             }
@@ -352,7 +366,7 @@ function setstyle(element, style) {
           }
         }
       } else {
-        validstylename[name] = name;
+        validStyleName[name] = name;
         element.style[name] = style[name];
       }
     }
@@ -378,7 +392,7 @@ function setstyle(element, style) {
  * @param {Object} element Target element object.
  * @param {string[]|string} styles Css styles.
  */
-function unsetstyle(element, styles) {
+function unsetStyle(element, styles) {
   var style = {};
 
   var _iteratorNormalCompletion4 = true;
@@ -386,7 +400,7 @@ function unsetstyle(element, styles) {
   var _iteratorError4 = undefined;
 
   try {
-    for (var _iterator4 = ((0, _util.isarray)(styles) ? styles : [styles])[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+    for (var _iterator4 = ((0, _util.isArray)(styles) ? styles : [styles])[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
       var name = _step4.value;
 
       style[name] = '';
@@ -406,7 +420,40 @@ function unsetstyle(element, styles) {
     }
   }
 
-  setstyle(element, style);
+  setStyle(element, style);
+}
+
+/**
+ * Validate HTMLElement.
+ *
+ * @param {*} obj HTMLElement to be verified.
+ * @return {boolean} Result of valid HTMLElement.
+ */
+function isHTMLElement(obj) {
+  try {
+    return obj instanceof HTMLElement;
+  } catch (e) {
+    return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.nodeType === 1 && _typeof(obj.style) === 'object' && _typeof(obj.ownerDocument) === 'object';
+  }
+}
+
+/**
+ * Add event listener with options.
+ *
+ * @param {Object} target Target object.
+ * @param {string} type Event type.
+ * @param {function} handler Event handler.
+ * @param {Object} [options={}] Event options.
+ */
+function addEventListenerWithOptions(target, type, handler) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+  var optionsOrCapture = _extends({
+    passive: true,
+    capture: false
+  }, options);
+
+  target.addEventListener(type, handler, supportsPassive ? optionsOrCapture : optionsOrCapture.capture);
 }
 
 /***/ }),
@@ -475,28 +522,28 @@ var Highendrawer = function () {
      */
     this.state = 'close';
 
-    this._id = helper.generateid();
+    this._id = helper.generateId();
     this._drawer = _extends({}, _const.DEFAULT_DRAWER_PROPERTY, drawer);
     this._overlay = this._drawer.overlay === false ? false : _extends({}, _const.DEFAULT_OVERLAY_PROPERTY, this._drawer.overlay);
-    this._timeoutid = null;
-    this._intervalid = null;
+    this._timeoutId = null;
+    this._intervalId = null;
     this._process = _extends({}, _const.DEFAULT_PROCESS);
     this._enabled = false;
-    this._handler = this._getdrawerhandler();
+    this._handler = this._getDrawerHandler();
 
     if (!this._drawer.element) {
       throw new Error('\'element\' is required.');
     }
 
-    if (!this._isHTMLElement(this._drawer.element)) {
+    if (!helper.isHTMLElement(this._drawer.element)) {
       throw new Error('Invalid HTMLElement specified for \'element\'.');
     }
 
-    if (this._drawer.enabledmaxwidth > -1) {
-      window.addEventListener('resize', function () {
-        if (_this._enabled && window.innerWidth > _this._drawer.enabledmaxwidth) {
+    if (this._drawer.enabledMaxWidth > -1) {
+      helper.addEventListenerWithOptions(window, 'resize', function () {
+        if (_this._enabled && window.innerWidth > _this._drawer.enabledMaxWidth) {
           _this.destroy();
-        } else if (!_this._enabled && window.innerWidth <= _this._drawer.enabledmaxwidth) {
+        } else if (!_this._enabled && window.innerWidth <= _this._drawer.enabledMaxWidth) {
           _this.create();
         }
       });
@@ -508,7 +555,7 @@ var Highendrawer = function () {
       }, null, null);
     }
 
-    if (this._drawer.initcreate && (this._drawer.enabledmaxwidth < 0 || window.innerWidth <= this._drawer.enabledmaxwidth)) {
+    if (this._drawer.initCreate && (this._drawer.enabledMaxWidth < 0 || window.innerWidth <= this._drawer.enabledMaxWidth)) {
       this.create();
     }
   }
@@ -524,16 +571,16 @@ var Highendrawer = function () {
     key: 'create',
     value: function create() {
       try {
-        this._createdrawer();
-        this._createoverlay();
+        this._createDrawer();
+        this._createOverlay();
         this._enabled = true;
 
-        if (this._drawer.oncreate) {
-          this._drawer.oncreate.apply(this, [this._drawer]);
+        if (this._drawer.onCreate) {
+          this._drawer.onCreate.apply(this, [this._drawer]);
         }
       } catch (e) {
-        if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {
-          this._drawer.onerror.apply(this, [e]);
+        if (this._drawer && this._drawer.onError && typeof this._drawer.onError === 'function') {
+          this._drawer.onError.apply(this, [e]);
         } else {
           throw e;
         }
@@ -554,16 +601,16 @@ var Highendrawer = function () {
           this.close(0, true, true);
         }
 
-        this._destroydrawer();
-        this._destroyoverlay();
+        this._destroyDrawer();
+        this._destroyOverlay();
         this._enabled = false;
 
-        if (this._drawer.ondestroy) {
-          this._drawer.ondestroy.apply(this, [this._drawer]);
+        if (this._drawer.onDestroy) {
+          this._drawer.onDestroy.apply(this, [this._drawer]);
         }
       } catch (e) {
-        if (this._drawer && this._drawer.onerror && typeof this._drawer.onerror === 'function') {
-          this._drawer.onerror.apply(this, [e]);
+        if (this._drawer && this._drawer.onError && typeof this._drawer.onError === 'function') {
+          this._drawer.onError.apply(this, [e]);
         } else {
           throw e;
         }
@@ -575,8 +622,8 @@ var Highendrawer = function () {
      *
      * @public
      * @param {number} [duration] Drawer moving time.
-     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-     * @param {boolean} [ischangehistory=false] Make a change in history.
+     * @param {boolean} [isFireEvent] Whether to fire an event on the drawer.
+     * @param {boolean} [isChangeHistory=false] Make a change in history.
      * @return {Promise} Promise object for open.
      */
 
@@ -584,14 +631,14 @@ var Highendrawer = function () {
     key: 'open',
     value: function open() {
       var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var isFireEvent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var isChangeHistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-      return this._changestate(0, duration, {
-        onchangestate: isfireevent ? this._drawer.onchangestate : null,
-        done: isfireevent ? this._drawer.onopen : null,
-        fail: isfireevent ? this._drawer.onerror : null
-      }, ischangehistory);
+      return this._changeState(0, duration, {
+        onChangeState: isFireEvent ? this._drawer.onChangeState : null,
+        done: isFireEvent ? this._drawer.onOpen : null,
+        fail: isFireEvent ? this._drawer.onError : null
+      }, isChangeHistory);
     }
 
     /**
@@ -599,8 +646,8 @@ var Highendrawer = function () {
      *
      * @public
      * @param {number} [duration] Drawer moving time.
-     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-     * @param {boolean} [ischangehistory=false] Make a change in history.
+     * @param {boolean} [isFireEvent] Whether to fire an event on the drawer.
+     * @param {boolean} [isChangeHistory=false] Make a change in history.
      * @return {Promise} Promise object for close.
      */
 
@@ -608,14 +655,14 @@ var Highendrawer = function () {
     key: 'close',
     value: function close() {
       var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var isFireEvent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var isChangeHistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-      return this._changestate(this._getminposition(), duration, {
-        onchangestate: isfireevent ? this._drawer.onchangestate : null,
-        done: isfireevent ? this._drawer.onclose : null,
-        fail: isfireevent ? this._drawer.onerror : null
-      }, ischangehistory);
+      return this._changeState(this._getMinPosition(), duration, {
+        onChangeState: isFireEvent ? this._drawer.onChangeState : null,
+        done: isFireEvent ? this._drawer.onClose : null,
+        fail: isFireEvent ? this._drawer.onError : null
+      }, isChangeHistory);
     }
 
     /**
@@ -623,8 +670,8 @@ var Highendrawer = function () {
      *
      * @public
      * @param {number} [duration] Drawer moving time.
-     * @param {boolean} [isfireevent] Whether to fire an event on the drawer.
-     * @param {boolean} [ischangehistory=false] Make a change in history.
+     * @param {boolean} [isFireEvent] Whether to fire an event on the drawer.
+     * @param {boolean} [isChangeHistory=false] Make a change in history.
      * @return {Promise} Promise object for toggle.
      */
 
@@ -635,12 +682,12 @@ var Highendrawer = function () {
 
       var _this2 = this;
 
-      var isfireevent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      var ischangehistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var isFireEvent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var isChangeHistory = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
       return new Promise(function (resolve, reject) {
         try {
-          _this2[_this2.state === 'open' ? 'close' : 'open'](duration, isfireevent, ischangehistory).then(resolve, reject);
+          _this2[_this2.state === 'open' ? 'close' : 'open'](duration, isFireEvent, isChangeHistory).then(resolve, reject);
         } catch (e) {
           reject(e);
         }
@@ -652,16 +699,18 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_createdrawer',
-    value: function _createdrawer() {
+    key: '_createDrawer',
+    value: function _createDrawer() {
       var _this3 = this;
 
-      helper.setstyle(this._drawer.element, _extends({}, _const.DRAWER_STYLE, _support.support.cssanim ? _const.TRANSITION_STYLE : {}));
+      helper.setStyle(this._drawer.element, _extends({}, _const.DRAWER_STYLE, _support.support.cssAnim ? _const.TRANSITION_STYLE : {}));
 
-      this._resetdrawer();
+      this._resetDrawer();
 
       Object.keys(this._handler).forEach(function (name) {
-        window.addEventListener(name, _this3._handler[name]);
+        helper.addEventListenerWithOptions(window, name, _this3._handler[name], {
+          passive: name !== 'touchmove'
+        });
       });
     }
 
@@ -670,17 +719,17 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_destroydrawer',
-    value: function _destroydrawer() {
+    key: '_destroyDrawer',
+    value: function _destroyDrawer() {
       var _this4 = this;
 
       Object.keys(this._handler).forEach(function (name) {
         window.removeEventListener(name, _this4._handler[name]);
       });
 
-      this._resetdrawer(true);
+      this._resetDrawer(true);
 
-      helper.unsetstyle(this._drawer.element, Object.keys(_extends({}, _const.DRAWER_STYLE, _support.support.cssanim ? _const.TRANSITION_STYLE : {})));
+      helper.unsetStyle(this._drawer.element, Object.keys(_extends({}, _const.DRAWER_STYLE, _support.support.cssAnim ? _const.TRANSITION_STYLE : {})));
     }
 
     /**
@@ -688,27 +737,27 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_createoverlay',
-    value: function _createoverlay() {
+    key: '_createOverlay',
+    value: function _createOverlay() {
       var _this5 = this;
 
       if (this._overlay === false) {
         return;
       }
 
-      if (this._overlay.zindex === -1) {
-        this._overlay.zindex = this._drawer.zindex - 1;
+      if (this._overlay.zIndex === -1) {
+        this._overlay.zIndex = this._drawer.zIndex - 1;
       }
 
       if (!this._overlay.element) {
         this._overlay.element = window.document.createElement('div');
-        this._overlay.isautocreated = true;
+        this._overlay.autoCreated = true;
 
-        helper.setstyle(this._overlay.element, _extends({}, _const.OVERLAY_STYLE, _support.support.cssanim ? _const.TRANSITION_STYLE : {}));
+        helper.setStyle(this._overlay.element, _extends({}, _const.OVERLAY_STYLE, _support.support.cssAnim ? _const.TRANSITION_STYLE : {}));
       }
 
-      if (!this._overlay.touchhandler) {
-        this._overlay.touchhandler = function (e) {
+      if (!this._overlay.touchHandler) {
+        this._overlay.touchHandler = function (e) {
           _this5.close();
         };
       }
@@ -721,16 +770,16 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_destroyoverlay',
-    value: function _destroyoverlay() {
+    key: '_destroyOverlay',
+    value: function _destroyOverlay() {
       if (this._overlay === false) {
         return;
       }
 
       if (this._overlay.element) {
-        this._overlay.element.removeEventListener('click', this._overlay.touchhandler);
+        this._overlay.element.removeEventListener('click', this._overlay.touchHandler);
 
-        if (this._overlay.isautocreated) {
+        if (this._overlay.autoCreated) {
           this._overlay.element.parentNode.removeChild(this._overlay.element);
         }
       }
@@ -739,27 +788,27 @@ var Highendrawer = function () {
     /**
      * Reset drawer.
      *
-     * @param {boolean} [isunset] Unset style.
+     * @param {boolean} [isUnset] Unset style.
      */
 
   }, {
-    key: '_resetdrawer',
-    value: function _resetdrawer() {
-      var isunset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    key: '_resetDrawer',
+    value: function _resetDrawer() {
+      var isUnset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
       try {
-        this._setprops();
+        this._setProps();
 
-        var ims = this._getinitdrawerstyle();
+        var ims = this._getInitDrawerStyle();
 
-        if (isunset) {
-          helper.unsetstyle(this._drawer.element, Object.keys(ims));
+        if (isUnset) {
+          helper.unsetStyle(this._drawer.element, Object.keys(ims));
         } else {
-          helper.setstyle(this._drawer.element, ims);
+          helper.setStyle(this._drawer.element, ims);
         }
       } catch (e) {
-        if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {
-          this._drawer.onerror.apply(this, [e]);
+        if (this._drawer.onError && typeof this._drawer.onError === 'function') {
+          this._drawer.onError.apply(this, [e]);
         } else {
           throw e;
         }
@@ -771,10 +820,10 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_showdrawer',
-    value: function _showdrawer() {
-      helper.setstyle(this._drawer.element, {
-        zIndex: this._drawer.zindex,
+    key: '_showDrawer',
+    value: function _showDrawer() {
+      helper.setStyle(this._drawer.element, {
+        zIndex: this._drawer.zIndex,
         opacity: 1
       });
     }
@@ -784,9 +833,9 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_hidedrawer',
-    value: function _hidedrawer() {
-      helper.setstyle(this._drawer.element, {
+    key: '_hideDrawer',
+    value: function _hideDrawer() {
+      helper.setStyle(this._drawer.element, {
         zIndex: -1,
         opacity: 0
       });
@@ -797,10 +846,10 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_showoverlay',
-    value: function _showoverlay() {
-      helper.setstyle(this._overlay.element, {
-        zIndex: this._overlay.zindex,
+    key: '_showOverlay',
+    value: function _showOverlay() {
+      helper.setStyle(this._overlay.element, {
+        zIndex: this._overlay.zIndex,
         display: 'block'
       });
     }
@@ -810,9 +859,9 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_hideoverlay',
-    value: function _hideoverlay() {
-      helper.setstyle(this._overlay.element, {
+    key: '_hideOverlay',
+    value: function _hideOverlay() {
+      helper.setStyle(this._overlay.element, {
         zIndex: -1,
         display: 'none'
       });
@@ -823,20 +872,20 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_setprops',
-    value: function _setprops() {
-      // set sizepixel
-      var sizepixel = this._normalizepixel(this._drawer.size);
+    key: '_setProps',
+    value: function _setProps() {
+      // set sizePixel
+      var sizePixel = this._normalizePixel(this._drawer.size);
 
-      if (this._drawer.maxsize && this._drawer.maxsize !== -1) {
-        var maxsizepixel = this._normalizepixel(this._drawer.maxsize);
+      if (this._drawer.maxSize && this._drawer.maxSize !== -1) {
+        var maxSizePixel = this._normalizePixel(this._drawer.maxSize);
 
-        if (sizepixel > maxsizepixel) {
-          sizepixel = maxsizepixel;
+        if (sizePixel > maxSizePixel) {
+          sizePixel = maxSizePixel;
         }
       }
 
-      this._sizepixel = sizepixel;
+      this._sizePixel = sizePixel;
 
       // set position
       this._position = typeof this._position === 'undefined' ? null : this._position;
@@ -849,16 +898,16 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getinitdrawerstyle',
-    value: function _getinitdrawerstyle() {
+    key: '_getInitDrawerStyle',
+    value: function _getInitDrawerStyle() {
       var style = null;
 
       switch (this._drawer.direction) {
         case 'top':
           style = {
             width: '100%',
-            height: this._sizepixel + 'px',
-            top: '-' + this._sizepixel + 'px',
+            height: this._sizePixel + 'px',
+            top: '-' + this._sizePixel + 'px',
             right: 'auto',
             bottom: 'auto',
             left: 0
@@ -866,10 +915,10 @@ var Highendrawer = function () {
           break;
         case 'right':
           style = {
-            width: this._sizepixel + 'px',
+            width: this._sizePixel + 'px',
             height: '100%',
             top: 0,
-            right: '-' + this._sizepixel + 'px',
+            right: '-' + this._sizePixel + 'px',
             bottom: 'auto',
             left: 'auto'
           };
@@ -877,21 +926,21 @@ var Highendrawer = function () {
         case 'bottom':
           style = {
             width: '100%',
-            height: this._sizepixel + 'px',
+            height: this._sizePixel + 'px',
             top: 'auto',
             right: 'auto',
-            bottom: '-' + this._sizepixel + 'px',
+            bottom: '-' + this._sizePixel + 'px',
             left: 0
           };
           break;
         case 'left':
           style = {
-            width: this._sizepixel + 'px',
+            width: this._sizePixel + 'px',
             height: '100%',
             top: 0,
             right: 'auto',
             bottom: 'auto',
-            left: '-' + this._sizepixel + 'px'
+            left: '-' + this._sizePixel + 'px'
           };
           break;
         default:
@@ -910,14 +959,14 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getdrawerstyle',
-    value: function _getdrawerstyle(position) {
+    key: '_getDrawerStyle',
+    value: function _getDrawerStyle(position) {
       var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-      var minp = this._getminposition(this._drawer);
+      var minp = this._getMinPosition(this._drawer);
       var style = {};
 
-      if (_support.support.cssanim) {
+      if (_support.support.cssAnim) {
         style.transitionDuration = (duration === null ? this._drawer.duration : duration) + 'ms';
 
         switch (this._drawer.direction) {
@@ -952,19 +1001,36 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getoverlaystyle',
-    value: function _getoverlaystyle(opacity) {
+    key: '_getOverlayStyle',
+    value: function _getOverlayStyle(opacity) {
       var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       var style = {
         opacity: opacity
       };
 
-      if (_support.support.cssanim) {
+      if (_support.support.cssAnim) {
         style.transitionDuration = (duration === null ? this._drawer.duration : duration) + 'ms';
       }
 
       return style;
+    }
+
+    /**
+     * Change overlay state.
+     *
+     * @param {string} state Drawer status ('open' or 'close')
+     */
+
+  }, {
+    key: '_changeOverlayState',
+    value: function _changeOverlayState(state) {
+      if (state === 'open') {
+        helper.addEventListenerWithOptions(this._overlay.element, 'click', this._overlay.touchHandler);
+      } else {
+        this._hideDrawer();
+        this._hideOverlay();
+      }
     }
 
     /**
@@ -974,11 +1040,11 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_cssanimate',
-    value: function _cssanimate(duration) {
-      helper.setstyle(this._overlay.element, this._getoverlaystyle(this._getoverlayopacityfromposition(this._position), duration));
+    key: '_cssAnimate',
+    value: function _cssAnimate(duration) {
+      helper.setStyle(this._overlay.element, this._getOverlayStyle(this._getOverlayOpacityFromPosition(this._position), duration));
 
-      helper.setstyle(this._drawer.element, this._getdrawerstyle(this._position, duration));
+      helper.setStyle(this._drawer.element, this._getDrawerStyle(this._position, duration));
     }
 
     /**
@@ -988,39 +1054,39 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_jsanimate',
-    value: function _jsanimate(duration) {
+    key: '_jsAnimate',
+    value: function _jsAnimate(duration) {
       var _this6 = this;
 
       var start = +new Date();
-      var fromopy = this._getoverlayopacityfromstyle();
-      var toopy = this._getoverlayopacityfromposition(this._position);
-      var frompos = this._getdrawerpositionfromstyle();
-      var topos = this._position;
+      var fromOpy = this._getOverlayOpacityFromStyle();
+      var toOpy = this._getOverlayOpacityFromPosition(this._position);
+      var fromPos = this._getDrawerPositionFromStyle();
+      var toPos = this._position;
 
-      if (this._intervalid) {
-        clearInterval(this._intervalid);
+      if (this._intervalId) {
+        clearInterval(this._intervalId);
       }
 
-      this._intervalid = setInterval(function () {
+      this._intervalId = setInterval(function () {
         var time = new Date() - start;
-        var nowpos = null;
-        var nowopy = null;
+        var nowPos = null;
+        var nowOpy = null;
 
         if (time > duration) {
-          clearInterval(_this6._intervalid);
-          _this6._intervalid = null;
-          nowopy = toopy;
-          nowpos = topos;
+          clearInterval(_this6._intervalId);
+          _this6._intervalId = null;
+          nowOpy = toOpy;
+          nowPos = toPos;
         } else {
           var prp = (time /= duration) * (time - 2);
-          nowopy = fromopy - (toopy - fromopy) * prp;
-          nowpos = frompos - (topos - frompos) * prp;
+          nowOpy = fromOpy - (toOpy - fromOpy) * prp;
+          nowPos = fromPos - (toPos - fromPos) * prp;
         }
 
-        helper.setstyle(_this6._overlay.element, _this6._getoverlaystyle(nowopy, duration));
+        helper.setStyle(_this6._overlay.element, _this6._getOverlayStyle(nowOpy, duration));
 
-        helper.setstyle(_this6._drawer.element, _this6._getdrawerstyle(nowpos, duration));
+        helper.setStyle(_this6._drawer.element, _this6._getDrawerStyle(nowPos, duration));
       }, 10);
     }
 
@@ -1031,22 +1097,22 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_gettouchmovestate',
-    value: function _gettouchmovestate() {
+    key: '_getTouchMoveState',
+    value: function _getTouchMoveState() {
       if (this._process.time.end - this._process.time.start <= 300) {
         var len = this._process.touches.length;
-        var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
-        var vertical = moveinfo.axis === 'vertical';
-        var horizontal = moveinfo.axis === 'horizontal';
-        var top = this._drawer.direction === 'top' && moveinfo.y >= 0;
-        var right = this._drawer.direction === 'right' && moveinfo.x < 0;
-        var bottom = this._drawer.direction === 'bottom' && moveinfo.y < 0;
-        var left = this._drawer.direction === 'left' && moveinfo.x >= 0;
+        var moveInfo = this._getTouchMoveInfo(this._process.touches[len - 2], this._process.touches[len - 1]);
+        var vertical = moveInfo.axis === 'vertical';
+        var horizontal = moveInfo.axis === 'horizontal';
+        var top = this._drawer.direction === 'top' && moveInfo.y >= 0;
+        var right = this._drawer.direction === 'right' && moveInfo.x < 0;
+        var bottom = this._drawer.direction === 'bottom' && moveInfo.y < 0;
+        var left = this._drawer.direction === 'left' && moveInfo.x >= 0;
 
         return vertical && (bottom || top) || horizontal && (right || left) ? 'open' : 'close';
       }
 
-      return this._getstatefromposition();
+      return this._getStateFromPosition();
     }
 
     /**
@@ -1056,18 +1122,18 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getdrawerhandler',
-    value: function _getdrawerhandler() {
+    key: '_getDrawerHandler',
+    value: function _getDrawerHandler() {
       var _this7 = this;
 
       var handler = {};
 
       handler.resize = function () {
-        _this7._resetdrawer();
+        _this7._resetDrawer();
         _this7[_this7.state](0, false, false);
 
-        if (_this7._drawer.onresize) {
-          _this7._drawer.onresize.apply(_this7, [_this7._drawer]);
+        if (_this7._drawer.onResize) {
+          _this7._drawer.onResize.apply(_this7, [_this7._drawer]);
         }
       };
 
@@ -1080,7 +1146,7 @@ var Highendrawer = function () {
           for (var _iterator = _const.TOUCH_EVENTS[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var event = _step.value;
 
-            handler[event] = this._touchhandler.bind(this);
+            handler[event] = this._touchHandler.bind(this);
           }
         } catch (err) {
           _didIteratorError = true;
@@ -1117,8 +1183,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_touchhandler',
-    value: function _touchhandler(ev) {
+    key: '_touchHandler',
+    value: function _touchHandler(ev) {
       try {
         if (ev.touches.length > 1) {
           return true;
@@ -1132,21 +1198,21 @@ var Highendrawer = function () {
 
         switch (ev.type) {
           case 'touchstart':
-            this._ontouchstart(ev);
+            this._onTouchStart(ev);
             break;
           case 'touchmove':
-            this._ontouchmove(ev);
+            this._onTouchMove(ev);
             break;
           case 'touchcancel':
           case 'touchend':
-            this._ontouchfinish(ev);
+            this._onTouchFinish(ev);
             break;
           default:
             break;
         }
       } catch (e) {
-        if (this._drawer.onerror && typeof this._drawer.onerror === 'function') {
-          this._drawer.onerror.apply(this, [e]);
+        if (this._drawer.onError && typeof this._drawer.onError === 'function') {
+          this._drawer.onError.apply(this, [e]);
         } else {
           throw e;
         }
@@ -1162,8 +1228,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_ontouchstart',
-    value: function _ontouchstart(ev) {
+    key: '_onTouchStart',
+    value: function _onTouchStart(ev) {
       this._process.time.start = new Date().getTime();
     }
 
@@ -1174,62 +1240,62 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_ontouchmove',
-    value: function _ontouchmove(ev) {
+    key: '_onTouchMove',
+    value: function _onTouchMove(ev) {
       var len = this._process.touches.length;
 
       if (len < 2) {
         return;
       }
 
-      if (!this._process.istouchpointactive) {
-        this._process.istouchpointactive = this._istouchpointactive();
+      if (!this._process.isTouchPointActive) {
+        this._process.isTouchPointActive = this._isTouchPointActive();
       }
 
-      if (!this._process.istouchpointactive) {
+      if (!this._process.isTouchPointActive) {
         return;
       }
 
-      if (this._process.istouchdirectionactive === null) {
-        this._process.istouchdirectionactive = this._istouchdirectionactive();
+      if (this._process.isTouchDirectionActive === null) {
+        this._process.isTouchDirectionActive = this._isTouchDirectionActive();
       }
 
-      if (!this._process.istouchdirectionactive) {
+      if (!this._process.isTouchDirectionActive) {
         return;
       }
 
-      var isfiretouchstart = false;
-      var istouchactive = this._process.istouchpointactive && this._process.istouchdirectionactive;
+      var isFireTouchStart = false;
+      var isTouchActive = this._process.isTouchPointActive && this._process.isTouchDirectionActive;
 
-      if (!istouchactive) {
+      if (!isTouchActive) {
         return;
       }
 
-      if (!this._process.istouchactive) {
-        this._process.istouchactive = istouchactive;
-        this._showoverlay();
-        this._showdrawer();
+      if (!this._process.isTouchActive) {
+        this._process.isTouchActive = isTouchActive;
+        this._showOverlay();
+        this._showDrawer();
 
-        if (this._drawer.ontouchstart) {
-          isfiretouchstart = true;
+        if (this._drawer.onTouchStart) {
+          isFireTouchStart = true;
         }
       }
 
       ev.stopPropagation();
       ev.preventDefault();
 
-      this._position = this._getdrawerpositionfromtouches(this._process.touches[len - 2], this._process.touches[len - 1]);
+      this._position = this._getDrawerPositionFromTouches(this._process.touches[len - 2], this._process.touches[len - 1]);
 
-      if (isfiretouchstart) {
-        this._drawer.ontouchstart.apply(this, [this._drawer, this._position]);
+      if (isFireTouchStart) {
+        this._drawer.onTouchStart.apply(this, [this._drawer, this._position]);
       }
 
-      helper.setstyle(this._overlay.element, this._getoverlaystyle(this._getoverlayopacityfromposition(this._position), 0));
+      helper.setStyle(this._overlay.element, this._getOverlayStyle(this._getOverlayOpacityFromPosition(this._position), 0));
 
-      helper.setstyle(this._drawer.element, this._getdrawerstyle(this._position, 0));
+      helper.setStyle(this._drawer.element, this._getDrawerStyle(this._position, 0));
 
-      if (this._drawer.ontouchmove) {
-        this._drawer.ontouchmove.apply(this, [this._drawer, this._position]);
+      if (this._drawer.onTouchMove) {
+        this._drawer.onTouchMove.apply(this, [this._drawer, this._position]);
       }
     }
 
@@ -1240,27 +1306,27 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_ontouchfinish',
-    value: function _ontouchfinish(ev) {
+    key: '_onTouchFinish',
+    value: function _onTouchFinish(ev) {
       var len = this._process.touches.length;
 
-      if (this._process.istouchactive && len >= 2) {
+      if (this._process.isTouchActive && len >= 2) {
         this._process.time.end = new Date().getTime();
 
-        var state = this._gettouchmovestate();
-        var changestate = this.state !== state;
+        var state = this._getTouchMoveState();
+        var changeState = this.state !== state;
 
-        this[state](null, changestate, changestate);
+        this[state](null, changeState, changeState);
 
-        if (this._drawer.ontouchfinish) {
-          this._drawer.ontouchfinish.apply(this, [this._drawer, this._getdrawerpositionfromtouches(this._process.touches[len - 2], this._process.touches[len - 1])]);
+        if (this._drawer.onTouchFinish) {
+          this._drawer.onTouchFinish.apply(this, [this._drawer, this._getDrawerPositionFromTouches(this._process.touches[len - 2], this._process.touches[len - 1])]);
         }
       }
 
       this._process.touches = [];
-      this._process.istouchactive = null;
-      this._process.istouchpointactive = null;
-      this._process.istouchdirectionactive = null;
+      this._process.isTouchActive = null;
+      this._process.isTouchPointActive = null;
+      this._process.isTouchDirectionActive = null;
       this._process.time.start = 0;
       this._process.time.end = 0;
     }
@@ -1271,21 +1337,21 @@ var Highendrawer = function () {
      * @param {number} position Moving position.
      * @param {number} [duration=null] Drawer moving time.
      * @param {Object} [callbacks=null] Callback objects.
-     * @param {boolean} [ischangehistory=false] Make a change in history.
+     * @param {boolean} [isChangeHistory=false] Make a change in history.
      * @return {Promise} Promise object.
      */
 
   }, {
-    key: '_changestate',
-    value: function _changestate(position) {
+    key: '_changeState',
+    value: function _changeState(position) {
       var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       var _this8 = this;
 
       var callbacks = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var ischangehistory = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+      var isChangeHistory = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
-      return this._handlecallback(new Promise(function (resolve, reject) {
+      return this._handleCallback(new Promise(function (resolve, reject) {
         try {
           if (!_this8._enabled) {
             throw new Error('Drawer is disabled.');
@@ -1295,21 +1361,21 @@ var Highendrawer = function () {
 
           var du = duration === null ? _this8._drawer.duration : duration;
 
-          if (_this8._timeoutid !== null) {
-            clearTimeout(_this8._timeoutid);
-            _this8._timeoutid = null;
+          if (_this8._timeoutId !== null) {
+            clearTimeout(_this8._timeoutId);
+            _this8._timeoutId = null;
           }
 
-          var state = _this8._getstatefromposition();
+          var state = _this8._getStateFromPosition();
 
           if (state === 'open') {
-            _this8._showoverlay();
-            _this8._showdrawer();
+            _this8._showOverlay();
+            _this8._showDrawer();
           } else {
-            _this8._overlay.element.removeEventListener('click', _this8._overlay.touchhandler);
+            _this8._overlay.element.removeEventListener('click', _this8._overlay.touchHandler);
           }
 
-          if (ischangehistory && _this8._drawer.history && window.history && window.history.pushState) {
+          if (isChangeHistory && _this8._drawer.history && window.history && window.history.pushState) {
             if (state === 'open') {
               window.history.pushState({
                 id: _this8._id
@@ -1319,23 +1385,21 @@ var Highendrawer = function () {
             }
           }
 
-          _this8[_support.support.cssanim ? '_cssanimate' : '_jsanimate'](du);
+          _this8[_support.support.cssAnim ? '_cssAnimate' : '_jsAnimate'](du);
 
-          _this8._timeoutid = setTimeout(function () {
-            if (state === 'open') {
-              _this8._overlay.element.addEventListener('click', _this8._overlay.touchhandler);
-            } else {
-              _this8._hidedrawer();
-              _this8._hideoverlay();
-            }
-
-            _this8._timeoutid = null;
-          }, du);
+          if (du > 0) {
+            _this8._timeoutId = setTimeout(function () {
+              _this8._changeOverlayState(state);
+              _this8._timeoutId = null;
+            }, du);
+          } else {
+            _this8._changeOverlayState(state);
+          }
 
           _this8.state = state;
 
-          if ((typeof callbacks === 'undefined' ? 'undefined' : _typeof(callbacks)) === 'object' && callbacks.onchangestate) {
-            callbacks.onchangestate.apply(_this8, [_this8._drawer, state]);
+          if ((typeof callbacks === 'undefined' ? 'undefined' : _typeof(callbacks)) === 'object' && callbacks.onChangeState) {
+            callbacks.onChangeState.apply(_this8, [_this8._drawer, state]);
           }
 
           resolve.apply(_this8, [_this8._drawer]);
@@ -1355,9 +1419,9 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_istouchpointactive',
-    value: function _istouchpointactive() {
-      var rg = this._getrange(this.state === 'open' ? this._sizepixel : this._drawer.swipearea);
+    key: '_isTouchPointActive',
+    value: function _isTouchPointActive() {
+      var rg = this._getRange(this.state === 'open' ? this._sizePixel : this._drawer.swipeArea);
       var len = this._process.touches.length;
 
       return rg.from.x <= this._process.touches[len - 2].clientX && this._process.touches[len - 2].clientX <= rg.to.x && rg.from.y <= this._process.touches[len - 2].clientY && this._process.touches[len - 2].clientY <= rg.to.y;
@@ -1370,18 +1434,18 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_istouchdirectionactive',
-    value: function _istouchdirectionactive() {
+    key: '_isTouchDirectionActive',
+    value: function _isTouchDirectionActive() {
       var len = this._process.touches.length;
-      var moveinfo = this._gettouchmoveinfo(this._process.touches[len - 2], this._process.touches[len - 1]);
-      var vertical = moveinfo.axis === 'vertical';
-      var horizontal = moveinfo.axis === 'horizontal';
+      var moveInfo = this._getTouchMoveInfo(this._process.touches[len - 2], this._process.touches[len - 1]);
+      var vertical = moveInfo.axis === 'vertical';
+      var horizontal = moveInfo.axis === 'horizontal';
 
       if (!(vertical && (this._drawer.direction === 'top' || this._drawer.direction === 'bottom') || horizontal && (this._drawer.direction === 'right' || this._drawer.direction === 'left'))) {
         return false;
       }
 
-      return this.state === 'open' && (this._drawer.direction === 'top' && moveinfo.y < 0 || this._drawer.direction === 'right' && moveinfo.x >= 0 || this._drawer.direction === 'bottom' && moveinfo.y >= 0 || this._drawer.direction === 'left' && moveinfo.x < 0) || this.state === 'close' && (this._drawer.direction === 'top' && moveinfo.y >= 0 || this._drawer.direction === 'right' && moveinfo.x < 0 || this._drawer.direction === 'bottom' && moveinfo.y < 0 || this._drawer.direction === 'left' && moveinfo.x >= 0);
+      return this.state === 'open' && (this._drawer.direction === 'top' && moveInfo.y < 0 || this._drawer.direction === 'right' && moveInfo.x >= 0 || this._drawer.direction === 'bottom' && moveInfo.y >= 0 || this._drawer.direction === 'left' && moveInfo.x < 0) || this.state === 'close' && (this._drawer.direction === 'top' && moveInfo.y >= 0 || this._drawer.direction === 'right' && moveInfo.x < 0 || this._drawer.direction === 'bottom' && moveInfo.y < 0 || this._drawer.direction === 'left' && moveInfo.x >= 0);
     }
 
     /**
@@ -1391,11 +1455,11 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getstatefromposition',
-    value: function _getstatefromposition() {
-      var pos = this._position === null ? this._getdrawerpositionfromstyle() : this._position;
+    key: '_getStateFromPosition',
+    value: function _getStateFromPosition() {
+      var pos = this._position === null ? this._getDrawerPositionFromStyle() : this._position;
 
-      return Math.abs(pos) < this._sizepixel / 2 ? 'open' : 'close';
+      return Math.abs(pos) < this._sizePixel / 2 ? 'open' : 'close';
     }
 
     /**
@@ -1407,14 +1471,12 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getdrawerpositionfromtouches',
-    value: function _getdrawerpositionfromtouches(touchbasis, touchlast) {
-      var distance = this._getdistance(this._gettouchmoveinfo(touchbasis, touchlast));
-
-      var curpos = this._position === null ? this._getdrawerpositionfromstyle() : this._position;
-
+    key: '_getDrawerPositionFromTouches',
+    value: function _getDrawerPositionFromTouches(touchbasis, touchlast) {
+      var distance = this._getDistance(this._getTouchMoveInfo(touchbasis, touchlast));
+      var curpos = this._position === null ? this._getDrawerPositionFromStyle() : this._position;
+      var minp = this._getMinPosition(this._drawer);
       var pos = Math.round(curpos + distance);
-      var minp = this._getminposition(this._drawer);
 
       if (pos > 0) {
         pos = 0;
@@ -1432,10 +1494,10 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getdrawerpositionfromstyle',
-    value: function _getdrawerpositionfromstyle() {
+    key: '_getDrawerPositionFromStyle',
+    value: function _getDrawerPositionFromStyle() {
       var value = this._drawer.element.style[this._drawer.direction];
-      return this._normalizenumber(value).value;
+      return this._normalizeNumber(value).value;
     }
 
     /**
@@ -1446,11 +1508,11 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getoverlayopacityfromposition',
-    value: function _getoverlayopacityfromposition(position) {
-      var minp = this._getminposition(this._drawer);
-      var posratio = 1 - Math.abs(position) / Math.abs(minp);
-      return this._overlay.opacity * posratio * 10000 / 10000;
+    key: '_getOverlayOpacityFromPosition',
+    value: function _getOverlayOpacityFromPosition(position) {
+      var minp = this._getMinPosition(this._drawer);
+      var posRatio = 1 - Math.abs(position) / Math.abs(minp);
+      return this._overlay.opacity * posRatio * 10000 / 10000;
     }
 
     /**
@@ -1460,8 +1522,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getoverlayopacityfromstyle',
-    value: function _getoverlayopacityfromstyle() {
+    key: '_getOverlayOpacityFromStyle',
+    value: function _getOverlayOpacityFromStyle() {
       return parseFloat(this._overlay.element.style.opacity);
     }
 
@@ -1474,9 +1536,9 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getrange',
-    value: function _getrange(value) {
-      var basis = this._convertpixelabs(value);
+    key: '_getRange',
+    value: function _getRange(value) {
+      var basis = this._convertPixelAbs(value);
       var width = window.innerWidth;
       var height = window.innerHeight;
 
@@ -1503,18 +1565,18 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_convertpixelabs',
-    value: function _convertpixelabs(value) {
-      var nvalue = this._normalizepixel(value);
+    key: '_convertPixelAbs',
+    value: function _convertPixelAbs(value) {
+      var nValue = this._normalizePixel(value);
 
       switch (this._drawer.direction) {
         case 'top':
         case 'left':
-          return nvalue;
+          return nValue;
         case 'right':
-          return window.innerWidth - nvalue;
+          return window.innerWidth - nValue;
         case 'bottom':
-          return window.innerHeight - nvalue;
+          return window.innerHeight - nValue;
         default:
           throw new Error('\'' + this._drawer.direction + '\' does not support');
       }
@@ -1529,20 +1591,20 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_normalizepixel',
-    value: function _normalizepixel(value) {
-      var normalized = this._normalizenumber(value);
+    key: '_normalizePixel',
+    value: function _normalizePixel(value) {
+      var nValue = this._normalizeNumber(value);
 
-      if (normalized.unit === 'number' || normalized.unit === 'pixel') {
-        return normalized.value;
-      } else if (normalized.unit === 'percent') {
+      if (nValue.unit === 'number' || nValue.unit === 'pixel') {
+        return nValue.value;
+      } else if (nValue.unit === 'percent') {
         switch (this._drawer.direction) {
           case 'top':
           case 'bottom':
-            return window.innerHeight * (normalized.value / 100);
+            return window.innerHeight * (nValue.value / 100);
           case 'right':
           case 'left':
-            return window.innerWidth * (normalized.value / 100);
+            return window.innerWidth * (nValue.value / 100);
           default:
             throw new Error('\'' + this._drawer.direction + '\' does not support');
         }
@@ -1558,8 +1620,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_normalizenumber',
-    value: function _normalizenumber(value) {
+    key: '_normalizeNumber',
+    value: function _normalizeNumber(value) {
       if (typeof value === 'number') {
         return { value: value, unit: 'number' };
       } else if (String(value).match(/^[.\-0-9]+$/)) {
@@ -1581,8 +1643,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_getminposition',
-    value: function _getminposition() {
+    key: '_getMinPosition',
+    value: function _getMinPosition() {
       switch (this._drawer.direction) {
         case 'top':
         case 'bottom':
@@ -1598,23 +1660,23 @@ var Highendrawer = function () {
     /**
      * Return the distance of the drawer.
      *
-     * @param {Object} moveinfo Movement information of the drawer.
+     * @param {Object} moveInfo Movement information of the drawer.
      * @return {number} Distance of the drawer.
      * @throws {Error} Is thrown if direction value is invalid.
      */
 
   }, {
-    key: '_getdistance',
-    value: function _getdistance(moveinfo) {
+    key: '_getDistance',
+    value: function _getDistance(moveInfo) {
       switch (this._drawer.direction) {
         case 'top':
-          return moveinfo.y;
+          return moveInfo.y;
         case 'right':
-          return -1 * moveinfo.x;
+          return -1 * moveInfo.x;
         case 'bottom':
-          return -1 * moveinfo.y;
+          return -1 * moveInfo.y;
         case 'left':
-          return moveinfo.x;
+          return moveInfo.x;
         default:
           throw new Error('\'' + this._drawer.direction + '\' does not support');
       }
@@ -1629,30 +1691,12 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_gettouchmoveinfo',
-    value: function _gettouchmoveinfo(touchbasis, touchlast) {
+    key: '_getTouchMoveInfo',
+    value: function _getTouchMoveInfo(touchbasis, touchlast) {
       var x = touchlast.clientX - touchbasis.clientX;
       var y = touchlast.clientY - touchbasis.clientY;
       var axis = Math.abs(x) >= Math.abs(y) ? 'horizontal' : 'vertical';
-
       return { x: x, y: y, axis: axis };
-    }
-
-    /**
-     * Validate HTMLElement
-     *
-     * @param {*} obj HTMLElement to be verified.
-     * @return {boolean} Result of valid HTMLElement.
-     */
-
-  }, {
-    key: '_isHTMLElement',
-    value: function _isHTMLElement(obj) {
-      try {
-        return obj instanceof HTMLElement;
-      } catch (e) {
-        return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.nodeType === 1 && _typeof(obj.style) === 'object' && _typeof(obj.ownerDocument) === 'object';
-      }
     }
 
     /**
@@ -1664,8 +1708,8 @@ var Highendrawer = function () {
      */
 
   }, {
-    key: '_handlecallback',
-    value: function _handlecallback(promise, callbacks) {
+    key: '_handleCallback',
+    value: function _handleCallback(promise, callbacks) {
       var _this9 = this;
 
       if (!callbacks) {
@@ -1686,7 +1730,7 @@ var Highendrawer = function () {
             continue;
           }
 
-          var cb = (0, _util.isarray)(callback) ? callback : [callback];
+          var cb = (0, _util.isArray)(callback) ? callback : [callback];
           var rcb = null;
 
           switch (key) {
@@ -1766,13 +1810,13 @@ var _helper = __webpack_require__(/*! ./helper */ "./src/helper.js");
  */
 var sup = {};
 
-sup.transform3d = (0, _helper.hasstyle)(['perspectiveProperty', 'webkitPerspective', 'mozPerspective', 'oPerspective', 'msPerspective']);
+sup.transform3d = (0, _helper.hasStyle)(['perspectiveProperty', 'webkitPerspective', 'mozPerspective', 'oPerspective', 'msPerspective']);
 
-sup.transform = (0, _helper.hasstyle)(['transformProperty', 'webkitTransform', 'mozTransform', 'oTransform', 'msTransform']);
+sup.transform = (0, _helper.hasStyle)(['transformProperty', 'webkitTransform', 'mozTransform', 'oTransform', 'msTransform']);
 
-sup.transition = (0, _helper.hasstyle)(['transitionProperty', 'webkitTransitionProperty', 'mozTransitionProperty', 'oTransitionProperty', 'msTransitionProperty']);
+sup.transition = (0, _helper.hasStyle)(['transitionProperty', 'webkitTransitionProperty', 'mozTransitionProperty', 'oTransitionProperty', 'msTransitionProperty']);
 
-sup.cssanim = (sup.transform3d || sup.transform) && sup.transition;
+sup.cssAnim = (sup.transform3d || sup.transform) && sup.transition;
 
 sup.transrate = sup.transform3d ? 'translate3d' : 'translate';
 
@@ -1795,19 +1839,18 @@ var support = exports.support = Object.freeze(sup);
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ucFirst = ucFirst;
+exports.isArray = isArray;
 /**
  * Convert the first letter to uppercase.
  *
  * @param {string} str Target character string.
  * @return {string} Converted string.
  */
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ucfirst = ucfirst;
-exports.isarray = isarray;
-function ucfirst(str) {
+function ucFirst(str) {
   return str.charAt(0).toUpperCase() + str.substr(1);
 }
 
@@ -1817,7 +1860,7 @@ function ucfirst(str) {
  * @param {any} obj Target object.
  * @return {boolean} Returns true if object is an Array.
  */
-function isarray(obj) {
+function isArray(obj) {
   return Object.prototype.toString.call(obj) === '[object Array]';
 }
 

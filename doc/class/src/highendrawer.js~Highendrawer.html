@@ -30,12 +30,14 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html">Highendrawer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateid">generateid</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasstyle">hasstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setstyle">setstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetstyle">unsetstyle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isarray">isarray</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucfirst">ucfirst</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventListenerWithOptions">addEventListenerWithOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateId">generateId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hasStyle">hasStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isHTMLElement">isHTMLElement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setStyle">setStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unsetStyle">unsetStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArray">isArray</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ucFirst">ucFirst</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_DRAWER_PROPERTY">DEFAULT_DRAWER_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_OVERLAY_PROPERTY">DEFAULT_OVERLAY_PROPERTY</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DEFAULT_PROCESS">DEFAULT_PROCESS</a></span></span></li>
@@ -303,7 +305,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_intervalid">_intervalid</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_intervalId">_intervalId</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -415,7 +417,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_sizepixel">_sizepixel</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_sizePixel">_sizePixel</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -443,7 +445,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_timeoutid">_timeoutid</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-member-_timeoutId">_timeoutId</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -478,7 +480,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-close">close</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-close">close</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -565,7 +567,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-open">open</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-open">open</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -594,7 +596,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-toggle">toggle</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-toggle">toggle</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -629,7 +631,36 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_changestate">_changestate</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_changeOverlayState">_changeOverlayState</a></span></span><span class="code" data-ice="signature">(state: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Change overlay state.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_changeState">_changeState</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -658,7 +689,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_convertpixelabs">_convertpixelabs</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_convertPixelAbs">_convertPixelAbs</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -687,7 +718,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_createdrawer">_createdrawer</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_createDrawer">_createDrawer</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -716,7 +747,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_createoverlay">_createoverlay</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_createOverlay">_createOverlay</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -745,7 +776,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_cssanimate">_cssanimate</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_cssAnimate">_cssAnimate</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
@@ -774,7 +805,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_destroydrawer">_destroydrawer</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyDrawer">_destroyDrawer</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -803,7 +834,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyoverlay">_destroyoverlay</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_destroyOverlay">_destroyOverlay</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -832,7 +863,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getdistance">_getdistance</a></span></span><span class="code" data-ice="signature">(moveinfo: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getDistance">_getDistance</a></span></span><span class="code" data-ice="signature">(moveInfo: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -861,7 +892,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerhandler">_getdrawerhandler</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerHandler">_getDrawerHandler</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -890,7 +921,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerpositionfromstyle">_getdrawerpositionfromstyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerPositionFromStyle">_getDrawerPositionFromStyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -919,7 +950,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerpositionfromtouches">_getdrawerpositionfromtouches</a></span></span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerPositionFromTouches">_getDrawerPositionFromTouches</a></span></span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -948,7 +979,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getdrawerstyle">_getdrawerstyle</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getDrawerStyle">_getDrawerStyle</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -977,7 +1008,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getinitdrawerstyle">_getinitdrawerstyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getInitDrawerStyle">_getInitDrawerStyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -1006,7 +1037,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getminposition">_getminposition</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getMinPosition">_getMinPosition</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1035,7 +1066,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlayopacityfromposition">_getoverlayopacityfromposition</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayOpacityFromPosition">_getOverlayOpacityFromPosition</a></span></span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1064,7 +1095,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlayopacityfromstyle">_getoverlayopacityfromstyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayOpacityFromStyle">_getOverlayOpacityFromStyle</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1093,7 +1124,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getoverlaystyle">_getoverlaystyle</a></span></span><span class="code" data-ice="signature">(opacity: <span>float</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getOverlayStyle">_getOverlayStyle</a></span></span><span class="code" data-ice="signature">(opacity: <span>float</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -1122,7 +1153,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getrange">_getrange</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getRange">_getRange</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -1151,7 +1182,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getstatefromposition">_getstatefromposition</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getStateFromPosition">_getStateFromPosition</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -1180,7 +1211,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_gettouchmoveinfo">_gettouchmoveinfo</a></span></span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getTouchMoveInfo">_getTouchMoveInfo</a></span></span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -1209,7 +1240,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_gettouchmovestate">_gettouchmovestate</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_getTouchMoveState">_getTouchMoveState</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -1238,7 +1269,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_handlecallback">_handlecallback</a></span></span><span class="code" data-ice="signature">(promise: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_handleCallback">_handleCallback</a></span></span><span class="code" data-ice="signature">(promise: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -1267,7 +1298,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_hidedrawer">_hidedrawer</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_hideDrawer">_hideDrawer</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -1296,7 +1327,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_hideoverlay">_hideoverlay</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_hideOverlay">_hideOverlay</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -1325,36 +1356,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_isHTMLElement">_isHTMLElement</a></span></span><span class="code" data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Validate HTMLElement</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">private</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_istouchdirectionactive">_istouchdirectionactive</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_isTouchDirectionActive">_isTouchDirectionActive</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -1383,7 +1385,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_istouchpointactive">_istouchpointactive</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_isTouchPointActive">_isTouchPointActive</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -1412,7 +1414,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_jsanimate">_jsanimate</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_jsAnimate">_jsAnimate</a></span></span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
@@ -1441,7 +1443,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizenumber">_normalizenumber</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizeNumber">_normalizeNumber</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -1470,7 +1472,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizepixel">_normalizepixel</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_normalizePixel">_normalizePixel</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1499,7 +1501,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchfinish">_ontouchfinish</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchFinish">_onTouchFinish</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
         </p>
       </div>
       <div>
@@ -1528,7 +1530,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchmove">_ontouchmove</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchMove">_onTouchMove</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
         </p>
       </div>
       <div>
@@ -1557,7 +1559,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_ontouchstart">_ontouchstart</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_onTouchStart">_onTouchStart</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
         </p>
       </div>
       <div>
@@ -1586,7 +1588,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_resetdrawer">_resetdrawer</a></span></span><span class="code" data-ice="signature">(isunset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_resetDrawer">_resetDrawer</a></span></span><span class="code" data-ice="signature">(isUnset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
         </p>
       </div>
       <div>
@@ -1615,7 +1617,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_setprops">_setprops</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_setProps">_setProps</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -1644,7 +1646,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_showdrawer">_showdrawer</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_showDrawer">_showDrawer</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -1673,7 +1675,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_showoverlay">_showoverlay</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_showOverlay">_showOverlay</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -1702,7 +1704,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_touchhandler">_touchhandler</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/highendrawer.js~Highendrawer.html#instance-method-_touchHandler">_touchHandler</a></span></span><span class="code" data-ice="signature">(ev: <span>Event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -2010,14 +2012,14 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-_intervalid">
+  <h3 data-ice="anchor" id="instance-member-_intervalId">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_intervalid</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">_intervalId</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
@@ -2107,7 +2109,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber384">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber386">source</a></span></span>
     </span>
   </h3>
 
@@ -2182,18 +2184,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-_sizepixel">
+  <h3 data-ice="anchor" id="instance-member-_sizePixel">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_sizepixel</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">_sizePixel</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber381">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber383">source</a></span></span>
     </span>
   </h3>
 
@@ -2225,14 +2227,14 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-_timeoutid">
+  <h3 data-ice="anchor" id="instance-member-_timeoutId">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_timeoutid</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">_timeoutId</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
@@ -2278,7 +2280,7 @@
     
     
     
-    <span class="code" data-ice="name">close</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">close</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
@@ -2310,14 +2312,14 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">isfireevent</td>
+      <td data-ice="name" class="code" data-depth="0">isFireEvent</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>Whether to fire an event on the drawer.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">ischangehistory</td>
+      <td data-ice="name" class="code" data-depth="0">isChangeHistory</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: false</li></ul></td>
@@ -2455,7 +2457,7 @@
     
     
     
-    <span class="code" data-ice="name">open</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">open</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
@@ -2487,14 +2489,14 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">isfireevent</td>
+      <td data-ice="name" class="code" data-depth="0">isFireEvent</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>Whether to fire an event on the drawer.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">ischangehistory</td>
+      <td data-ice="name" class="code" data-depth="0">isChangeHistory</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: false</li></ul></td>
@@ -2544,7 +2546,7 @@
     
     
     
-    <span class="code" data-ice="name">toggle</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isfireevent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">toggle</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, isFireEvent: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
@@ -2576,14 +2578,14 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">isfireevent</td>
+      <td data-ice="name" class="code" data-depth="0">isFireEvent</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>Whether to fire an event on the drawer.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">ischangehistory</td>
+      <td data-ice="name" class="code" data-depth="0">isChangeHistory</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: false</li></ul></td>
@@ -2628,18 +2630,79 @@
 <h2 data-ice="title">Private Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_changestate">
+  <h3 data-ice="anchor" id="instance-method-_changeOverlayState">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_changestate</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, ischangehistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">_changeOverlayState</span><span class="code" data-ice="signature">(state: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber814">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber508">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Change overlay state.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">state</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Drawer status (&apos;open&apos; or &apos;close&apos;)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-_changeState">
+    <span class="access" data-ice="access">private</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">_changeState</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, isChangeHistory: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber830">source</a></span></span>
     </span>
   </h3>
 
@@ -2683,7 +2746,7 @@
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">ischangehistory</td>
+      <td data-ice="name" class="code" data-depth="0">isChangeHistory</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: false</li></ul></td>
@@ -2726,18 +2789,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_convertpixelabs">
+  <h3 data-ice="anchor" id="instance-method-_convertPixelAbs">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_convertpixelabs</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_convertPixelAbs</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1068">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1079">source</a></span></span>
     </span>
   </h3>
 
@@ -2812,14 +2875,14 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_createdrawer">
+  <h3 data-ice="anchor" id="instance-method-_createDrawer">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_createdrawer</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_createDrawer</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
@@ -2856,18 +2919,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_createoverlay">
+  <h3 data-ice="anchor" id="instance-method-_createOverlay">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_createoverlay</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_createOverlay</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber248">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber250">source</a></span></span>
     </span>
   </h3>
 
@@ -2900,18 +2963,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_cssanimate">
+  <h3 data-ice="anchor" id="instance-method-_cssAnimate">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_cssanimate</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+    <span class="code" data-ice="name">_cssAnimate</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber506">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber522">source</a></span></span>
     </span>
   </h3>
 
@@ -2961,18 +3024,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_destroydrawer">
+  <h3 data-ice="anchor" id="instance-method-_destroyDrawer">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_destroydrawer</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_destroyDrawer</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber226">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber228">source</a></span></span>
     </span>
   </h3>
 
@@ -3005,18 +3068,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_destroyoverlay">
+  <h3 data-ice="anchor" id="instance-method-_destroyOverlay">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_destroyoverlay</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_destroyOverlay</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber283">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber285">source</a></span></span>
     </span>
   </h3>
 
@@ -3049,18 +3112,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getdistance">
+  <h3 data-ice="anchor" id="instance-method-_getDistance">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getdistance</span><span class="code" data-ice="signature">(moveinfo: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getDistance</span><span class="code" data-ice="signature">(moveInfo: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1157">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1168">source</a></span></span>
     </span>
   </h3>
 
@@ -3081,7 +3144,7 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">moveinfo</td>
+      <td data-ice="name" class="code" data-depth="0">moveInfo</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>Movement information of the drawer.</p>
@@ -3135,18 +3198,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getdrawerhandler">
+  <h3 data-ice="anchor" id="instance-method-_getDrawerHandler">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getdrawerhandler</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getDrawerHandler</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber598">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber614">source</a></span></span>
     </span>
   </h3>
 
@@ -3192,18 +3255,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getdrawerpositionfromstyle">
+  <h3 data-ice="anchor" id="instance-method-_getDrawerPositionFromStyle">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getdrawerpositionfromstyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getDrawerPositionFromStyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1008">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1020">source</a></span></span>
     </span>
   </h3>
 
@@ -3249,18 +3312,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getdrawerpositionfromtouches">
+  <h3 data-ice="anchor" id="instance-method-_getDrawerPositionFromTouches">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getdrawerpositionfromtouches</span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getDrawerPositionFromTouches</span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber982">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber996">source</a></span></span>
     </span>
   </h3>
 
@@ -3330,18 +3393,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getdrawerstyle">
+  <h3 data-ice="anchor" id="instance-method-_getDrawerStyle">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getdrawerstyle</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getDrawerStyle</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber452">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber454">source</a></span></span>
     </span>
   </h3>
 
@@ -3411,18 +3474,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getinitdrawerstyle">
+  <h3 data-ice="anchor" id="instance-method-_getInitDrawerStyle">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getinitdrawerstyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getInitDrawerStyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber394">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber396">source</a></span></span>
     </span>
   </h3>
 
@@ -3468,18 +3531,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getminposition">
+  <h3 data-ice="anchor" id="instance-method-_getMinPosition">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getminposition</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getMinPosition</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1137">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1148">source</a></span></span>
     </span>
   </h3>
 
@@ -3537,18 +3600,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getoverlayopacityfromposition">
+  <h3 data-ice="anchor" id="instance-method-_getOverlayOpacityFromPosition">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getoverlayopacityfromposition</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getOverlayOpacityFromPosition</span><span class="code" data-ice="signature">(position: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1020">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1031">source</a></span></span>
     </span>
   </h3>
 
@@ -3611,18 +3674,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getoverlayopacityfromstyle">
+  <h3 data-ice="anchor" id="instance-method-_getOverlayOpacityFromStyle">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getoverlayopacityfromstyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_getOverlayOpacityFromStyle</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1031">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1042">source</a></span></span>
     </span>
   </h3>
 
@@ -3668,18 +3731,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getoverlaystyle">
+  <h3 data-ice="anchor" id="instance-method-_getOverlayStyle">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getoverlaystyle</span><span class="code" data-ice="signature">(opacity: <span>float</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getOverlayStyle</span><span class="code" data-ice="signature">(opacity: <span>float</span>, duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber489">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber491">source</a></span></span>
     </span>
   </h3>
 
@@ -3749,18 +3812,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getrange">
+  <h3 data-ice="anchor" id="instance-method-_getRange">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getrange</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getRange</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1042">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1053">source</a></span></span>
     </span>
   </h3>
 
@@ -3835,18 +3898,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_getstatefromposition">
+  <h3 data-ice="anchor" id="instance-method-_getStateFromPosition">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_getstatefromposition</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">_getStateFromPosition</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber965">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber979">source</a></span></span>
     </span>
   </h3>
 
@@ -3892,18 +3955,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_gettouchmoveinfo">
+  <h3 data-ice="anchor" id="instance-method-_getTouchMoveInfo">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_gettouchmoveinfo</span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_getTouchMoveInfo</span><span class="code" data-ice="signature">(touchbasis: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, touchlast: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1179">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1190">source</a></span></span>
     </span>
   </h3>
 
@@ -3973,18 +4036,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_gettouchmovestate">
+  <h3 data-ice="anchor" id="instance-method-_getTouchMoveState">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_gettouchmovestate</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">_getTouchMoveState</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber570">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber586">source</a></span></span>
     </span>
   </h3>
 
@@ -4030,18 +4093,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_handlecallback">
+  <h3 data-ice="anchor" id="instance-method-_handleCallback">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_handlecallback</span><span class="code" data-ice="signature">(promise: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">_handleCallback</span><span class="code" data-ice="signature">(promise: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>, callbacks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1211">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1204">source</a></span></span>
     </span>
   </h3>
 
@@ -4111,18 +4174,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_hidedrawer">
+  <h3 data-ice="anchor" id="instance-method-_hideDrawer">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_hidedrawer</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_hideDrawer</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber335">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber337">source</a></span></span>
     </span>
   </h3>
 
@@ -4155,18 +4218,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_hideoverlay">
+  <h3 data-ice="anchor" id="instance-method-_hideOverlay">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_hideoverlay</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_hideOverlay</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber355">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber357">source</a></span></span>
     </span>
   </h3>
 
@@ -4199,92 +4262,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_isHTMLElement">
+  <h3 data-ice="anchor" id="instance-method-_isTouchDirectionActive">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_isHTMLElement</span><span class="code" data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">_isTouchDirectionActive</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1193">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Validate HTMLElement</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">obj</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>HTMLElement to be verified.</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Result of valid HTMLElement.</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_istouchdirectionactive">
-    <span class="access" data-ice="access">private</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">_istouchdirectionactive</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber919">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber933">source</a></span></span>
     </span>
   </h3>
 
@@ -4330,18 +4319,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_istouchpointactive">
+  <h3 data-ice="anchor" id="instance-method-_isTouchPointActive">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_istouchpointactive</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">_isTouchPointActive</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber900">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber914">source</a></span></span>
     </span>
   </h3>
 
@@ -4387,18 +4376,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_jsanimate">
+  <h3 data-ice="anchor" id="instance-method-_jsAnimate">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_jsanimate</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+    <span class="code" data-ice="name">_jsAnimate</span><span class="code" data-ice="signature">(duration: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber526">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber542">source</a></span></span>
     </span>
   </h3>
 
@@ -4448,18 +4437,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_normalizenumber">
+  <h3 data-ice="anchor" id="instance-method-_normalizeNumber">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_normalizenumber</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span class="code" data-ice="name">_normalizeNumber</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1128">source</a></span></span>
     </span>
   </h3>
 
@@ -4534,18 +4523,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_normalizepixel">
+  <h3 data-ice="anchor" id="instance-method-_normalizePixel">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_normalizepixel</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="code" data-ice="name">_normalizePixel</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1091">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber1102">source</a></span></span>
     </span>
   </h3>
 
@@ -4620,18 +4609,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_ontouchfinish">
+  <h3 data-ice="anchor" id="instance-method-_onTouchFinish">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_ontouchfinish</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+    <span class="code" data-ice="name">_onTouchFinish</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber772">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber788">source</a></span></span>
     </span>
   </h3>
 
@@ -4681,18 +4670,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_ontouchmove">
+  <h3 data-ice="anchor" id="instance-method-_onTouchMove">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_ontouchmove</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+    <span class="code" data-ice="name">_onTouchMove</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber690">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber706">source</a></span></span>
     </span>
   </h3>
 
@@ -4742,18 +4731,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_ontouchstart">
+  <h3 data-ice="anchor" id="instance-method-_onTouchStart">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_ontouchstart</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
+    <span class="code" data-ice="name">_onTouchStart</span><span class="code" data-ice="signature">(ev: <span>Event</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber681">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber697">source</a></span></span>
     </span>
   </h3>
 
@@ -4803,18 +4792,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_resetdrawer">
+  <h3 data-ice="anchor" id="instance-method-_resetDrawer">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_resetdrawer</span><span class="code" data-ice="signature">(isunset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
+    <span class="code" data-ice="name">_resetDrawer</span><span class="code" data-ice="signature">(isUnset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber302">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber304">source</a></span></span>
     </span>
   </h3>
 
@@ -4835,7 +4824,7 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">isunset</td>
+      <td data-ice="name" class="code" data-depth="0">isUnset</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"><p>Unset style.</p>
@@ -4864,18 +4853,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_setprops">
+  <h3 data-ice="anchor" id="instance-method-_setProps">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_setprops</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_setProps</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber365">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber367">source</a></span></span>
     </span>
   </h3>
 
@@ -4908,18 +4897,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_showdrawer">
+  <h3 data-ice="anchor" id="instance-method-_showDrawer">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_showdrawer</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_showDrawer</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber325">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber327">source</a></span></span>
     </span>
   </h3>
 
@@ -4952,18 +4941,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_showoverlay">
+  <h3 data-ice="anchor" id="instance-method-_showOverlay">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_showoverlay</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">_showOverlay</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber345">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber347">source</a></span></span>
     </span>
   </h3>
 
@@ -4996,18 +4985,18 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-_touchhandler">
+  <h3 data-ice="anchor" id="instance-method-_touchHandler">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_touchhandler</span><span class="code" data-ice="signature">(ev: <span>Event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">_touchHandler</span><span class="code" data-ice="signature">(ev: <span>Event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber639">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/highendrawer.js.html#lineNumber655">source</a></span></span>
     </span>
   </h3>
 

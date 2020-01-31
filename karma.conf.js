@@ -110,7 +110,7 @@ module.exports = (config) => {
             loader: 'babel-loader',
             options: {
               plugins: ['transform-object-assign'],
-              presets: ['env'],
+              presets: ['@babel/preset-env'],
             },
           },
           {

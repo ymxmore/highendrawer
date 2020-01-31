@@ -36,7 +36,7 @@ export function generateId() {
 export function hasStyle(styles) {
   const ss = isArray(styles) ? styles : [styles];
 
-  for (let style of ss) {
+  for (const style of ss) {
     if (typeof dom.style[style] !== 'undefined') {
       return true;
     }
@@ -52,14 +52,14 @@ export function hasStyle(styles) {
  * @param {Object} style Css style.
  */
 export function setStyle(element, style) {
-  for (let name of Object.keys(style)) {
+  for (const name of Object.keys(style)) {
     const vsn = validStyleName[name];
 
     if (vsn) {
       element.style[vsn] = style[name];
     } else if (typeof element.style[name] === 'undefined') {
       for (let i = 0; i < 2; i++) {
-        for (let pfx of PREFIX) {
+        for (const pfx of PREFIX) {
           const nwp = (i === 0 ? pfx : ucFirst(pfx)) +
             ucFirst(name);
 
@@ -86,7 +86,7 @@ export function setStyle(element, style) {
 export function unsetStyle(element, styles) {
   const style = {};
 
-  for (let name of isArray(styles) ? styles : [styles]) {
+  for (const name of isArray(styles) ? styles : [styles]) {
     style[name] = '';
   }
 
@@ -119,7 +119,7 @@ export function isHTMLElement(obj) {
  * @param {Object} [options={}] Event options.
  */
 export function addEventListenerWithOptions(
-  target, type, handler, options = {}
+    target, type, handler, options = {}
 ) {
   const optionsOrCapture = Object.assign({
     passive: true,

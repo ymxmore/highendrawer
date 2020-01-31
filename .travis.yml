@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-- '9'
-- '8'
+- '13'
 deploy:
   provider: npm
   email: y_morita@aozora-create.com
@@ -10,4 +9,4 @@ deploy:
   on:
     branch: master
     tags: true
-    node: '9'
+    node: '13'

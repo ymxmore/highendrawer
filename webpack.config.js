@@ -22,6 +22,7 @@ module.exports = [
       filename: '[name].js',
       library: 'Highendrawer',
       libraryTarget: 'umd',
+      libraryExport: 'default',
       sourceMapFilename: '[name].js.map',
     },
     resolve: {
@@ -49,7 +50,7 @@ module.exports = [
           loader: 'babel-loader',
           options: {
             plugins: ['transform-object-assign'],
-            presets: ['env'],
+            presets: ['@babel/preset-env'],
           },
         },
       ],
@@ -86,6 +87,7 @@ module.exports = [
       filename: '[name].min.js',
       library: 'Highendrawer',
       libraryTarget: 'umd',
+      libraryExport: 'default',
       sourceMapFilename: '[name].min.js.map',
     },
     resolve: {
@@ -119,7 +121,7 @@ module.exports = [
               loader: 'babel-loader',
               options: {
                 plugins: ['transform-object-assign'],
-                presets: ['env'],
+                presets: ['@babel/preset-env'],
               },
             },
           ],

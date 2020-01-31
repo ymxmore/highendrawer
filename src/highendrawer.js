@@ -59,28 +59,28 @@ export default class Highendrawer {
 
     if (this._drawer.enabledMaxWidth > -1) {
       helper.addEventListenerWithOptions(window, 'resize', () => {
-        if (this._enabled
-          && window.innerWidth > this._drawer.enabledMaxWidth) {
+        if (this._enabled &&
+          window.innerWidth > this._drawer.enabledMaxWidth) {
           this.destroy();
-        } else if (!this._enabled
-          && window.innerWidth <= this._drawer.enabledMaxWidth) {
+        } else if (!this._enabled &&
+          window.innerWidth <= this._drawer.enabledMaxWidth) {
           this.create();
         }
       });
     }
 
-    if (window.history
-      && window.history.pushState
-      && this._drawer.history
+    if (window.history &&
+      window.history.pushState &&
+      this._drawer.history
     ) {
       window.history.replaceState({
         id: this._id,
       }, null, null);
     }
 
-    if (this._drawer.initCreate
-      && (this._drawer.enabledMaxWidth < 0
-        || window.innerWidth <= this._drawer.enabledMaxWidth)
+    if (this._drawer.initCreate &&
+      (this._drawer.enabledMaxWidth < 0 ||
+        window.innerWidth <= this._drawer.enabledMaxWidth)
     ) {
       this.create();
     }
@@ -147,14 +147,14 @@ export default class Highendrawer {
    */
   open(duration = null, isFireEvent = true, isChangeHistory = true) {
     return this._changeState(
-      0,
-      duration,
-      {
-        onChangeState: isFireEvent ? this._drawer.onChangeState : null,
-        done: isFireEvent ? this._drawer.onOpen : null,
-        fail: isFireEvent ? this._drawer.onError : null,
-      },
-      isChangeHistory
+        0,
+        duration,
+        {
+          onChangeState: isFireEvent ? this._drawer.onChangeState : null,
+          done: isFireEvent ? this._drawer.onOpen : null,
+          fail: isFireEvent ? this._drawer.onError : null,
+        },
+        isChangeHistory
     );
   }
 
@@ -169,14 +169,14 @@ export default class Highendrawer {
    */
   close(duration = null, isFireEvent = true, isChangeHistory = true) {
     return this._changeState(
-      this._getMinPosition(),
-      duration,
-      {
-        onChangeState: isFireEvent ? this._drawer.onChangeState : null,
-        done: isFireEvent ? this._drawer.onClose : null,
-        fail: isFireEvent ? this._drawer.onError : null,
-      },
-      isChangeHistory
+        this._getMinPosition(),
+        duration,
+        {
+          onChangeState: isFireEvent ? this._drawer.onChangeState : null,
+          done: isFireEvent ? this._drawer.onClose : null,
+          fail: isFireEvent ? this._drawer.onError : null,
+        },
+        isChangeHistory
     );
   }
 
@@ -193,7 +193,7 @@ export default class Highendrawer {
     return new Promise((resolve, reject) => {
       try {
         this[this.state === 'open' ? 'close' : 'open'](duration, isFireEvent, isChangeHistory)
-          .then(resolve, reject);
+            .then(resolve, reject);
       } catch (e) {
         reject(e);
       }
@@ -205,12 +205,12 @@ export default class Highendrawer {
    */
   _createDrawer() {
     helper.setStyle(
-      this._drawer.element,
-      Object.assign(
-        {},
-        DRAWER_STYLE,
+        this._drawer.element,
+        Object.assign(
+            {},
+            DRAWER_STYLE,
         support.cssAnim ? TRANSITION_STYLE : {}
-      )
+        )
     );
 
     this._resetDrawer();
@@ -233,14 +233,14 @@ export default class Highendrawer {
     this._resetDrawer(true);
 
     helper.unsetStyle(
-      this._drawer.element,
-      Object.keys(
-        Object.assign(
-          {},
-          DRAWER_STYLE,
+        this._drawer.element,
+        Object.keys(
+            Object.assign(
+                {},
+                DRAWER_STYLE,
           support.cssAnim ? TRANSITION_STYLE : {}
+            )
         )
-      )
     );
   }
 
@@ -261,12 +261,12 @@ export default class Highendrawer {
       this._overlay.autoCreated = true;
 
       helper.setStyle(
-        this._overlay.element,
-        Object.assign(
-          {},
-          OVERLAY_STYLE,
+          this._overlay.element,
+          Object.assign(
+              {},
+              OVERLAY_STYLE,
           support.cssAnim ? TRANSITION_STYLE : {}
-        )
+          )
       );
     }
 
@@ -367,12 +367,12 @@ export default class Highendrawer {
   _setProps() {
     // set sizePixel
     let sizePixel = this._normalizePixel(
-      this._drawer.size
+        this._drawer.size
     );
 
     if (this._drawer.maxSize && this._drawer.maxSize !== -1) {
-      let maxSizePixel = this._normalizePixel(
-        this._drawer.maxSize
+      const maxSizePixel = this._normalizePixel(
+          this._drawer.maxSize
       );
 
       if (sizePixel > maxSizePixel) {
@@ -521,16 +521,16 @@ export default class Highendrawer {
    */
   _cssAnimate(duration) {
     helper.setStyle(
-      this._overlay.element,
-      this._getOverlayStyle(
-        this._getOverlayOpacityFromPosition(this._position),
-        duration
-      )
+        this._overlay.element,
+        this._getOverlayStyle(
+            this._getOverlayOpacityFromPosition(this._position),
+            duration
+        )
     );
 
     helper.setStyle(
-      this._drawer.element,
-      this._getDrawerStyle(this._position, duration)
+        this._drawer.element,
+        this._getDrawerStyle(this._position, duration)
     );
   }
 
@@ -567,13 +567,13 @@ export default class Highendrawer {
       }
 
       helper.setStyle(
-        this._overlay.element,
-        this._getOverlayStyle(nowOpy, duration)
+          this._overlay.element,
+          this._getOverlayStyle(nowOpy, duration)
       );
 
       helper.setStyle(
-        this._drawer.element,
-        this._getDrawerStyle(nowPos, duration)
+          this._drawer.element,
+          this._getDrawerStyle(nowPos, duration)
       );
     }, 10);
   }
@@ -587,8 +587,8 @@ export default class Highendrawer {
     if (this._process.time.end - this._process.time.start <= 300) {
       const len = this._process.touches.length;
       const moveInfo = this._getTouchMoveInfo(
-        this._process.touches[len - 2],
-        this._process.touches[len - 1]
+          this._process.touches[len - 2],
+          this._process.touches[len - 1]
       );
       const vertical = moveInfo.axis === 'vertical';
       const horizontal = moveInfo.axis === 'horizontal';
@@ -620,21 +620,21 @@ export default class Highendrawer {
 
       if (this._drawer.onResize) {
         this._drawer.onResize.apply(
-          this,
-          [this._drawer]
+            this,
+            [this._drawer]
         );
       }
     };
 
     if (this._drawer.swipeable) {
-      for (let event of TOUCH_EVENTS) {
+      for (const event of TOUCH_EVENTS) {
         handler[event] = this._touchHandler.bind(this);
       }
     }
 
-    if (window.history
-      && window.history.pushState
-      && this._drawer.history
+    if (window.history &&
+      window.history.pushState &&
+      this._drawer.history
     ) {
       handler.popstate = (e) => {
         if (e.state && e.state.id === this._id && this.state === 'open') {
@@ -658,7 +658,7 @@ export default class Highendrawer {
         return true;
       }
 
-      let touch = ev.touches[0];
+      const touch = ev.touches[0];
 
       if (touch) {
         this._process.touches.push(touch);
@@ -748,34 +748,34 @@ export default class Highendrawer {
     ev.preventDefault();
 
     this._position = this._getDrawerPositionFromTouches(
-      this._process.touches[len - 2],
-      this._process.touches[len - 1]
+        this._process.touches[len - 2],
+        this._process.touches[len - 1]
     );
 
     if (isFireTouchStart) {
       this._drawer.onTouchStart.apply(
-        this,
-        [this._drawer, this._position]
+          this,
+          [this._drawer, this._position]
       );
     }
 
     helper.setStyle(
-      this._overlay.element,
-      this._getOverlayStyle(
-        this._getOverlayOpacityFromPosition(this._position),
-        0
-      )
+        this._overlay.element,
+        this._getOverlayStyle(
+            this._getOverlayOpacityFromPosition(this._position),
+            0
+        )
     );
 
     helper.setStyle(
-      this._drawer.element,
-      this._getDrawerStyle(this._position, 0)
+        this._drawer.element,
+        this._getDrawerStyle(this._position, 0)
     );
 
     if (this._drawer.onTouchMove) {
       this._drawer.onTouchMove.apply(
-        this,
-        [this._drawer, this._position]
+          this,
+          [this._drawer, this._position]
       );
     }
   }
@@ -798,14 +798,14 @@ export default class Highendrawer {
 
       if (this._drawer.onTouchFinish) {
         this._drawer.onTouchFinish.apply(
-          this,
-          [
-            this._drawer,
-            this._getDrawerPositionFromTouches(
-              this._process.touches[len - 2],
-              this._process.touches[len - 1]
-            ),
-          ]
+            this,
+            [
+              this._drawer,
+              this._getDrawerPositionFromTouches(
+                  this._process.touches[len - 2],
+                  this._process.touches[len - 1]
+              ),
+            ]
         );
       }
     }
@@ -828,10 +828,10 @@ export default class Highendrawer {
    * @return {Promise} Promise object.
    */
   _changeState(
-    position,
-    duration = null,
-    callbacks = null,
-    isChangeHistory = true
+      position,
+      duration = null,
+      callbacks = null,
+      isChangeHistory = true
   ) {
     return this._handleCallback(new Promise((resolve, reject) => {
       try {
@@ -857,10 +857,10 @@ export default class Highendrawer {
           this._overlay.element.removeEventListener('click', this._overlay.touchHandler);
         }
 
-        if (isChangeHistory
-          && this._drawer.history
-          && window.history
-          && window.history.pushState
+        if (isChangeHistory &&
+          this._drawer.history &&
+          window.history &&
+          window.history.pushState
         ) {
           if (state === 'open') {
             window.history.pushState({
@@ -871,17 +871,17 @@ export default class Highendrawer {
           }
         }
 
-        this[support.cssAnim
-          ? '_cssAnimate'
-          : '_jsAnimate'](du);
+        this[support.cssAnim ?
+          '_cssAnimate' :
+          '_jsAnimate'](du);
 
         if (du > 0) {
           this._timeoutId = setTimeout(
-            () => {
-              this._changeOverlayState(state);
-              this._timeoutId = null;
-            },
-            du
+              () => {
+                this._changeOverlayState(state);
+                this._timeoutId = null;
+              },
+              du
           );
         } else {
           this._changeOverlayState(state);
@@ -891,8 +891,8 @@ export default class Highendrawer {
 
         if (typeof callbacks === 'object' && callbacks.onChangeState) {
           callbacks.onChangeState.apply(
-            this,
-            [this._drawer, state]
+              this,
+              [this._drawer, state]
           );
         }
 
@@ -933,8 +933,8 @@ export default class Highendrawer {
   _isTouchDirectionActive() {
     const len = this._process.touches.length;
     const moveInfo = this._getTouchMoveInfo(
-      this._process.touches[len - 2],
-      this._process.touches[len - 1]
+        this._process.touches[len - 2],
+        this._process.touches[len - 1]
     );
     const vertical = moveInfo.axis === 'vertical';
     const horizontal = moveInfo.axis === 'horizontal';
@@ -995,7 +995,7 @@ export default class Highendrawer {
    */
   _getDrawerPositionFromTouches(touchbasis, touchlast) {
     const distance = this._getDistance(
-      this._getTouchMoveInfo(touchbasis, touchlast)
+        this._getTouchMoveInfo(touchbasis, touchlast)
     );
     const curpos = this._position === null ?
       this._getDrawerPositionFromStyle() :
@@ -1206,7 +1206,7 @@ export default class Highendrawer {
       return promise;
     }
 
-    for (let key of Object.keys(callbacks)) {
+    for (const key of Object.keys(callbacks)) {
       const callback = callbacks[key];
 
       if (!callback) {
@@ -1238,5 +1238,3 @@ export default class Highendrawer {
     return promise;
   }
 }
-
-module.exports = Highendrawer;

@@ -1,5 +1,7 @@
 # Highendrawer
 
+> **⚠️ DEPRECATED**: This package is no longer maintained.
+
 [![Build Status](https://travis-ci.org/ym-aozora/highendrawer.svg?branch=master)](https://travis-ci.org/ym-aozora/highendrawer)
 [![npm version](https://badge.fury.io/js/highendrawer.svg)](https://badge.fury.io/js/highendrawer)
 
